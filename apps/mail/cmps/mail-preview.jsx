@@ -4,7 +4,13 @@ export function MailPreview({ mail }) {
 
     const [ isToExpand, setToExpand ] = useState(false)
 
-    return <article className="mail-preview" onClick={() => setToExpand(isToExpand => !isToExpand)}>
+    function getStar(){
+        if(mail.isStarred) return ''
+        else return
+    }
+
+    return <article className={`mail-preview ${mail.isRead ? 'isRead' : ''}`}onClick={() => setToExpand(isToExpand => !isToExpand)}>
+        <img className={`star ${mail.isStarred ? 'starred' : ''}`} src={`../../assets/img/icons/icons-mail/${mail.isStarred ? 'starred' : 'star'}-icon.png`} />
         <span className="preview from">{mail.from}</span>
         <span className="preview subject">{mail.subject}</span>
 
