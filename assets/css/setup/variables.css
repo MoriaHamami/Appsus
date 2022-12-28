@@ -12,7 +12,8 @@
     /* NOTE */
     /* side bar */
     --active-bg-color: #feefc3;
-    --active-hover-bg-color: #f1f3f4;
+    --hover-bg-color: #f1f3f4;
+    --button-hover-bg-color: #c6c6c67e;
     --logo-color: #5f6368;
 
 

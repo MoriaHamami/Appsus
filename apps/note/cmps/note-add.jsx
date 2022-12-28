@@ -59,7 +59,7 @@ export function NoteAdd({onAddNotes}) {
             />
 
 
-            <button>Add</button>
+            <button title="Add">Add</button>
 
         </form>
 

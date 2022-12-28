@@ -80,7 +80,6 @@ export function NoteIndex() {
 
     if (!notes) return <h1>Notes you add appear here</h1>
     return <section className="note-index">
-        <h1>hello from note index</h1>
 
         <NoteFilter onSetFilter={onSetFilter} />
 

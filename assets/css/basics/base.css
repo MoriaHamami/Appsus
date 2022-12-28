@@ -27,9 +27,13 @@ img {
     object-fit: cover;
 }
 
-hr {
+.mail-index hr {
     color: lightgray;
     background-color: lightgray;
     height: 1px;
     border-width: 0;
+}
+
+.note-index hr{
+    background-color: aqua;
 }

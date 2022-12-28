@@ -1,11 +1,11 @@
 .note-preview {
     padding: 15px;
     border-radius: 0.5rem;
-    min-height: 150px;
+    min-height: 180px;
     border: 2px rgb(231, 231, 231) solid;
     text-align: left;
 
-    transition: 0.5s;
+    transition: 0.3s;
 
 }
 
