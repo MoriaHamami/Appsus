@@ -7,7 +7,7 @@ export function Home() {
 
         <img src="/assets/img/icons/icons-mail/miss-mail-logo.png" alt="email" />
         <img src="/assets/img/icons/icons-notes/note-logo.png" alt="note" />
-        <img src="/assets/img/icons/icons-notes/note-logo.png" alt="book" />
+        <img src="/assets/img/icons/icons-book/book-logo.png" alt="book" />
 
 
     </section>

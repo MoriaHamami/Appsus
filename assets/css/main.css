@@ -7,10 +7,13 @@
 
 @import './basics/base.css';
 @import './basics/helpers.css';
+@import './basics/buttons.css';
+@import './basics/icons.css';
 @import './basics/layout.css';
 
 /* Views */
 @import './views/home.css';
+@import './views/about.css';
 
 @import './apps/note/views/note-app.css';
 
@@ -20,5 +23,24 @@
 
 @import './cmps/user-msg.css';
 @import './cmps/app-header.css';
+@import './cmps/label-picker.css';
+@import './cmps/long-text.css';
 
+/* Mail Cmps */
+
+@import './apps/mail/cmps/mail-compose.css';
+@import './apps/mail/cmps/mail-details.css';
+@import './apps/mail/cmps/mail-edit.css';
+@import './apps/mail/cmps/mail-filter.css';
+@import './apps/mail/cmps/mail-folder-list.css';
+@import './apps/mail/cmps/mail-index.css';
 @import './apps/mail/cmps/mail-list.css';
+@import './apps/mail/cmps/mail-preview.css';
+
+/* Note Cmps */
+
+@import './apps/note/cmps/note-filter.css';
+@import './apps/note/cmps/note-index.css';
+@import './apps/note/cmps/note-list.css';
+@import './apps/note/cmps/note-preview.css';
+
