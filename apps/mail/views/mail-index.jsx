@@ -37,6 +37,7 @@ export function MailIndex() {
 
     function onComposeMail(ev, mailToCompose) {
         ev.preventDefault()
+        console.log('mailToCompose:', mailToCompose)
         mailService.save(mailToCompose).then((composedMail) => {
             setShowCompose(false)
             mailToEdit.id ? showSuccessMsg('Mail saved!') : showSuccessMsg('Mail added!')

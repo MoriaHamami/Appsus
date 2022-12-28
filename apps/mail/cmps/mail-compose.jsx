@@ -26,14 +26,14 @@ export function MailCompose({ onComposeMail }) {
     // }
 
     function handleChange(ev) {
-        if(ev.currentTarget) {
-            var value = ev.currentTarget.textContent
-            mailToCompose.txt = value
-            var field = 'txt'
-        } else {
-            var { value, name: field } = ev.target
-        }
-        console.log('value:', ev.target)
+        // if(ev.currentTarget) {
+        //     var value = ev.currentTarget.textContent
+        //     mailToCompose.txt = value
+        //     var field = 'txt'
+        // } else {
+        var { value, name: field } = ev.target
+        // }
+        console.log('value:', value)
         setMailToCompose((prevMail) => {
             return { ...prevMail, [field]: value }
         })
@@ -42,17 +42,20 @@ export function MailCompose({ onComposeMail }) {
     return <section className="mail-compose">
         <header>New Message</header>
         <form className="compose-form" onSubmit={(ev) => onComposeMail(ev, mailToCompose)}>
-            <label className="compose to">
-                To:
-                <input type="email"
+            <label className="to-label">
+                To
+                <input className="to"
+                    type="email"
                     name="to"
                     // value={mailToCompose.to}
                     onChange={handleChange}
+                    required
                 />
             </label>
             <hr />
-            <label className="compose subject">
-                <input type="text"
+            <label>
+                <input className="subject"
+                    type="text"
                     name="subject"
                     value={mailToCompose.subject}
                     placeholder="Subject"
@@ -60,25 +63,25 @@ export function MailCompose({ onComposeMail }) {
                 />
             </label>
             <hr />
-            <label className="compose txt">
+            <label>
+                <textarea className="txt"
+                    type="text"
+                    name="txt"
+                    value={mailToCompose.txt}
+                    onChange={handleChange}
+                />
+            </label>
+            <hr />
+            {/* <label className="compose txt">
                 <div contentEditable
                 // role="textbox"
                     name="txt"
                     // value={mailToCompose.txt}
                     onInput={handleChange}
                 ></div>
-            </label>
-
-            {/* <div className="toolbar">
-                <button id="boldButton">Bold</button>
-                <button id="italicButton">Italic</button>
-                <button id="underlineButton">Underline</button>
-            </div> */}
+            </label> */}
 
             <button>Send</button>
         </form>
-            {/* <div id="editor" contentEditable role="textbox" style="margin-top: 10px; border: 1px solid gray; padding: 10px; border-radius: 5px;">
-                Start Editing...
-            </div> */}
     </section>
 }
