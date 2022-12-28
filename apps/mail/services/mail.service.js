@@ -1,11 +1,13 @@
 // import { utilService } from '../../../services/util.service'
-import { storageService } from '../../../services/async-storage.service'
+import { storageService } from '../../../services/async-storage.service.js'
+import { utilService } from '../../../services/util.service.js'
+import { criteriaService } from './criteria.service.js'
 
 const MAIL_KEY = 'mailDB'
 const USER_KEY = 'mailUserDB'
 
-_createLoggedUser
-_createMails
+_createLoggedUser()
+_createMails()
 
 export const mailService = {
     query,
@@ -13,11 +15,10 @@ export const mailService = {
     remove,
     save,
     getEmptyMail,
-    getDefaultCriteria,
     getNearbyMailIds
 }
 
-function query(filterBy = getDefaultCriteria()) {
+function query(filterBy = criteriaService.getDefaultCriteria()) {
     return storageService.query(MAIL_KEY)
         .then(mails => {
             if (filterBy.txt) {
@@ -25,8 +26,7 @@ function query(filterBy = getDefaultCriteria()) {
                 mails = mails.filter(mail => regex.test(mail.to) || regex.test(mail.from) || regex.test(mail.body) || regex.test(mail.subject))
             }
             if (filterBy.status) {
-                // Check if every status in the filter appears in each mail 
-                mails = mails.filter(mail => filterBy.status.every(currStat => mail.status.includes(currStat)))
+                mails = mails.filter(mail => mail.status.includes(filterBy.status))
             }
             if (filterBy.isRead) {
                 mails = mails.filter(mail => mail.isRead === filterBy.isRead)
@@ -34,7 +34,7 @@ function query(filterBy = getDefaultCriteria()) {
             if (filterBy.isStarred) {
                 mails = mails.filter(mail => mail.isStarred === filterBy.isStarred)
             }
-            if (filterBy.labels) {
+            if (filterBy.labels.length) {
                 // Check if some (or any) of the filter labels included in each mail
                 mails = mails.filter(mail => filterBy.labels.some(currLabel => mail.labels.includes(currLabel)))
             }
@@ -93,28 +93,44 @@ function _createMails() {
     if (!mails || !mails.length) {
         mails = []
         mails.push(getEmptyMail(
-            '',
+            utilService.makeId(),
             'Miss you!',
             'Would love to catch up sometimes',
             false,
             1551133930594,
+            null,
             'momo@momo.com',
             'momo@momo.com',
             ['inbox', 'sent'],
             false,
             ['important']
         ))
+        mails.push(getEmptyMail(
+            utilService.makeId(),
+            'Another one!',
+            'I dont like the way you eat',
+            true,
+            1551133930594,
+            null,
+            'bir@momo.com',
+            'gal@momo.com',
+            ['inbox'],
+            true,
+            ['important', 'lovable']
+        ))
+        console.log('mails:', mails)
         storageService.saveToStorage(MAIL_KEY, mails)
     }
 }
 
-function getEmptyMail(id = '', subject = '', body = '', isRead = false, sentAt = '', to = '', from = '', status = [], isStarred = false, labels = []) {
+function getEmptyMail(id = utilService.makeId(), subject = '', body = '', isRead = false, sentAt = '', removedAt = null, to = '', from = '', status = [], isStarred = false, labels = []) {
     return {
         id,
         subject,
         body,
         isRead,
         sentAt,
+        removedAt,
         to,
         from,
         status,
@@ -123,15 +139,7 @@ function getEmptyMail(id = '', subject = '', body = '', isRead = false, sentAt =
     }
 }
 
-function getDefaultCriteria() {
-    return {
-        status: 'inbox',
-        txt: '',
-        isRead: '',
-        isStarred: '',
-        labels: []
-    }
-}
+
 
 
 
