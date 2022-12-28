@@ -7,8 +7,6 @@ import { Home } from "./views/home.jsx"
 import { MailIndex } from "./apps/mail/views/mail-index.jsx"
 import { NoteIndex } from "./apps/note/views/note-index.jsx"
 
-
-
 export function App() {
     return <Router>
         <section className="app">
