@@ -1,22 +1,27 @@
 import { noteService } from "../services/note.service.js";
+import { NoteImg } from "./note-img.jsx";
+import { NoteTxt } from "./note-txt.jsx";
 
 
-export function NotePreview({ note }) {
+export function NotePreview({ note, isPinned }) {
 
+    // console.log('isPinned', isPinned);
     // const imgName = book.name ? book.name : 'default'
     // <img src={`assets/img/${imgName}.png`} />
 
+    function onSaveChange() {
+        noteService.save(note)
+        console.log('note', note);
+    }
+
     function noteType() {
         if (note.type === 'note-txt') {
-            return <div>
-                <h3>{note.info.title}</h3>
-                <p>{note.info.txt}</p>
-            </div>
+            return <NoteTxt note={note} />
+
         } else if (note.type === 'note-img') {
-            return <div>
-                <h3>{note.info.title}</h3>
-                <img src={note.info.url} alt={note.info.title} />
-            </div>
+            // return <div contentEditable onBlur={onSaveChange(note)}>
+            return <NoteImg note={note} />
+
         } else if (note.type === 'note-todos') {
             return <div>
                 <h3>{note.info.label}</h3>
@@ -27,9 +32,9 @@ export function NotePreview({ note }) {
     }
 
 
-
     return <article className="note-preview">
         {noteType()}
-        
+
+
     </article>
 }

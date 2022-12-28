@@ -1,0 +1,9 @@
+.note-details{
+    font-family: Lato;
+    text-align: center;
+    border-radius: 1em;
+    background-color: #dce0dc;
+    margin: 15% auto;
+    padding: 5px;
+    width: 50%;
+}

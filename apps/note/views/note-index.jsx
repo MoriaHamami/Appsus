@@ -1,5 +1,7 @@
 const { useState, useEffect } = React
 
+import { NoteAdd } from "../cmps/note-add.jsx";
+import { NoteFilter } from "../cmps/note-filter.jsx";
 import { NoteList } from "../cmps/note-list.jsx";
 import { NotePreview } from "../cmps/note-preview.jsx";
 
@@ -7,15 +9,16 @@ import { noteService } from "../services/note.service.js";
 
 export function NoteIndex() {
 
+    const [filterBy, setFilterBy] = useState(noteService.getDefaultFilter())
     const [notes, setNotes] = useState([])
 
     useEffect(() => {
         loadNotes()
-    }, [])
+    }, [filterBy])
 
     function loadNotes() {
-        noteService.query().then(notes => {
-           console.log('notes', notes);
+        noteService.query(filterBy).then(notes => {
+            // console.log('notes', notes);
             setNotes(notes)
         })
 
@@ -24,9 +27,9 @@ export function NoteIndex() {
     function onAddNotes(note) {
         console.log(note);
         const addNote = noteService.addNotes(note)
-        
-        
-        console.log('note after', addNote)
+
+
+        // console.log('note after', addNote)
 
 
         noteService.save(addNote).then((note) => {
@@ -42,15 +45,62 @@ export function NoteIndex() {
 
     }
 
+    // function onSaveNote(noteToAdd, noteId) {
+    //     const note = notes.find(note => note.is === noteId)
+    //     bookService.saveReview(note, noteToAdd)
+    //         .then((note) => {
+    //             const reviews = [note, ...book.reviews]
+    //             setBook({ ...book, reviews })
+    //         })
+    //         .catch((err) => {
+    //             console.log('err:', err);
+
+    //         })
+    // }
+
+    function onRemoveNote(noteId) {
+        noteService.remove(noteId).then(() => {
+            const updatedNotes = notes.filter(note => note.id !== noteId)
+            setNotes(updatedNotes)
+            // showSuccessMsg('Book removed')
+        })
+            .catch((err) => {
+                console.log('Had issues removing', err)
+                // showErrorMsg('Could not remove car, try again please!')
+            })
+    }
+
+
+
+    function onSetFilter(filterByFromFilter) {
+        setFilterBy(filterByFromFilter)
+    }
+
+
     if (!notes) return <h1>Notes you add appear here</h1>
     return <section className="note-index">
         <h1>hello from note index</h1>
 
+        <NoteFilter onSetFilter={onSetFilter} />
+
         {/* <Link to="/book/edit" className="add-book">Add Book</Link> */}
+        <NoteAdd onAddNotes={onAddNotes} />
 
         {/* <BookAdd onAddGoogleBook={onAddGoogleBook} /> */}
+        {/* {noteIsPinned()} */}
+        {/* <h1>Pinned</h1> */}
+        {<NoteList notes={notes} onRemoveNote={onRemoveNote} />}
 
-        {<NoteList notes={notes} />}
+        {/* {notes.map(note => {
+            if (note.isPinned) {
+               return <NoteList notes={notes} onRemoveNote={onRemoveNote} />
+            }
+        }
+        )} */}
+
+
+        {/* <h1>Others</h1> */}
+
 
         {!notes.length && <div>Notes you add appear here</div>}
 

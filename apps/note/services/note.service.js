@@ -47,17 +47,16 @@ function save(note) {
 }
 
 function getDefaultFilter() {
-    return { txt: ''}
+    return { txt: '' }
 }
 
 function getEmptyNote() {
     return {
-        title: '',
-        description: utilService.makeLorem(),
-        listPrice:
-        {
-            amount: '',
-            currencyCode: 'ILS',
+        id: '',
+        type: "note-txt",
+        isPinned: false,
+        info: {
+            txt: "Fullstack Me Baby!"
         }
     }
 }
@@ -72,13 +71,14 @@ function _createNotes() {
                 type: "note-txt",
                 isPinned: true,
                 info: {
-                    title:'I am a title',
+                    title: 'I am a title',
                     txt: "Fullstack Me Baby!"
                 }
             },
             {
                 id: "n102",
                 type: "note-img",
+                isPinned: false,
                 info: {
                     url: "http://some-img/me",
                     title: "Bobi and Me"
@@ -90,6 +90,7 @@ function _createNotes() {
             {
                 id: "n103",
                 type: "note-todos",
+                isPinned: false,
                 info: {
                     label: "Get my stuff together",
                     todos: [
@@ -99,9 +100,9 @@ function _createNotes() {
                 }
             }
         ]
-        
+
         storageService.saveToStorage(NOTE_KEY, notes)
     }
-    
+
 }
 
