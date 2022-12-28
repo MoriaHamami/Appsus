@@ -3,6 +3,7 @@ const { useState, useEffect } = React
 import { NoteAdd } from "../cmps/note-add.jsx";
 import { NoteFilter } from "../cmps/note-filter.jsx";
 import { NoteList } from "../cmps/note-list.jsx";
+import { NoteNav } from "../cmps/note-nav.jsx";
 import { NotePreview } from "../cmps/note-preview.jsx";
 
 import { noteService } from "../services/note.service.js";
@@ -83,15 +84,18 @@ export function NoteIndex() {
 
         <NoteFilter onSetFilter={onSetFilter} />
 
-        {/* <Link to="/book/edit" className="add-book">Add Book</Link> */}
-        <NoteAdd onAddNotes={onAddNotes} />
+        <div className="notes-container">
+            <NoteNav />
+            {/* <Link to="/book/edit" className="add-book">Add Book</Link> */}
+            <div className="note-crudl-container">
+            <NoteAdd onAddNotes={onAddNotes} />
 
-        {/* <BookAdd onAddGoogleBook={onAddGoogleBook} /> */}
-        {/* {noteIsPinned()} */}
-        {/* <h1>Pinned</h1> */}
-        {<NoteList notes={notes} onRemoveNote={onRemoveNote} />}
+            {/* <BookAdd onAddGoogleBook={onAddGoogleBook} /> */}
+            {/* {noteIsPinned()} */}
+            {/* <h1>Pinned</h1> */}
+            {<NoteList notes={notes} onRemoveNote={onRemoveNote} />}
 
-        {/* {notes.map(note => {
+            {/* {notes.map(note => {
             if (note.isPinned) {
                return <NoteList notes={notes} onRemoveNote={onRemoveNote} />
             }
@@ -99,11 +103,12 @@ export function NoteIndex() {
         )} */}
 
 
-        {/* <h1>Others</h1> */}
+            {/* <h1>Others</h1> */}
 
 
-        {!notes.length && <div>Notes you add appear here</div>}
-
+            {!notes.length && <div>Notes you add appear here</div>}
+            </div>
+        </div>
     </section>
 
 }

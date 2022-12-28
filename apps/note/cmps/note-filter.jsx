@@ -34,12 +34,12 @@ export function NoteFilter({ onSetFilter }){
     return <section className="note-filter">
 
         <form onSubmit={onSubmitFilter}>
-            <label htmlFor="title">Title: </label>
+            {/* <label htmlFor="title">Title: </label> */}
 
             <input type="text"
                 id="title"
                 name="txt"
-                placeholder="By title"
+                placeholder="🔍 Search"
                 value={filterByToEdit.txt}
                 onChange={handleChange}
                 onClick={onSearchClick}

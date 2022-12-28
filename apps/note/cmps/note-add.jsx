@@ -46,14 +46,13 @@ export function NoteAdd({onAddNotes}) {
     }
 
     return <section className="note-add">
-        <h1>hello from note add</h1>
 
         <form onSubmit={onSaveNote}>
             <label htmlFor="title"></label>
             <input type="text"
                 name="info"
                 id="title"
-                placeholder="Take a note"
+                placeholder="Take a note..."
                 value={noteToAdd.txt}
                 onChange={handleChange}
                 required
