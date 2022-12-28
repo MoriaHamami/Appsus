@@ -18,7 +18,7 @@ nav a:active {
 }
 
 nav a.active {
-    color: darkblue;
+    color: blue;
     font-weight: bold;
     text-decoration: overline;
 }
