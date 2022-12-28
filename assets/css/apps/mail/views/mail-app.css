@@ -4,29 +4,28 @@
     grid-template-rows: 4rem calc(100vh - 4rem - .5rem - 16px - 40px);
 
     grid-template-areas:
-        "mail-nav   mail-filter"
-        "mail-nav   mail-list";
+        "mail-folder-list   mail-filter"
+        "mail-folder-list   mail-list";
 
     /* text-align: center; */
     /* width: max-content; */
     /* margin: 2px;
     gap: 2px; */
     overflow: hidden;
+    font-family: roboto-r;
+    font-size: 14px;
     /* border: 1px solid gray; */
 }
 
 .mail-list {
     grid-area: mail-list;
-    
     background-color: rgb(173, 200, 99);
 }
 
-.mail-nav {
-    grid-area: mail-nav;
-    background-color: rgb(49, 103, 125);
+.mail-folder-list {
+    grid-area: mail-folder-list;
 }
 
 .mail-filter {
     grid-area: mail-filter;
-    background-color: rgb(140, 144, 146);
 }

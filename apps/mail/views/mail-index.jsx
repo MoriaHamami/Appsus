@@ -5,7 +5,7 @@ import { criteriaService } from "../services/criteria.service.js"
 import { eventBusService, showErrorMsg, showSuccessMsg } from "../../../services/event-bus.service.js"
 
 import { MailFilter } from "../cmps/mail-filter.jsx"
-import { MailNav } from "../cmps/mail-nav.jsx"
+import { MailFolderList } from "../cmps/mail-folder-list.jsx"
 import { MailList } from "../cmps/mail-list.jsx"
 import { MailCompose } from "../cmps/mail-compose.jsx"
 
@@ -35,9 +35,9 @@ export function MailIndex() {
         setCriteria({...criteria})
     }
 
-    function onComposeMail(ev) {
+    function onComposeMail(ev, mailToCompose) {
         ev.preventDefault()
-        mailService.save(mailToEdit).then((composedMail) => {
+        mailService.save(mailToCompose).then((composedMail) => {
             setShowCompose(false)
             mailToEdit.id ? showSuccessMsg('Mail saved!') : showSuccessMsg('Mail added!')
             // navigate('/mail')
@@ -55,7 +55,7 @@ export function MailIndex() {
 
     return <section className="mail-index">
         <MailFilter onSetCriteria={onSetCriteria} />
-        <MailNav onSetCriteria={onSetCriteria} onToCompose={onToCompose} />
+        <MailFolderList onSetCriteria={onSetCriteria} onToCompose={onToCompose} />
         {!isLoading && <MailList mails={mails} isLoading={isLoading} />}
         {isLoading && <div>Loading..</div>}
         <MailCompose onComposeMail={onComposeMail} />

@@ -26,3 +26,10 @@ img {
     width: 100%;
     object-fit: cover;
 }
+
+hr {
+    color: lightgray;
+    background-color: lightgray;
+    height: 1px;
+    border-width: 0;
+}

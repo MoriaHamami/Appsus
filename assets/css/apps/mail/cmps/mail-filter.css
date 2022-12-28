@@ -1,0 +1,7 @@
+.mail-filter {
+    background-color: var(--mail-bg-color);
+}
+
+.mail-filter hr {
+    width: 90%;
+}

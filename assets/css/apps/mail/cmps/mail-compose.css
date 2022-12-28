@@ -1,0 +1,27 @@
+.mail-compose {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    background-color: white;
+    width: 70vw;
+    box-shadow: 1px 5px 14px 0px #8b8a8a;
+    max-height: 80vh;
+}
+
+.mail-compose header {
+    background-color: var(--mail-bg-color);
+}
+
+.mail-compose .txt {
+    overflow-y: auto;
+    min-height: 20vh;
+}
+
+.mail-compose div {
+    cursor:auto;
+    margin: 0; 
+    border: none; 
+    padding: 10px;
+    height: 50vh; 
+    
+}
