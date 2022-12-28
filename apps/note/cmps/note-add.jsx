@@ -8,6 +8,7 @@ export function NoteAdd({onAddNotes}) {
     const [noteToAdd, setNoteToAdd] = useState(noteService.getEmptyNote())
     const navigate = useNavigate()
     // const { noteId } = useParams()
+    // const { noteId } = useParams()
 
 
     // useEffect(() => {
