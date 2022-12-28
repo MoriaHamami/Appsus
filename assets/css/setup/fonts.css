@@ -12,3 +12,11 @@
     font-family: roboto-b;
     src: url("../../fonts/Roboto-Bold.ttf");
 }
+@font-face {
+    font-family: Product Sans Regular;
+    src: url("../../fonts/Roboto-Bold.ttf");
+}
+@font-face {
+    font-family: ProductSans-Regular;
+    src: url("../../fonts/Roboto-Bold.ttf");
+}

@@ -6,7 +6,8 @@ export function Home() {
         <h1>Welcome to Appsus</h1>
 
         <img src="/assets/img/icons/icons-mail/miss-mail-logo.png" alt="email" />
-        <img src="" alt="note" />
+        <img src="/assets/img/icons/icons-notes/note-logo.png" alt="note" />
+        <img src="/assets/img/icons/icons-notes/note-logo.png" alt="book" />
 
 
     </section>
