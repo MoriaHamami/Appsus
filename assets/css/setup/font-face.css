@@ -1,0 +1,14 @@
+@font-face {
+    font-family: fa-regular;
+    src: url("../../fonts/fa-regular-400.ttf");
+}
+
+@font-face {
+    font-family: roboto-r;
+    src: url("../../fonts/Roboto-Regular.ttf");
+}
+
+@font-face {
+    font-family: roboto-b;
+    src: url("../../fonts/Roboto-Bold.ttf");
+}

@@ -1,3 +1,7 @@
 :root {
     --main-bg-color: lightblue;
+    --side-nav-color: #202124;
+    --compose-bg-color: #c2e7ff;
+    --compose-color: #001d35;
+    --search-bg-color: rgb(234, 241, 251)
 }
