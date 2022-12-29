@@ -1,0 +1,84 @@
+body {
+    background-color: rgb(249, 249, 249);
+}
+
+.home {
+    text-align: center;
+    padding: 20px;
+    /* height: 90vh; */
+    margin: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.home h1 {
+    font-size: 5rem;
+    animation: zoomIn;
+    /* referring directly to the animation's @keyframe declaration */
+    animation-duration: 2s;
+    /* don't forget to set a duration! */
+
+}
+
+.home h5 {
+    font-size: 1.5rem;
+    color: gray;
+
+}
+
+.home img {
+    width: 300px;
+}
+
+.apps-container {
+    padding: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    animation: zoomIn;
+    /* referring directly to the animation's @keyframe declaration */
+    animation-duration: 2s;
+    /* don't forget to set a duration! */
+
+}
+
+.home .container {
+    /* transition: 0.5s; */
+
+}
+
+.home .container:hover {
+    /* animation: headShake; referring directly to the animation's @keyframe declaration */
+    animation: pulse;
+    /* referring directly to the animation's @keyframe declaration */
+    animation-duration: 1s;
+    /* don't forget to set a duration! */
+
+
+}
+
+/* .home .mail:hover {
+    animation: headShake; 
+    animation-duration: 2s; 
+
+
+}
+
+.home .note {
+    animation: fadeIn; 
+    animation-duration: 2s; 
+
+
+
+}
+
+.home .book {
+    animation: fadeIn; 
+    animation-duration: 2s; 
+
+
+} */

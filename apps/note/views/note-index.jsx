@@ -12,6 +12,7 @@ export function NoteIndex() {
 
     const [filterBy, setFilterBy] = useState(noteService.getDefaultFilter())
     const [notes, setNotes] = useState([])
+    const [isPinned, setIsPinned] = useState(true)
 
     useEffect(() => {
         loadNotes()
@@ -31,7 +32,7 @@ export function NoteIndex() {
         noteService.remove(noteId).then(() => {
             const updatedNotes = notes.filter(note => note.id !== noteId)
             setNotes(updatedNotes)
-            
+
             // showSuccessMsg('Book removed')
         })
             .catch((err) => {
@@ -60,6 +61,34 @@ export function NoteIndex() {
         })
     }
 
+    function noteIsPinned() {
+        if (isPinned) {
+            return <div>
+                <h1>Pinned</h1>
+                {notes.map(note => {
+                    console.log('pinned', note);
+                    {
+                        if (note.isPinned) {
+                           return <NoteList notes={notes} onRemoveNote={onRemoveNote} />
+                        }
+                    }
+                })}
+
+                <h1>Others</h1>
+                {notes.map(note => {
+                   {return !note.isPinned && <NoteList notes={notes} onRemoveNote={onRemoveNote} /> }
+                })}
+
+            </div>
+        } else {
+            return <div>
+                <h1></h1>
+                <NotePreview />
+            </div>
+        }
+    }
+
+
 
     if (!notes) return <h1>Notes you add appear here</h1>
     return <section className="note-index">
@@ -70,13 +99,21 @@ export function NoteIndex() {
             <NoteNav />
             {/* <Link to="/book/edit" className="add-book">Add Book</Link> */}
             <div className="note-crudl-container">
-            <NoteAdd onSaveNote={onSaveNote} />
+                <NoteAdd onSaveNote={onSaveNote} />
 
-            {/* {noteIsPinned()} */}
-            {/* <h1>Pinned</h1> */}
-            {<NoteList notes={notes} onRemoveNote={onRemoveNote} />}
+                {/* {noteIsPinned()} */}
+                
+                {/* {isPinned && <h1>Pinned</h1>}
+                {isPinned && <NoteList notes={notes} onRemoveNote={onRemoveNote} />}
+                {notes.map(note => {
+                    { note.isPinned && <NoteList notes={notes} onRemoveNote={onRemoveNote} /> }
+                })}
 
-            {/* {notes.map(note => {
+                {isPinned && <h1>Others</h1>}
+                {!isPinned && <NoteList notes={notes} onRemoveNote={onRemoveNote} />} */}
+                {<NoteList notes={notes} onRemoveNote={onRemoveNote} />}
+
+                {/* {notes.map(note => {
             if (note.isPinned) {
                return <NoteList notes={notes} onRemoveNote={onRemoveNote} />
             }
@@ -84,10 +121,10 @@ export function NoteIndex() {
         )} */}
 
 
-            {/* <h1>Others</h1> */}
+                {/* <h1>Others</h1> */}
 
 
-            {!notes.length && <div>Notes you add appear here</div>}
+                {!notes.length && <div>Notes you add appear here</div>}
             </div>
         </div>
     </section>
