@@ -1,6 +1,6 @@
 const { useState } = React
 
-import { showSuccessMsg } from "../../../services/event-bus.service.js"
+import { showSuccessMsg } from "services/event-bus.service.js"
 import { mailService } from "../services/mail.service.js"
 
 // onst { useState, useEffect } = React

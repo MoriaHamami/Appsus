@@ -4,10 +4,10 @@ export function MailFolderList({ criteria, setCriteria }) {
         criteria.status = newStatus
         setCriteria({ ...criteria })
     }
-    
+
     return <section className="mail-folder-list">
         <button className={`inbox-btn ${criteria.status === 'inbox' ? 'active' : ''}`} onClick={() => onSetCriteria('inbox')}>
-            <img className="list-icon icon" src="../../assets/img/icons/icons-mail/inbox-icon.png" />
+            <img className="list-icon icon" src="./../../assets/img/icons/icons-mail/inbox-icon.png" />
             Inbox
         </button>
         <button className={`starred-btn ${criteria.status === 'starred' ? 'active' : ''}`} onClick={() => onSetCriteria('starred')}>
