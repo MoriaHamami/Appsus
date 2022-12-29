@@ -1,0 +1,25 @@
+.compose-btn-sect{
+    color: var(--folder-list-color);
+    background-color: var(--mail-bg-color);
+    padding: 0 10px;
+}
+.compose-btn {
+    border: none;
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+    width: 120px;
+    padding-block: 15px;
+    border-radius: 16px;
+    background-color: var(--compose-bg-color);
+}
+/* .mail-folder-list .compose-btn {
+    width: 120px;
+    padding-block: 15px;
+    border-radius: 16px;
+    background-color: var(--compose-bg-color);
+} */
+
+.compose-btn:hover {
+    box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 1px 3px 1px rgb(60 64 67 / 15%);
+}

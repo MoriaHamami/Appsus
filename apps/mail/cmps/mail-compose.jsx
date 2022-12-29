@@ -1,10 +1,11 @@
 const { useState } = React
 
+import { showSuccessMsg } from "../../../services/event-bus.service.js"
 import { mailService } from "../services/mail.service.js"
 
 // onst { useState, useEffect } = React
 // const { useNavigate, useParams, Link } = ReactRouterDOM
-export function MailCompose({ onComposeMail }) {
+export function MailCompose({ onComposeMail, setMainShown, mainShown, onExitMailToCompose }) {
 
     const [mailToCompose, setMailToCompose] = useState(mailService.getEmptyMail())
 
@@ -31,6 +32,8 @@ export function MailCompose({ onComposeMail }) {
         //     mailToCompose.txt = value
         //     var field = 'txt'
         // } else {
+            mailToCompose.status = ['draft']
+
         var { value, name: field } = ev.target
         // }
         console.log('value:', value)
@@ -39,8 +42,12 @@ export function MailCompose({ onComposeMail }) {
         })
     }
 
-    return <section className="mail-compose">
+
+
+    return <section className={`mail-compose ${mainShown === 'mailCompose' ? 'expand' : ''}`}>
         <header>New Message</header>
+        <img className="expand-icon icon" src="../../assets/img/icons/icons-mail/expand-icon.png" onClick={() => setMainShown('mailCompose')} />
+        <img className="close-icon icon" src="../../assets/img/icons/icons-mail/close-icon.png"  onClick={() => onExitMailToCompose(mailToCompose)}/>
         <form className="compose-form" onSubmit={(ev) => onComposeMail(ev, mailToCompose)}>
             <label className="to-label">
                 To

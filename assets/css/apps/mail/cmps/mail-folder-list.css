@@ -20,29 +20,16 @@
     /* text-align: center; */
 }
 
-.mail-folder-list .compose-btn {
-    /* height: 56px; */
-    width: 120px;
-    padding-block: 15px;
-    border-radius: 16px;
-    background-color: var(--compose-bg-color);
-}
-
-.mail-folder-list .compose-btn:hover {
-    box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 1px 3px 1px rgb(60 64 67 / 15%);
-}
-
-.folder-list-icon {
-    width: 20px;
+.list-icon {
     margin-inline: 10px;
 }
 
-.mail-folder-list button.active:not(.compose-btn) {
+.mail-folder-list button.active {
     font-family: roboto-b;
     background-color: var(--active-btn-bg-color);
 }
 
-.mail-folder-list button:hover:not(.active,.compose-btn) {
+.mail-folder-list button:hover:not(.active) {
     font-family: roboto-b;
     background-color: var(--hover-btn-bg-color);
 }

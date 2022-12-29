@@ -14,7 +14,6 @@ function save(criteria) {
 
 function get() {
     return storageService.query(CRITERIA_KEY)
-
 }
 
 function getDefaultCriteria() {

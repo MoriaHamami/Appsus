@@ -4,9 +4,7 @@ import { utilService } from '../../../services/util.service.js'
 import { criteriaService } from './criteria.service.js'
 
 const MAIL_KEY = 'mailDB'
-const USER_KEY = 'mailUserDB'
 
-_createLoggedUser()
 _createMails()
 
 export const mailService = {
@@ -77,16 +75,7 @@ function save(mail) {
     }
 }
 
-function _createLoggedUser() {
-    let loggedInUser = storageService.loadFromStorage(USER_KEY)
-    if (!loggedInUser) {
-        loggedInUser = {
-            fullname: 'Mahatma Appsus',
-            mail: 'user@appsus.com'
-        }
-        storageService.saveToStorage(USER_KEY, loggedInUser)
-    }
-}
+
 
 function _createMails() {
     let mails = storageService.loadFromStorage(MAIL_KEY)
@@ -123,7 +112,7 @@ function _createMails() {
     }
 }
 
-function getEmptyMail(id = utilService.makeId(), subject = '', body = '', isRead = false, sentAt = '', removedAt = null, to = '', from = '', status = [], isStarred = false, labels = []) {
+function getEmptyMail(id ='', subject = '', body = '', isRead = false, sentAt = '', removedAt = null, to = '', from = '', status = [], isStarred = false, labels = []) {
     return {
         id,
         subject,

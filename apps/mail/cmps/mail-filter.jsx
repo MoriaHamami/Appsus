@@ -1,6 +1,6 @@
 const { useEffect, useState, useRef } = React
 
-export function MailFilter({onSetCriteria}) {
+export function MailFilter({onSetCriteria, setIsShown}) {
 
     // const [filterByToEdit, setFilterByToEdit] = useState(carService.getDefaultFilter())
     // const elInputRef = useRef(null)

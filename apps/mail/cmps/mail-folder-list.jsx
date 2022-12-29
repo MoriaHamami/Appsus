@@ -1,30 +1,29 @@
-export function MailFolderList({ onSetCriteria, onToCompose }) {
+export function MailFolderList({ criteria, setCriteria }) {
 
-
+    function onSetCriteria(newStatus) {
+        criteria.status = newStatus
+        setCriteria({ ...criteria })
+    }
+    
     return <section className="mail-folder-list">
-        <button className="compose-btn">
-            <img className="folder-list-icon" src="../../assets/img/icons/icons-mail/compose-icon.png" />
-            Compose
-        </button>
-        <hr className="under-compose-btn" />
-        <button className="inbox-btn">
-            <img className="folder-list-icon" src="../../assets/img/icons/icons-mail/inbox-icon.png" />
+        <button className={`inbox-btn ${criteria.status === 'inbox' ? 'active' : ''}`} onClick={() => onSetCriteria('inbox')}>
+            <img className="list-icon icon" src="../../assets/img/icons/icons-mail/inbox-icon.png" />
             Inbox
         </button>
-        <button className="starred-btn">
-            <img className="folder-list-icon" src="../../assets/img/icons/icons-mail/star-icon.png" />
+        <button className={`starred-btn ${criteria.status === 'starred' ? 'active' : ''}`} onClick={() => onSetCriteria('starred')}>
+            <img className="list-icon icon" src="../../assets/img/icons/icons-mail/star-icon.png" />
             Starred
         </button>
-        <button className="sent-btn">
-            <img className="folder-list-icon" src="../../assets/img/icons/icons-mail/sent-icon.png" />
+        <button className={`sent-btn ${criteria.status === 'sent' ? 'active' : ''}`} onClick={() => onSetCriteria('sent')}>
+            <img className="list-icon icon" src="../../assets/img/icons/icons-mail/sent-icon.png" />
             Sent
         </button>
-        <button className="draft-btn">
-            <img className="folder-list-icon" src="../../assets/img/icons/icons-mail/draft-icon.png" />
+        <button className={`draft-btn ${criteria.status === 'draft' ? 'active' : ''}`} onClick={() => onSetCriteria('draft')}>
+            <img className="list-icon icon" src="../../assets/img/icons/icons-mail/draft-icon.png" />
             Draft
         </button>
-        <button className="trash-btn">
-            <img className="folder-list-icon" src="../../assets/img/icons/icons-mail/delete-icon.png" />
+        <button className={`trash-btn ${criteria.status === 'trash' ? 'active' : ''}`} onClick={() => onSetCriteria('trash')}>
+            <img className="list-icon icon" src="../../assets/img/icons/icons-mail/delete-icon.png" />
             Trash
         </button>
     </section>
