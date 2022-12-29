@@ -73,15 +73,15 @@ export function MailDetails({ setIsLoading, setMainShown, selectedMailId, setSel
     return <section className="mail-details">
 
         {/* <img className="close-icon icon" src="../../assets/img/icons/icons-mail/close-icon.png" onClick={() => setMainShown('mailList')} /> */}
-        <img className="back-icon icon" src="../../assets/img/icons/icons-mail/back-icon.png" onClick={() => setMainShown('mailList')} />
+        <img className="back-icon icon" src="./assets/img/icons/icons-mail/back-icon.png" onClick={() => setMainShown('mailList')} />
 
         <h3 className="from">{mail.from}</h3>
         <h4 className="subject">{mail.subject}</h4>
         <p className="body">{mail.body}</p>
 
 
-        <img className="prev-icon icon" src="../../assets/img/icons/icons-mail/prev-icon.png" onClick={() => setMail(prevMailId)} />
-        <img className="next-icon icon" src="../../assets/img/icons/icons-mail/next-icon.png" onClick={() => setMail(nextMailId)} />
+        <img className="prev-icon icon" src="./assets/img/icons/icons-mail/prev-icon.png" onClick={() => setMail(prevMailId)} />
+        <img className="next-icon icon" src="./assets/img/icons/icons-mail/next-icon.png" onClick={() => setMail(nextMailId)} />
     </section>
 
 }

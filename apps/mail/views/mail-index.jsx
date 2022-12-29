@@ -67,8 +67,8 @@ export function MailIndex() {
         mailService.save(mailToDraft).then((draftedMail) => {
             setShowCompose(false)
             mails.unshift(draftedMail)
-            const newMails = mails.slice()
-            setMails(newMails)
+            setIsLoading(true)
+            loadMails()
             showSuccessMsg('Mail saved as draft')
         }).catch((err) => {
             console.log('Had issues adding:', err)
@@ -80,7 +80,7 @@ export function MailIndex() {
         <MailFilter onSetCriteria={onSetCriteria} setMainShown={setMainShown} />
         <section className="compose-btn-sect">
             <button className="compose-btn" onClick={() => setShowCompose(true)}>
-                <img className="list-icon icon" src="../../assets/img/icons/icons-mail/compose-icon.png" />
+                <img className="list-icon icon" src="./assets/img/icons/icons-mail/compose-icon.png" />
                 Compose
             </button>
             <hr />

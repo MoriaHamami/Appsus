@@ -1,4 +1,4 @@
-const { useState } = React
+const { useState, useEffect } = React
 
 // import { showSuccessMsg } from "services/event-bus.service.js"
 import { mailService } from "../services/mail.service.js"
@@ -9,6 +9,9 @@ export function MailCompose({ onComposeMail, setMainShown, mainShown, onExitMail
 
     const [mailToCompose, setMailToCompose] = useState(mailService.getEmptyMail())
 
+    useEffect(() => {
+        mailToCompose.status = ['draft']
+    }, [])
     // const navigate = useNavigate()
     // const { mailId } = useParams()
 
@@ -32,7 +35,6 @@ export function MailCompose({ onComposeMail, setMainShown, mainShown, onExitMail
         //     mailToCompose.txt = value
         //     var field = 'txt'
         // } else {
-            mailToCompose.status = ['draft']
 
         var { value, name: field } = ev.target
         // }
@@ -46,8 +48,8 @@ export function MailCompose({ onComposeMail, setMainShown, mainShown, onExitMail
 
     return <section className={`mail-compose ${mainShown === 'mailCompose' ? 'expand' : ''}`}>
         <header>New Message</header>
-        <img className="expand-icon icon" src="../../assets/img/icons/icons-mail/expand-icon.png" onClick={() => setMainShown('mailCompose')} />
-        <img className="close-icon icon" src="../../assets/img/icons/icons-mail/close-icon.png"  onClick={() => onExitMailToCompose(mailToCompose)}/>
+        <img className="expand-icon icon" src="./assets/img/icons/icons-mail/expand-icon.png" onClick={() => setMainShown('mailCompose')} />
+        <img className="close-icon icon" src="./assets/img/icons/icons-mail/close-icon.png"  onClick={() => onExitMailToCompose(mailToCompose)}/>
         <form className="compose-form" onSubmit={(ev) => onComposeMail(ev, mailToCompose)}>
             <label className="to-label">
                 To
