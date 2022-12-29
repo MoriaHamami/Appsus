@@ -21,10 +21,10 @@ nav a {
 } */
 
 nav a.active {
-    color: red;
+    color: green;
 }
 nav a:hover {
-    color: red;
+    color: green;
 }
 
 .app-header img {
