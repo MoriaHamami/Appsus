@@ -57,6 +57,9 @@ function getEmptyNote() {
         isPinned: false,
         info: {
             txt: "Fullstack Me Baby!"
+        },
+        style: {
+            backgroundColor: "#00d"
         }
     }
 }
@@ -73,6 +76,9 @@ function _createNotes() {
                 info: {
                     title: 'I am a title',
                     txt: "Fullstack Me Baby!"
+                },
+                style: {
+                    backgroundColor: "#f50000"
                 }
             },
             {
@@ -84,7 +90,7 @@ function _createNotes() {
                     title: "Bobi and Me"
                 },
                 style: {
-                    backgroundColor: "#00d"
+                    backgroundColor: "#f50000"
                 }
             },
             {
@@ -97,6 +103,9 @@ function _createNotes() {
                         { txt: "Driving liscence", doneAt: null },
                         { txt: "Coding power", doneAt: 187111111 }
                     ]
+                },
+                style: {
+                    backgroundColor: "#00d"
                 }
             }
         ]

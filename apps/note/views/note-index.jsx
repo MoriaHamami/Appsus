@@ -11,6 +11,7 @@ import { noteService } from "../services/note.service.js";
 export function NoteIndex() {
 
     const [filterBy, setFilterBy] = useState(noteService.getDefaultFilter())
+    // const [previewBy, setPreviewBy] = useState(noteService.get())
     const [notes, setNotes] = useState([])
 
     useEffect(() => {
@@ -76,6 +77,9 @@ export function NoteIndex() {
     function onSetFilter(filterByFromFilter) {
         setFilterBy(filterByFromFilter)
     }
+    // function onSetPreview(notesFromPreview) {
+    //     setFilterBy(notesFromPreview)
+    // }
 
 
     if (!notes) return <h1>Notes you add appear here</h1>
