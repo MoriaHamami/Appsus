@@ -1,11 +1,11 @@
 .mail-index {
     display: grid;
     grid-template-columns: 256px calc(100vw - 256px);
-    grid-template-rows: 4rem calc(100vh - 4rem - .5rem - 16px - 40px);
+    grid-template-rows: 71px calc(100vh - 71px - .5rem - 16px - 40px);
 
     grid-template-areas:
-        "mail-folder-list   mail-filter"
-        "mail-folder-list   mail-list";
+        "compose-btn-sect   mail-filter"
+        "mail-folder-list   expand";
 
     /* text-align: center; */
     /* width: max-content; */
@@ -17,9 +17,9 @@
     /* border: 1px solid gray; */
 }
 
-.mail-list {
-    grid-area: mail-list;
-    background-color: rgb(173, 200, 99);
+.mail-index .expand {
+    grid-area: expand;
+    /* background-color: rgb(173, 200, 99); */
 }
 
 .mail-folder-list {
@@ -30,6 +30,20 @@
     grid-area: mail-filter;
 }
 
-textarea {
+.mail-index textarea {
     resize: none;
   }
+
+  .mail-index .compose-btn-sect{
+    grid-area: compose-btn-sect;
+}
+
+.mail-index .icon {
+    width: 20px;
+    cursor: pointer;
+}
+
+.mail-index ul{
+    padding: 0;
+    list-style-type: none;
+}
