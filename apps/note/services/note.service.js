@@ -56,6 +56,7 @@ function getEmptyNote() {
         type: "note-txt",
         isPinned: false,
         info: {
+            title:'Title',
             txt: '',
             url: ''
         },

@@ -7,7 +7,7 @@ export function NoteTodos({ note }) {
 
         <ul>
             {note.info.todos.map(todo => {
-                return <li key={todo.txt}>{todo.txt} <span>{todo.doneAt}</span></li>
+                return <li key={todo.txt}>{todo.txt}</li>
             })}
         </ul>
 

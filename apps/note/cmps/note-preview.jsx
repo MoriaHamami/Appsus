@@ -11,6 +11,7 @@ import { NoteTxt } from "./note-txt.jsx";
 
 export function NotePreview({ note, isPinned, onRemoveNote }) {
 
+    const [isShown, setIsShown] = useState(false)
     const [color, setColor] = useState(noteService.get(note.id))
     const [content, setContent] = useState(noteService.get(note.id))
     // console.log('color', color);
@@ -24,7 +25,7 @@ export function NotePreview({ note, isPinned, onRemoveNote }) {
 
     useEffect(() => {
         loadNotes()
-    }, [color, colorRef,content, contentRef])
+    }, [color, colorRef, content, contentRef])
 
     function loadNotes() {
         noteService.query().then(notes => {
@@ -76,16 +77,21 @@ export function NotePreview({ note, isPinned, onRemoveNote }) {
         })
     }
 
+ 
 
-    return <article ref={colorRef}  className="note-preview" style={{ backgroundColor: note.style.backgroundColor }}>
+    return <article onMouseEnter={() => setIsShown(true)} onMouseLeave={() => setIsShown(false)} ref={colorRef} className="note-preview" style={{ backgroundColor: note.style.backgroundColor }}>
         <div ref={contentRef} onChange={changeContent} contentEditable suppressContentEditableWarning={true} >
             {noteType()}
         </div>
 
 
-        <Link to={`/note/${note.id}`}>select</Link>
+        {/* <Link to={`/note/${note.id}`}>select</Link> */}
 
-        <form onChange={changeColor}>
+        
+       
+        {isShown && (
+            <div className="hidden-buttons">
+            <form onChange={changeColor}>
             <label htmlFor={`color-${note.id}`}><img src="./assets/img/icons/icons-notes/asset 22.svg" alt="" /></label>
             <input type="color"
                 name="style"
@@ -97,9 +103,8 @@ export function NotePreview({ note, isPinned, onRemoveNote }) {
             />
 
         </form>
-        <div>
-            <button onClick={() => onRemoveNote(note.id)}>x</button>
-        </div>
+           <button onClick={() => onRemoveNote(note.id)}>x</button>
+       </div>)}
 
         {/* <NoteDetails note={note} /> */}
 

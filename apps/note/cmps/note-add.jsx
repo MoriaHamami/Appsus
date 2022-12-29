@@ -32,21 +32,24 @@ export function NoteAdd({ onAddNotes, onSaveNote }) {
                 onChange={handleChange}
                 required
             />
-            <label htmlFor="url">choose image</label>
-            <input type="file"
-                name="info"
-                id="url"
-                placeholder="Take a note..."
-                value={noteToAdd.url}
-                onChange={handleChange}
-                accept="image/png, image/jpeg"
-                // required
-            />
-
 
                 <button title="Add">Add</button>
 
         </form>
+
+        {/* <form method="post" encType="multipart/form-data" onSubmit={(ev) => onSaveNote(ev, noteToAdd)}>
+            <label htmlFor="url">choose image</label>
+            <input type="file"
+                name="info"
+                id="url"
+                value={noteToAdd.url}
+                onChange={handleChange}
+                // accept="image/png, image/jpeg"
+            />
+
+                <button title="Add">Add</button>
+
+        </form> */}
 
     </section>
 }
