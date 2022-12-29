@@ -33,13 +33,13 @@ export function NoteFilter({ onSetFilter }){
 
     return <section className="note-filter">
 
-        <form onSubmit={onSubmitFilter}>
+        <form className="nosubmit" onSubmit={onSubmitFilter}>
             {/* <label htmlFor="title">Title: </label> */}
 
             <input type="text"
                 id="title"
                 name="txt"
-                placeholder="🔍 Search"
+                placeholder="Search"
                 value={filterByToEdit.txt}
                 onChange={handleChange}
                 onClick={onSearchClick}
