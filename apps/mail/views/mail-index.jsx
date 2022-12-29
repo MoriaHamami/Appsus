@@ -10,6 +10,7 @@ import { MailFolderList } from "../cmps/mail-folder-list.jsx"
 import { MailList } from "../cmps/mail-list.jsx"
 import { MailCompose } from "../cmps/mail-compose.jsx"
 import { MailDetails } from "../cmps/mail-details.jsx"
+import { MailSort } from "../cmps/mail-sort.jsx"
 
 export function MailIndex() {
 
@@ -147,7 +148,8 @@ export function MailIndex() {
             </button>
             <hr />
         </section>
-        <MailFolderList criteria={criteria} setCriteria={setCriteria} />
+        <MailSort />
+        <MailFolderList setMainShown={setMainShown} criteria={criteria} setCriteria={setCriteria} />
         {!isLoading && mainShown === 'mailList' && <MailList mails={mails} onIsRead={onIsRead} isLoading={isLoading} setMainShown={setMainShown} setSelectedMailId={setSelectedMailId} criteria={criteria} onRemoveMail={onRemoveMail} />}
         {!isLoading && mainShown === 'mailDetails' && <MailDetails setIsLoading={setIsLoading} onIsRead={onIsRead} setMainShown={setMainShown} selectedMailId={selectedMailId} setSelectedMailId={setSelectedMailId} onRemoveMail={onRemoveMail} criteria={criteria}/>}
         {showCompose && <MailCompose onComposeMail={onComposeMail} setMainShown={setMainShown} mainShown={mainShown} setShowCompose={setShowCompose} onExitMailToCompose={onExitMailToCompose} />}

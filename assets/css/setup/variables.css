@@ -7,10 +7,10 @@
     --compose-bg-color: #c2e7ff;
     --compose-color: #001d35;
     --search-bg-color: rgb(234, 241, 251);
-    --mail-button-hover-bg-color: #e8e2e27e;
-    --read-mail: gray;
-
-
+    --mail-button-hover-bg-color: #ded8d87e;
+    --read-mail: rgba(232, 236, 248, 0.668);
+    --almost-white: rgb(253, 253, 253);
+    --mail-search: rgba(225, 233, 243, 0.852);
     /* NOTE */
     /* side bar */
     --active-bg-color: #feefc3;

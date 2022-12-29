@@ -1,7 +1,17 @@
 .mail-filter {
-    background-color: var(--mail-bg-color);
+    display: flex;
+    align-items: center;
+    /* background-color: var(--mail-bg-color); */
 }
 
 .mail-filter hr {
     width: 90%;
+}
+
+.mail-filter input{
+    border: none;
+    background-color: var(--mail-search);
+    padding: 15px;
+    border-radius: 5px;
+    outline: none;
 }

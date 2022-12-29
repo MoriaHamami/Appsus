@@ -79,7 +79,7 @@ export function MailDetails({ setIsLoading, setMainShown, selectedMailId, setSel
 
         {/* <img className="close-icon icon" src="../../assets/img/icons/icons-mail/close-icon.png" onClick={() => setMainShown('mailList')} /> */}
         <img className="back-icon icon" src="./assets/img/icons/icons-mail/back-icon.png" onClick={() => setMainShown('mailList')} />
-        <img className={`icon ${mail.isRead ? 'mark-as-read' : 'mark-as-un'}`} src={`./assets/img/icons/icons-mail/${mail.isRead ? 'mark-as-read' : 'mark-as-unread'}.png`} onClick={(ev) => onIsRead(ev, mail)}/>
+        <img className="icon" src={`./assets/img/icons/icons-mail/${mail.isRead ? 'mark-as-read' : 'mark-as-unread'}.png`} onClick={(ev) => onIsRead(ev, mail)}/>
         <img className="delete-icon icon" src="./assets/img/icons/icons-mail/delete-icon.png" onClick={(ev)=>onRemoveMail(ev, mail)} />
         <img className={`icon star ${mail.isStarred ? 'starred' : ''}`} src={`./assets/img/icons/icons-mail/${mail.isStarred ? 'starred' : 'star'}-icon.png`} />
 

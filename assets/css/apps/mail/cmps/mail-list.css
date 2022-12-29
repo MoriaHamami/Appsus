@@ -1,3 +1,5 @@
+
+
 .mail-list .icon:hover {
     cursor: pointer;
     background-color: var(--mail-button-hover-bg-color);
@@ -7,10 +9,34 @@
     /* visibility: visible; */
 }
 
+.mail-whole-preview .icons {
+    position: absolute;
+    right: 0;
+    /* top: 0; */
+}
+
 .mail-list .icon {
     padding: 6px;
     width: 32px;
     height: 32px;
     /* cursor: pointer; */
+}
+
+.mail-semi-whole-preview{
+    
+    /* justify-content: center; */
+    cursor: pointer;
+    padding: 10px;
+    /* height: 50px; */
+}
+
+.mail-semi-whole-preview:hover{
+    cursor: pointer;
+    box-shadow: -1px 1px 3px 1px #00000038;
+    /* border: 1px solid lightgray; */
+}
+
+.mail-list hr{
+    margin: 0;
 }
 
