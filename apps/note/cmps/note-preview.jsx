@@ -9,7 +9,7 @@ import { NoteTodos } from "./note-todos.jsx";
 import { NoteTxt } from "./note-txt.jsx";
 
 
-export function NotePreview({ note, isPinned, onRemoveNote }) {
+export function NotePreview({ note, onRemoveNote }) {
 
     const [isShown, setIsShown] = useState(false)
     const [color, setColor] = useState(noteService.get(note.id))
@@ -80,9 +80,11 @@ export function NotePreview({ note, isPinned, onRemoveNote }) {
  
 
     return <article onMouseEnter={() => setIsShown(true)} onMouseLeave={() => setIsShown(false)} ref={colorRef} className="note-preview" style={{ backgroundColor: note.style.backgroundColor }}>
-        <div ref={contentRef} onChange={changeContent} contentEditable suppressContentEditableWarning={true} >
+        
+        
+        {<div ref={contentRef} onChange={changeContent} contentEditable suppressContentEditableWarning={true} >
             {noteType()}
-        </div>
+        </div>}
 
 
         {/* <Link to={`/note/${note.id}`}>select</Link> */}
