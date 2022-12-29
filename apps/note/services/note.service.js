@@ -56,7 +56,9 @@ function getEmptyNote() {
         type: "note-txt",
         isPinned: false,
         info: {
-            txt: "Fullstack Me Baby!"
+            title:'Title',
+            txt: '',
+            url: ''
         },
         style: {
             backgroundColor: "#ffffff"
@@ -86,8 +88,9 @@ function _createNotes() {
                 type: "note-img",
                 isPinned: false,
                 info: {
-                    url: "http://some-img/me",
-                    title: "Bobi and Me"
+                    // url: "http://some-img/me",
+                    url: "./assets/img/note-imgs/landscape.jpeg",
+                    title: "My Trip"
                 },
                 style: {
                     backgroundColor: "#ffffff"

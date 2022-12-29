@@ -1,7 +1,7 @@
 .note-preview {
     padding: 15px;
     border-radius: 0.5rem;
-    min-height: 180px;
+    min-height: 120px;
     border: 1px rgb(231, 231, 231) solid;
     text-align: left;
 
@@ -15,17 +15,24 @@
 
 .note-preview input {
     /* display: none; */
-    visibility:hidden
-    /* position: relative; */
+    visibility: hidden
+        /* position: relative; */
 }
 
 .note-preview label img {
     width: 20px;
-    
+
 }
+
 .note-preview label img:hover {
     cursor: pointer;
     opacity: 0.5;
     /* background-color: var(--button-hover-bg-color);
     border-radius: 50%; */
+}
+
+.hidden-buttons{
+    display: flex;
+    justify-content: space-between;
+    align-items:flex-end
 }

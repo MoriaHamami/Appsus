@@ -1,26 +1,31 @@
 
 const { useState, useEffect, useRef } = React
+const { Link } = ReactRouterDOM
 
 import { noteService } from "../services/note.service.js";
+import { NoteDetails } from "./note-details.jsx";
 import { NoteImg } from "./note-img.jsx";
 import { NoteTodos } from "./note-todos.jsx";
 import { NoteTxt } from "./note-txt.jsx";
 
 
-export function NotePreview({ note, isPinned }) {
+export function NotePreview({ note, isPinned, onRemoveNote }) {
 
+    const [isShown, setIsShown] = useState(false)
     const [color, setColor] = useState(noteService.get(note.id))
+    const [content, setContent] = useState(noteService.get(note.id))
     // console.log('color', color);
     // console.log('isPinned', isPinned);
     // const imgName = book.name ? book.name : 'default'
     // <img src={`assets/img/${imgName}.png`} />
 
 
-    const colorRef = useRef(null);
+    const colorRef = useRef(null)
+    const contentRef = useRef(null)
 
     useEffect(() => {
         loadNotes()
-    }, [color,colorRef])
+    }, [color, colorRef, content, contentRef])
 
     function loadNotes() {
         noteService.query().then(notes => {
@@ -35,7 +40,6 @@ export function NotePreview({ note, isPinned }) {
             return <NoteTxt note={note} />
 
         } else if (note.type === 'note-img') {
-            // return <div contentEditable onBlur={onSaveChange(note)}>
             return <NoteImg note={note} />
 
         } else if (note.type === 'note-todos') {
@@ -65,11 +69,29 @@ export function NotePreview({ note, isPinned }) {
 
     }
 
-    return <article ref={colorRef} className="note-preview" style={{backgroundColor: note.style.backgroundColor}}>
-        {noteType()}
-        {/* <button onClick={onChangeColor}><img src="./assets/img/icons/icons-notes/asset 22.svg" alt="" /></button> */}
+    function changeContent() {
+        noteService.save(note).then((content) => {
+            console.log('content saved', content);
+            // navigate('/note')
 
-        <form onChange={changeColor}>
+        })
+    }
+
+ 
+
+    return <article onMouseEnter={() => setIsShown(true)} onMouseLeave={() => setIsShown(false)} ref={colorRef} className="note-preview" style={{ backgroundColor: note.style.backgroundColor }}>
+        <div ref={contentRef} onChange={changeContent} contentEditable suppressContentEditableWarning={true} >
+            {noteType()}
+        </div>
+
+
+        {/* <Link to={`/note/${note.id}`}>select</Link> */}
+
+        
+       
+        {isShown && (
+            <div className="hidden-buttons">
+            <form onChange={changeColor}>
             <label htmlFor={`color-${note.id}`}><img src="./assets/img/icons/icons-notes/asset 22.svg" alt="" /></label>
             <input type="color"
                 name="style"
@@ -79,10 +101,12 @@ export function NotePreview({ note, isPinned }) {
                 onChange={handleChange}
 
             />
-            {/* <button>submit</button> */}
-        </form>
 
-        {/* <button onClick={onSaveChange}>save</button> */}
+        </form>
+           <button onClick={() => onRemoveNote(note.id)}>x</button>
+       </div>)}
+
+        {/* <NoteDetails note={note} /> */}
 
     </article>
 }
