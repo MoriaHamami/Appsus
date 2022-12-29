@@ -65,7 +65,6 @@ export function NotePreview({ note, isPinned }) {
 
     }
 
-
     return <article ref={colorRef} className="note-preview" style={{backgroundColor: note.style.backgroundColor}}>
         {noteType()}
         {/* <button onClick={onChangeColor}><img src="./assets/img/icons/icons-notes/asset 22.svg" alt="" /></button> */}

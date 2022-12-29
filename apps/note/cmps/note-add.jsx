@@ -3,7 +3,7 @@ const { useNavigate, useParams, Link } = ReactRouterDOM
 
 import { noteService } from "../services/note.service.js"
 
-export function NoteAdd({onAddNotes}) {
+export function NoteAdd({onAddNotes, onSaveNote}) {
 
     const [noteToAdd, setNoteToAdd] = useState(noteService.getEmptyNote())
     const navigate = useNavigate()
@@ -34,20 +34,11 @@ export function NoteAdd({onAddNotes}) {
         setNoteToAdd((prevNote) => ({ ...prevNote, [field]: value }))
     }
 
-    function onSaveNote(ev) {
-        ev.preventDefault()
-        noteService.save(noteToAdd).then((note) => {
-            console.log('note saved', note);
-            // onAddNotes(note)
-            // showSuccessMsg('note saved!')
-            navigate('/note')
-
-        })
-    }
+    
 
     return <section className="note-add">
 
-        <form onSubmit={onSaveNote}>
+        <form onSubmit={(ev) => onSaveNote(ev, noteToAdd)}>
             <label htmlFor="title"></label>
             <input type="text"
                 name="info"

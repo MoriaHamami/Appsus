@@ -64,6 +64,7 @@ export function NoteIndex() {
         noteService.remove(noteId).then(() => {
             const updatedNotes = notes.filter(note => note.id !== noteId)
             setNotes(updatedNotes)
+            
             // showSuccessMsg('Book removed')
         })
             .catch((err) => {
@@ -81,6 +82,19 @@ export function NoteIndex() {
     //     setFilterBy(notesFromPreview)
     // }
 
+    function onSaveNote(ev, noteToAdd) {
+        ev.preventDefault()
+        noteService.save(noteToAdd).then((note) => {
+            console.log('note saved', note);
+            // onAddNotes(note)
+            // showSuccessMsg('note saved!')
+            notes.unshift(note)
+            setNotes(notes.slice())
+            navigate('/note')
+
+        })
+    }
+
 
     if (!notes) return <h1>Notes you add appear here</h1>
     return <section className="note-index">
@@ -91,7 +105,7 @@ export function NoteIndex() {
             <NoteNav />
             {/* <Link to="/book/edit" className="add-book">Add Book</Link> */}
             <div className="note-crudl-container">
-            <NoteAdd onAddNotes={onAddNotes} />
+            <NoteAdd onAddNotes={onAddNotes} onSaveNote={onSaveNote} />
 
             {/* <BookAdd onAddGoogleBook={onAddGoogleBook} /> */}
             {/* {noteIsPinned()} */}
