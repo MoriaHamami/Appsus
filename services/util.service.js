@@ -6,6 +6,61 @@ export const utilService = {
     padNum,
     getDayName,
     getMonthName,
+    getDate
+}
+
+
+//   var aDay = 24*60*60*1000;
+//   console.log(timeSince(new Date(Date.now()-aDay)));
+//   console.log(timeSince(new Date(Date.now()-aDay*2)));
+
+function getDate(timestamp) {
+    timestamp = new Date(timestamp)
+    if (!timestamp) return ''
+    if (_isThisYear(timestamp)) {
+        // Get the date if timestamp is from this year
+        var date = timestamp.toLocaleDateString('en-us', {month:"short", day:"numeric"})
+    } else {
+        // Get the year if timestamp is not from this year
+        var date = timestamp.getFullYear()
+    }
+    return date
+}
+
+// function _isToday(ts) {
+//     var today = new Date().setHours(0, 0, 0, 0);
+//     var thatDay = new Date(ts).setHours(0, 0, 0, 0);
+//     return today === thatDay
+// }
+
+// function _isThisWeek(ts) {
+//     var today = new Date()
+//     var thatDay = new Date(ts)
+
+//     const weeksDiff = _getWeeksDifference(thatDay, today)
+//     return weeksDiff === 0
+// }
+
+function _isThisYear(ts) {
+    var today = new Date()
+    var thatDay = new Date(ts)
+
+    const monthDiff = _getMonthDifference(thatDay, today)
+    return monthDiff < 12
+}
+
+// function _getWeeksDifference(dt2, dt1) {
+//     var diff = (dt2.getTime() - dt1.getTime()) / 1000
+//     diff /= (60 * 60 * 24 * 7)
+//     return Math.abs(Math.floor(diff))
+
+// }
+function _getMonthDifference(startDate, endDate) {
+    return (
+        endDate.getMonth() -
+        startDate.getMonth() +
+        12 * (endDate.getFullYear() - startDate.getFullYear())
+    )
 }
 
 function makeId(length = 6) {
@@ -50,13 +105,13 @@ function getRandomColor() {
 
 function getDayName(date, locale) {
     date = new Date(date)
-    return date.toLocaleDateString(locale, { weekday: 'long' })
+    return date.toLocaleDateString(locale, { weekday: 'short' })
 }
 
 
 function getMonthName(date) {
-    const monthNames = ["January", "February", "March", "April", "May", "June",
-        "July", "August", "September", "October", "November", "December"
+    const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "June",
+        "July", "Aug", "Sep", "Oct", "Nov", "Dec"
     ]
     return monthNames[date.getMonth()]
 }

@@ -42,7 +42,10 @@ function query(filterBy = criteriaService.getDefaultCriteria()) {
 
 function get(mailId) {
     return storageService.get(MAIL_KEY, mailId)
+}
 
+function remove(mailId) {
+    return storageService.remove(MAIL_KEY, mailId)
 }
 
 function getNearbyMailIds(mailId) {
@@ -63,6 +66,24 @@ function getNearbyMailIds(mailId) {
         })
 }
 
+// function saveMail(mailId, mailToSave) {
+//     const mails = loadFromStorage(MAIL_KEY)
+//     const mail = mails.find((mail) => mail.id === mailId)
+//     const review = _createMail(mailToSave)
+//     mail.reviews.unshift(review)
+//     _saveBooksToStorage(mails)
+//     return Promise.resolve(review)
+// }
+
+// function removeMail(mailId, reviewId) {
+//     let mails = _loadBooksFromStorage()
+//     let mail = mails.find((mail) => mail.id === mailId)
+//     const newMails = mail.reviews.filter((review) => review.id !== reviewId)
+//     mail.reviews = newMails
+//     _saveBooksToStorage(mails)
+//     return Promise.resolve()
+// }
+
 function remove(mailId) {
     return storageService.remove(MAIL_KEY, mailId)
 }
@@ -74,8 +95,6 @@ function save(mail) {
         return storageService.post(MAIL_KEY, mail)
     }
 }
-
-
 
 function _createMails() {
     let mails = storageService.loadFromStorage(MAIL_KEY)
@@ -99,7 +118,7 @@ function _createMails() {
             'Another one!',
             'I dont like the way you eat',
             true,
-            1551133930594,
+            Date.now(),
             null,
             'bir@momo.com',
             'gal@momo.com',
