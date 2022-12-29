@@ -59,7 +59,7 @@ function getEmptyNote() {
             txt: "Fullstack Me Baby!"
         },
         style: {
-            backgroundColor: "#00d"
+            backgroundColor: "#ffffff"
         }
     }
 }
@@ -78,7 +78,7 @@ function _createNotes() {
                     txt: "Fullstack Me Baby!"
                 },
                 style: {
-                    backgroundColor: "#f50000"
+                    backgroundColor: "#ffffff"
                 }
             },
             {
@@ -90,7 +90,7 @@ function _createNotes() {
                     title: "Bobi and Me"
                 },
                 style: {
-                    backgroundColor: "#f50000"
+                    backgroundColor: "#ffffff"
                 }
             },
             {
@@ -105,7 +105,7 @@ function _createNotes() {
                     ]
                 },
                 style: {
-                    backgroundColor: "#00d"
+                    backgroundColor: "#ffffff"
                 }
             }
         ]
