@@ -2,7 +2,7 @@ const { useState, useEffect } = React
 
 import { mailService } from "../services/mail.service.js"
 import { criteriaService } from "../services/criteria.service.js"
-import { mailUserService } from "../services/mail.user.service.js"
+import { mailUserService } from "../services/mail-user.service.js"
 import { eventBusService, showErrorMsg, showSuccessMsg } from "../../../services/event-bus.service.js"
 
 import { MailFilter } from "../cmps/mail-filter.jsx"
