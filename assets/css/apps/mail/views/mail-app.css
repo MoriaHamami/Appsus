@@ -48,3 +48,12 @@
     padding: 0;
     list-style-type: none;
 }
+
+.mail-index .mark-as-unread {
+    font-family: roboto-b;
+}
+
+.mail-index .mark-as-read {
+    background-color: var(--read-mail);    
+}
+

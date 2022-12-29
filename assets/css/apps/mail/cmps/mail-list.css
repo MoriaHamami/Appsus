@@ -1,0 +1,16 @@
+.mail-list .icon:hover {
+    cursor: pointer;
+    background-color: var(--mail-button-hover-bg-color);
+    border-radius: 50%;
+    transform: scale(1.1);
+
+    /* visibility: visible; */
+}
+
+.mail-list .icon {
+    padding: 6px;
+    width: 32px;
+    height: 32px;
+    /* cursor: pointer; */
+}
+

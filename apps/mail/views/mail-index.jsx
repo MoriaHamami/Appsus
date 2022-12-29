@@ -43,37 +43,99 @@ export function MailIndex() {
         // Check if the sender is the reciever
         setShowCompose(false)
         setMainShown('mailList')
-
-        if (mailToCompose.to === mailUserService.get().email) mailToCompose.status = ['sent', 'inbox']
-        else mailToCompose.status = ['sent']
+        mailToCompose.sentAt = Date.now()
+        mailUserService.get().then(currUser => {
+            if (mailToCompose.to === currUser.mail) {
+                mailToCompose.status = ['sent', 'inbox']
+                mailToCompose.from = 'Me'
+                mailToCompose.to = 'Me'
+            } else mailToCompose.status = ['sent']
+            onUpdateMails(mailToCompose, 'Mail sent')
+        })
 
         console.log('mailToCompose:', mailToCompose)
-        mailService.save(mailToCompose).then((composedMail) => {
-            showSuccessMsg('Mail sent!')
-            // navigate('/mail')
-            mails.unshift(composedMail)
-            const newMails = mails.slice()
-            setMails(newMails)
-        }).catch((err) => {
-            console.log('Had issues adding:', err)
-            showErrorMsg('Could not add mail, try again please!')
-        })
+        // mailService.save(mailToCompose).then((composedMail) => {
+        //     // navigate('/mail')
+        //     mails.unshift(composedMail)
+        //     setIsLoading(true)
+        //     loadMails()
+        //     showSuccessMsg('Mail sent!')
+        // }).catch((err) => {
+        //     console.log('Had issues adding:', err)
+        //     showErrorMsg('Could not add mail, try again please!')
+        // })
     }
 
     function onExitMailToCompose(mailToDraft) {
         setMainShown('mailList')
         setShowCompose(false)
+        onUpdateMails(mailToDraft, 'Mail saved as draft', () => setShowCompose(false))
+        // mailService.save(mailToDraft).then((draftedMail) => {
+        //     setShowCompose(false)
+        //     mails.unshift(draftedMail)
+        //     setIsLoading(true)
+        //     loadMails()
+        //     showSuccessMsg('Mail saved as draft')
+        // }).catch((err) => {
+        //     console.log('Had issues adding:', err)
+        //     showErrorMsg('Could not draft mail, try again please!')
+        // })
+    }
 
-        mailService.save(mailToDraft).then((draftedMail) => {
-            setShowCompose(false)
-            mails.unshift(draftedMail)
+    function onUpdateMails(mailToUpdate, txtMsg, func = () => '') {
+        mailService.save(mailToUpdate).then((updatedMail) => {
+            func()
+            mails.unshift(updatedMail)
             setIsLoading(true)
             loadMails()
-            showSuccessMsg('Mail saved as draft')
+            showSuccessMsg(txtMsg)
         }).catch((err) => {
             console.log('Had issues adding:', err)
-            showErrorMsg('Could not draft mail, try again please!')
+            showErrorMsg('Could not update mails, try again please!')
         })
+    }
+    function onRemoveMail(ev, mailToRemove) {
+        ev.stopPropagation()
+        if (!mailToRemove.status.includes('trash')) return onMoveToTrash(mailToRemove)
+
+        mailService.remove(mailToRemove.id)
+            .then((mailFromService) => {
+                mails.unshift(mailFromService)
+                setIsLoading(true)
+                loadMails()
+                showSuccessMsg('Mail removed')
+            })
+            .catch((err) => {
+                console.log('Had issues removing', err)
+                showErrorMsg('Could not remove mail, try again please!')
+            })
+    }
+
+    function onMoveToTrash(mailToRemove) {
+        mailToRemove.status = ['trash']
+        mailToRemove.removedAt = Date.now()
+        onUpdateMails(mailToRemove, 'Mail moved to trash')
+    }
+
+    // function onRemoveReview(mail, reviewIdx) {
+    //     mail.reviews.splice(reviewIdx, 1)
+    //     // We must create a new pointer in order to render the mail again
+    //     const newMail = { ...mail }
+    //     mailService.save(newMail)
+    //         .then((mailFromService) => {
+    //             showSuccessMsg('Mail removed')
+    //             setMail(mailFromService)
+    //         })
+    //         .catch((err) => {
+    //             console.log('Had issues removing', err)
+    //             showErrorMsg('Could not remove mail, try again please!')
+    //         })
+    // }
+    function onIsRead(ev, mail) {
+        ev.stopPropagation()
+        mail.isRead = !mail.isRead 
+        setMails([...mails])
+        console.log('mail.isRead:', mail.isRead)
     }
 
     return <section className="mail-index">
@@ -85,9 +147,9 @@ export function MailIndex() {
             </button>
             <hr />
         </section>
-        <MailFolderList criteria={criteria} setCriteria={setCriteria}/>
-        {!isLoading && mainShown === 'mailList' && <MailList mails={mails} isLoading={isLoading} setMainShown={setMainShown} setSelectedMailId={setSelectedMailId} />}
-        {!isLoading && mainShown === 'mailDetails' && <MailDetails setIsLoading={setIsLoading} setMainShown={setMainShown} selectedMailId={selectedMailId} setSelectedMailId={setSelectedMailId} />}
+        <MailFolderList criteria={criteria} setCriteria={setCriteria} />
+        {!isLoading && mainShown === 'mailList' && <MailList mails={mails} onIsRead={onIsRead} isLoading={isLoading} setMainShown={setMainShown} setSelectedMailId={setSelectedMailId} criteria={criteria} onRemoveMail={onRemoveMail} />}
+        {!isLoading && mainShown === 'mailDetails' && <MailDetails setIsLoading={setIsLoading} onIsRead={onIsRead} setMainShown={setMainShown} selectedMailId={selectedMailId} setSelectedMailId={setSelectedMailId} onRemoveMail={onRemoveMail} criteria={criteria}/>}
         {showCompose && <MailCompose onComposeMail={onComposeMail} setMainShown={setMainShown} mainShown={mainShown} setShowCompose={setShowCompose} onExitMailToCompose={onExitMailToCompose} />}
         {isLoading && <div>Loading..</div>}
     </section>

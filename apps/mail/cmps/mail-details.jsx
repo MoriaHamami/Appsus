@@ -1,13 +1,14 @@
 const { useEffect, useState } = React
 const { useParams, useNavigate, Link } = ReactRouterDOM
 
+import { utilService } from "../../../services/util.service.js"
 // import { MailLabels } from "../cmps/mail-labels.jsx"
 import { mailService } from "../services/mail.service.js"
 
 // import { utilService } from "../services/util.service.js"
 // import { eventBusService, showErrorMsg, showSuccessMsg } from '../services/event-bus.service.js'
 
-export function MailDetails({ setIsLoading, setMainShown, selectedMailId, setSelectedMailId }) {
+export function MailDetails({ setIsLoading, setMainShown, selectedMailId, setSelectedMailId, onRemoveMail, criteria, onIsRead}) {
 
     const [mail, setMail] = useState(null)
     const navigate = useNavigate()
@@ -39,6 +40,10 @@ export function MailDetails({ setIsLoading, setMainShown, selectedMailId, setSel
             })
     }
 
+    // function onRemoveMailFromDetails() {
+    //     onRemoveMail(mail)
+    //     // setMainShown('mailList')
+    // }
     // function onGoBack() {
     //     navigate(-1)
     //     // navigate('/mail')
@@ -74,9 +79,15 @@ export function MailDetails({ setIsLoading, setMainShown, selectedMailId, setSel
 
         {/* <img className="close-icon icon" src="../../assets/img/icons/icons-mail/close-icon.png" onClick={() => setMainShown('mailList')} /> */}
         <img className="back-icon icon" src="./assets/img/icons/icons-mail/back-icon.png" onClick={() => setMainShown('mailList')} />
+        <img className={`icon ${mail.isRead ? 'mark-as-read' : 'mark-as-un'}`} src={`./assets/img/icons/icons-mail/${mail.isRead ? 'mark-as-read' : 'mark-as-unread'}.png`} onClick={(ev) => onIsRead(ev, mail)}/>
+        <img className="delete-icon icon" src="./assets/img/icons/icons-mail/delete-icon.png" onClick={(ev)=>onRemoveMail(ev, mail)} />
+        <img className={`icon star ${mail.isStarred ? 'starred' : ''}`} src={`./assets/img/icons/icons-mail/${mail.isStarred ? 'starred' : 'star'}-icon.png`} />
 
+        <h2 className="subject">{mail.subject}</h2>
         <h3 className="from">{mail.from}</h3>
-        <h4 className="subject">{mail.subject}</h4>
+        <h4 className="to">{mail.to}</h4>
+        {!(criteria.status === 'trash') && <span className="preview subject">{utilService.getDate(mail.sentAt)}</span>}
+        {criteria.status === 'trash' && <span className="preview subject">{utilService.getDate(mail.removedAt)}</span>}
         <p className="body">{mail.body}</p>
 
 
