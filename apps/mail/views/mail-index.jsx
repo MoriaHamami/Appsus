@@ -9,12 +9,15 @@ import { MailFilter } from "../cmps/mail-filter.jsx"
 import { MailFolderList } from "../cmps/mail-folder-list.jsx"
 import { MailList } from "../cmps/mail-list.jsx"
 import { MailCompose } from "../cmps/mail-compose.jsx"
+import { MailDetails } from "../cmps/mail-details.jsx"
+
 export function MailIndex() {
 
     const [mails, setMails] = useState([])
     const [criteria, setCriteria] = useState(criteriaService.getDefaultCriteria())
     const [showCompose, setShowCompose] = useState(false)
     const [mainShown, setMainShown] = useState('mailList')
+    const [selectedMailId, setSelectedMailId] = useState('')
     const [isLoading, setIsLoading] = useState(false)
 
     useEffect(() => {
@@ -83,7 +86,8 @@ export function MailIndex() {
             <hr />
         </section>
         <MailFolderList criteria={criteria} setCriteria={setCriteria}/>
-        {!isLoading && mainShown === 'mailList' && <MailList mails={mails} isLoading={isLoading} setMainShown={setMainShown} />}
+        {!isLoading && mainShown === 'mailList' && <MailList mails={mails} isLoading={isLoading} setMainShown={setMainShown} setSelectedMailId={setSelectedMailId} />}
+        {!isLoading && mainShown === 'mailDetails' && <MailDetails setIsLoading={setIsLoading} setMainShown={setMainShown} selectedMailId={selectedMailId} setSelectedMailId={setSelectedMailId} />}
         {showCompose && <MailCompose onComposeMail={onComposeMail} setMainShown={setMainShown} mainShown={mainShown} setShowCompose={setShowCompose} onExitMailToCompose={onExitMailToCompose} />}
         {isLoading && <div>Loading..</div>}
     </section>
