@@ -1,4 +1,4 @@
-export function MailFolderList({ criteria, setCriteria }) {
+export function MailFolderList({ setMainShown, criteria, setCriteria }) {
 
     function onSetCriteria(newStatus) {
         if(newStatus === 'starred') {
@@ -9,6 +9,7 @@ export function MailFolderList({ criteria, setCriteria }) {
             criteria.isStarred = false
         }
         setCriteria({ ...criteria })
+        setMainShown('mailList')
     }
 
     return <section className="mail-folder-list">

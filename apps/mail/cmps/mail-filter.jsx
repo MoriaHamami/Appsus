@@ -22,7 +22,9 @@ export function MailFilter({onSetCriteria, setIsShown}) {
 
 
     return <section className="mail-filter">
-        <input type="text"
+        {/* <img className="search-icon icon" src="./assets/img/icons/icons-mail/search-icon.png"/> */}
+        <input type="image"
+        src="./assets/img/icons/icons-mail/search-icon.png"
             id="search-mail"
             name="search"
             placeholder="Search"

@@ -1,5 +1,18 @@
-.star{
-    width: 20px;
+.mail-preview {
+    display: flex;
+    align-items: center;
 }
 
+.mail-preview .subject{
+    /* text-overflow: hidden;
+    overflow: hidden; */
+}
 
+.mail-expand {
+    padding: 10px;
+}
+
+.mail-expand .expand-icon {
+    position: absolute;
+    right: 0;
+}

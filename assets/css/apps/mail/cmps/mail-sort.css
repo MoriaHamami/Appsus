@@ -1,0 +1,22 @@
+/* ul.mail-list{
+    border-radius: 200px;
+    border: 1px solid red; */
+    /* list-style-type: none; */
+    /* -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+} */
+
+.mail-sort{
+    /* height: 10px; */
+    /* border-radius: 50%; */
+    border-radius: 15px 15px 0 0;
+    /* background-color: green; */
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    background-color: var(--almost-white);
+}
+
+.mail-sort button{
+    margin-inline: 20px;
+}
