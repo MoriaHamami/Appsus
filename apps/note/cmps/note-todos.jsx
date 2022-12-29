@@ -4,7 +4,15 @@ export function NoteTodos({ note }) {
 
     return <section className="note-todos">
         <h3>{note.info.label}</h3>
-        <p>{note.info.todos[1].txt}</p>
-        <p>added at: {note.info.todos[1].doneAt}</p>
+
+        <ul>
+            {note.info.todos.map(todo => {
+                return <li key={todo.txt}>{todo.txt} <span>{todo.doneAt}</span></li>
+            })}
+        </ul>
+
     </section>
 }
+
+
+

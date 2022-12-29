@@ -55,7 +55,7 @@ export function NoteIndex() {
             // showSuccessMsg('note saved!')
             notes.unshift(note)
             setNotes(notes.slice())
-            navigate('/note')
+            // navigate('/note')
 
         })
     }

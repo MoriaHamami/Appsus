@@ -30,7 +30,7 @@ export function NoteList({ notes, onRemoveNote }) {
         {
             notes.map(note => <li key={note.id} >
 
-                <NotePreview note={note} isPinned={note.isPinned}/>
+                <NotePreview note={note} isPinned={note.isPinned} onRemoveNote={onRemoveNote}/>
                 
                 {/* {note.isPinned && <NotePreview note={note} isPinned={note.isPinned}/>} */}
 
@@ -40,9 +40,7 @@ export function NoteList({ notes, onRemoveNote }) {
                 {/* <Link to={`/note/${note.id}`}><NotePreview note={note} /></Link> */}
                 {/* <button onClick={() => onRemoveNote(note.id)}>x</button> */}
 
-                <div>
-                    <button onClick={() => onRemoveNote(note.id)}>x</button>
-                </div>
+                
             </li>)
         }
     </ul>
