@@ -4,41 +4,45 @@ const { useParams, useNavigate, Link } = ReactRouterDOM
 // import { MailLabels } from "../cmps/mail-labels.jsx"
 import { mailService } from "../services/mail.service.js"
 
-import { utilService } from "../services/util.service.js"
-import { eventBusService, showErrorMsg, showSuccessMsg } from '../services/event-bus.service.js'
-import { ReviewList } from "../cmps/review-list.jsx"
+// import { utilService } from "../services/util.service.js"
+// import { eventBusService, showErrorMsg, showSuccessMsg } from '../services/event-bus.service.js'
 
-export function MailDetails({mailId}) {
+export function MailDetails({ setIsLoading, setMainShown, selectedMailId, setSelectedMailId }) {
 
     const [mail, setMail] = useState(null)
     const navigate = useNavigate()
     const [nextMailId, setNextMailId] = useState(null)
     const [prevMailId, setPrevMailId] = useState(null)
-    // const { mailId } = useParams()
+    // const { selectedMailId } = useParams()
 
     useEffect(() => {
+        // setIsLoading(true)
         loadMail()
-    }, [mailId])
+    }, [selectedMailId])
 
     function loadMail() {
 
-        mailService.get(mailId)
-            .then((mail) => setMail(mail))
+        mailService.get(selectedMailId)
+            .then((mail) => {
+                setMail(mail)
+                setIsLoading(false)
+            })
             .catch((err) => {
                 console.log('Had issues in mail details', err)
                 navigate('/mail')
             })
 
-        mailService.getNearbyMailIds(mailId)
+        mailService.getNearbyMailIds(selectedMailId)
             .then((nearbyMails) => {
                 setNextMailId(nearbyMails.nextMailId)
                 setPrevMailId(nearbyMails.prevMailId)
             })
     }
 
-    function onGoBack() {
-        navigate(-1)
-    }
+    // function onGoBack() {
+    //     navigate(-1)
+    //     // navigate('/mail')
+    // }
 
     // Put this func in index to remove mail
     // function onRemoveReview(mail, reviewIdx) {
@@ -67,11 +71,17 @@ export function MailDetails({mailId}) {
 
     if (!mail) return <div>Loading...</div>
     return <section className="mail-details">
-        <h2>{mail.title}</h2>
 
-        <img onClick={onGoBack}/>
-        <img onClick={() => setMail(prevMailId)}/>
-        <img onClick={() => setMail(nextMailId)}/>
+        {/* <img className="close-icon icon" src="../../assets/img/icons/icons-mail/close-icon.png" onClick={() => setMainShown('mailList')} /> */}
+        <img className="back-icon icon" src="./assets/img/icons/icons-mail/back-icon.png" onClick={() => setMainShown('mailList')} />
+
+        <h3 className="from">{mail.from}</h3>
+        <h4 className="subject">{mail.subject}</h4>
+        <p className="body">{mail.body}</p>
+
+
+        <img className="prev-icon icon" src="./assets/img/icons/icons-mail/prev-icon.png" onClick={() => setMail(prevMailId)} />
+        <img className="next-icon icon" src="./assets/img/icons/icons-mail/next-icon.png" onClick={() => setMail(nextMailId)} />
     </section>
 
 }

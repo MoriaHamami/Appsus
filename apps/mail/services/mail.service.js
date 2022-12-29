@@ -112,7 +112,7 @@ function _createMails() {
     }
 }
 
-function getEmptyMail(id ='', subject = '', body = '', isRead = false, sentAt = '', removedAt = null, to = '', from = '', status = [], isStarred = false, labels = []) {
+function getEmptyMail(id ='', subject = '', body = '', isRead = false, sentAt = '', removedAt = null, to = '', from = '', status = '', isStarred = false, labels = []) {
     return {
         id,
         subject,
