@@ -105,7 +105,7 @@ function _createNotes() {
                     ]
                 },
                 style: {
-                    backgroundColor: "#00d"
+                    backgroundColor: "#f50000"
                 }
             }
         ]
