@@ -2,7 +2,7 @@
     padding: 15px;
     border-radius: 0.5rem;
     min-height: 180px;
-    border: 2px rgb(231, 231, 231) solid;
+    border: 1px rgb(231, 231, 231) solid;
     text-align: left;
 
     transition: 0.3s;
@@ -21,4 +21,11 @@
 
 .note-preview label img {
     width: 20px;
+    
+}
+.note-preview label img:hover {
+    cursor: pointer;
+    opacity: 0.5;
+    /* background-color: var(--button-hover-bg-color);
+    border-radius: 50%; */
 }

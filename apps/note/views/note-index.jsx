@@ -11,7 +11,6 @@ import { noteService } from "../services/note.service.js";
 export function NoteIndex() {
 
     const [filterBy, setFilterBy] = useState(noteService.getDefaultFilter())
-    // const [previewBy, setPreviewBy] = useState(noteService.get())
     const [notes, setNotes] = useState([])
 
     useEffect(() => {
@@ -26,39 +25,7 @@ export function NoteIndex() {
 
     }
 
-    function onAddNotes(note) {
-        console.log(note);
-        const addNote = noteService.addNotes(note)
 
-
-        // console.log('note after', addNote)
-
-
-        noteService.save(addNote).then((note) => {
-            console.log('note saved', note)
-
-            notes.push(note)
-            setNotes(notes.slice())
-            // showSuccessMsg('Book saved!')
-        }).catch((err) => {
-            console.log('Had issues adding:', err)
-            // showErrorMsg('Could not add book, try again please!')
-        })
-
-    }
-
-    // function onSaveNote(noteToAdd, noteId) {
-    //     const note = notes.find(note => note.is === noteId)
-    //     bookService.saveReview(note, noteToAdd)
-    //         .then((note) => {
-    //             const reviews = [note, ...book.reviews]
-    //             setBook({ ...book, reviews })
-    //         })
-    //         .catch((err) => {
-    //             console.log('err:', err);
-
-    //         })
-    // }
 
     function onRemoveNote(noteId) {
         noteService.remove(noteId).then(() => {
@@ -78,9 +45,7 @@ export function NoteIndex() {
     function onSetFilter(filterByFromFilter) {
         setFilterBy(filterByFromFilter)
     }
-    // function onSetPreview(notesFromPreview) {
-    //     setFilterBy(notesFromPreview)
-    // }
+
 
     function onSaveNote(ev, noteToAdd) {
         ev.preventDefault()
@@ -105,9 +70,8 @@ export function NoteIndex() {
             <NoteNav />
             {/* <Link to="/book/edit" className="add-book">Add Book</Link> */}
             <div className="note-crudl-container">
-            <NoteAdd onAddNotes={onAddNotes} onSaveNote={onSaveNote} />
+            <NoteAdd onSaveNote={onSaveNote} />
 
-            {/* <BookAdd onAddGoogleBook={onAddGoogleBook} /> */}
             {/* {noteIsPinned()} */}
             {/* <h1>Pinned</h1> */}
             {<NoteList notes={notes} onRemoveNote={onRemoveNote} />}
