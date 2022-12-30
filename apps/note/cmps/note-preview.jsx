@@ -1,10 +1,11 @@
 
 const { useState, useEffect, useRef } = React
-const { Link } = ReactRouterDOM
+const { Link, useNavigate, useParams } = ReactRouterDOM
 
 import { noteService } from "../services/note.service.js";
 import { NoteDetails } from "./note-details.jsx";
 import { NoteImg } from "./note-img.jsx";
+import { NoteToMail } from "./note-to-mail.jsx";
 import { NoteTodos } from "./note-todos.jsx";
 import { NoteTxt } from "./note-txt.jsx";
 import { NoteVideo } from "./note-video.jsx";
@@ -21,8 +22,15 @@ export function NotePreview({ note, onRemoveNote }) {
     // <img src={`assets/img/${imgName}.png`} />
 
 
-    const colorRef = useRef(null)
-    const contentRef = useRef(null)
+    const navigate = useNavigate()
+    const { info } = useParams()
+
+    useEffect(() => {
+        if (!info) return
+        getMailParams()
+    }, [])
+
+
 
     useEffect(() => {
         loadNotes()
@@ -73,7 +81,16 @@ export function NotePreview({ note, onRemoveNote }) {
 
     }
 
+    console.log('content', content);
+    console.log('contentRef', contentRef);
+
     function changeContent() {
+
+        setContent((prevContent) => ({ ...prevContent }))
+
+        contentRef.current = content
+        note = content
+
         noteService.save(note).then((content) => {
             console.log('content saved', content);
             // navigate('/note')
@@ -81,38 +98,64 @@ export function NotePreview({ note, onRemoveNote }) {
         })
     }
 
- 
+    function getMailParams() {
+        // Get current params and set them in our variables
+        const queryStringParams = new URLSearchParams(window.location.search)
+
+        console.log('queryStringParams:', queryStringParams)
+
+        const subject = queryStringParams.get('subject')
+        const body = queryStringParams.get('body')
+
+        if (!subject || !body) return
+
+        // A note was sent to mail, add note to inbox
+        const newNote = noteService.getEmptyNote()
+        newNote.info.title = subject
+        newNote.info.txt = body
+
+
+        noteService.save(note).then((content) => {
+            console.log('content saved', content);
+            // navigate('/note')
+
+        })
+
+        navigate('/note')
+    }
+
 
     // return <article onMouseEnter={() => setIsShown(true)} onMouseLeave={() => setIsShown(false)} ref={colorRef} className="note-preview" style={{ backgroundColor: note.style.backgroundColor }}>
-    return <article  ref={colorRef} className="note-preview" style={{ backgroundColor: note.style.backgroundColor }}>
-        
-        
-        {<div ref={contentRef} onChange={changeContent} contentEditable suppressContentEditableWarning={true} >
+    return <article ref={colorRef} className="note-preview" style={{ backgroundColor: note.style.backgroundColor }}>
+
+
+        {<div ref={contentRef} onKeyDown={changeContent} contentEditable suppressContentEditableWarning={true} >
             {noteType()}
         </div>}
 
 
         {/* <Link to={`/note/${note.id}`}>select</Link> */}
 
-        
-       
+
+
         {/* {isShown && ( */}
-            <div className="hidden-buttons">
+        <div className="hidden-buttons">
             <form onChange={changeColor}>
-            <label htmlFor={`color-${note.id}`}><img src="./assets/img/icons/icons-notes/asset 22.svg" alt="" /></label>
-            <input type="color"
-                name="style"
-                id={`color-${note.id}`}
-                // placeholder="Take a note..."
-                value={note.backgroundColor}
-                onChange={handleChange}
+                <label htmlFor={`color-${note.id}`}><img src="./assets/img/icons/icons-notes/asset 22.svg" alt="" /></label>
+                <input type="color"
+                    name="style"
+                    id={`color-${note.id}`}
+                    // placeholder="Take a note..."
+                    value={note.backgroundColor}
+                    onChange={handleChange}
 
-            />
+                />
 
-        </form>
-           <button onClick={() => onRemoveNote(note.id)}>x</button>
-       </div>
-       {/* )} */}
+            </form>
+            <button onClick={() => onRemoveNote(note.id)}>x</button>
+        </div>
+        {/* )} */}
+        {<NoteToMail note={note}/>}
 
         {/* <NoteDetails note={note} /> */}
 
