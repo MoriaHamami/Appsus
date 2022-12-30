@@ -1,9 +1,12 @@
-
+const { useNavigate, useParams, Link } = ReactRouterDOM
 
 export function NoteToMail({ note }) {
 
-    function sendToMail() {
-
+    const navigate = useNavigate()
+    
+    function sendToMail(ev) {
+        ev.stopPropagation()
+        navigate('/mail')
         // Define new path
         const queryStringParams = `#/mail?subject=${note.info.title}&body=${note.info.txt}`
         // const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + queryStringParams
@@ -14,7 +17,7 @@ export function NoteToMail({ note }) {
 
     return <section className="note-to-mail" >
 
-       <button onClick={sendToMail}>QueryParam</button>
+       <button onClick={(ev) => sendToMail(ev)}>QueryParam</button>
 
     </section>
 
