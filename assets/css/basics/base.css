@@ -38,4 +38,6 @@ ul{
     margin: 0;
 }
 
-
+/* ::selection{
+    background-color: aqua;
+} */
