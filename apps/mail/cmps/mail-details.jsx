@@ -8,13 +8,20 @@ import { mailService } from "../services/mail.service.js"
 // import { utilService } from "../services/util.service.js"
 // import { eventBusService, showErrorMsg, showSuccessMsg } from '../services/event-bus.service.js'
 
-export function MailDetails({ setIsLoading, setMainShown, selectedMailId, setSelectedMailId, onRemoveMail, criteria, onIsRead}) {
+export function MailDetails({ setIsLoading, setMainShown, selectedMailId, setSelectedMailId, onRemoveMail, criteria, onIsRead, onIsStarred }) {
 
     const [mail, setMail] = useState(null)
     const navigate = useNavigate()
     const [nextMailId, setNextMailId] = useState(null)
     const [prevMailId, setPrevMailId] = useState(null)
+    const [timeSince, setTimeSince] = useState(null)
     // const { selectedMailId } = useParams()
+
+    // useEffect(() => { 
+    //     loadMail().then(() =>{
+
+    //     })
+    // }, [])
 
     useEffect(() => {
         // setIsLoading(true)
@@ -32,12 +39,51 @@ export function MailDetails({ setIsLoading, setMainShown, selectedMailId, setSel
                 console.log('Had issues in mail details', err)
                 navigate('/mail')
             })
+            // .then(() => {
+            //     console.log('mail:', mail)
+
+            //     setInterval(() => {
+            //         if (criteria.status === 'trash') onSetTimeSince(mail.removedAt)
+            //         else onSetTimeSince(mail.sentAt)
+            //     }, 1000)
+            // })
+
 
         mailService.getNearbyMailIds(selectedMailId)
             .then((nearbyMails) => {
                 setNextMailId(nearbyMails.nextMailId)
                 setPrevMailId(nearbyMails.prevMailId)
             })
+    }
+
+    // MOVE TO UTILS? SET TIME INTERVAL TO UPDATE?
+    function onSetTimeSince(date) {
+
+        var seconds = Math.floor((new Date() - date) / 1000)
+
+        var interval = seconds / 31536000
+
+        if (interval > 1) {
+            return Math.floor(interval) + " years ago"
+        }
+        interval = seconds / 2592000
+        if (interval > 1) {
+            return Math.floor(interval) + " months ago"
+        }
+        interval = seconds / 86400
+        if (interval > 1) {
+            return Math.floor(interval) + " days ago"
+        }
+        interval = seconds / 3600
+        if (interval > 1) {
+            return Math.floor(interval) + " hours ago"
+        }
+        interval = seconds / 60
+        if (interval > 1) {
+            return Math.floor(interval) + " minutes ago"
+        }
+        return Math.floor(seconds) + " seconds ago"
+
     }
 
     // function onRemoveMailFromDetails() {
@@ -79,20 +125,22 @@ export function MailDetails({ setIsLoading, setMainShown, selectedMailId, setSel
 
         {/* <img className="close-icon icon" src="../../assets/img/icons/icons-mail/close-icon.png" onClick={() => setMainShown('mailList')} /> */}
         <img className="back-icon icon" src="./assets/img/icons/icons-mail/back-icon.png" onClick={() => setMainShown('mailList')} />
-        <img className="icon" src={`./assets/img/icons/icons-mail/${mail.isRead ? 'mark-as-read' : 'mark-as-unread'}.png`} onClick={(ev) => onIsRead(ev, mail)}/>
-        <img className="delete-icon icon" src="./assets/img/icons/icons-mail/delete-icon.png" onClick={(ev)=>onRemoveMail(ev, mail)} />
-        <img className={`icon star ${mail.isStarred ? 'starred' : ''}`} src={`./assets/img/icons/icons-mail/${mail.isStarred ? 'starred' : 'star'}-icon.png`} />
+        <img className="icon" src={`./assets/img/icons/icons-mail/${mail.isRead ? 'mark-as-read' : 'mark-as-unread'}.png`} onClick={(ev) => onIsRead(ev, mail)} />
+        <img className="delete-icon icon" src="./assets/img/icons/icons-mail/delete-icon.png" onClick={(ev) => onRemoveMail(ev, mail)} />
+        <img className={`icon star ${mail.isStarred ? 'starred' : ''}`} src={`./assets/img/icons/icons-mail/${mail.isStarred ? 'starred' : 'star'}-icon.png`} onClick={(ev)=>onIsStarred(ev, mail)}/>
+        <img className="nav-icon prev-icon icon" src="./assets/img/icons/icons-mail/prev-icon.png" onClick={() => setMail(prevMailId)} />
+        <img className=" nav-icon next-icon icon" src="./assets/img/icons/icons-mail/next-icon.png" onClick={() => setMail(nextMailId)} />
+        {!(criteria.status === 'trash') && <span className="date">{mail.sentAt ? onSetTimeSince(mail.sentAt) : ''}</span>}
+        {criteria.status === 'trash' && <span className="date">{mail.sentAt ? onSetTimeSince(mail.removedAt) : ''}</span>}
 
         <h2 className="subject">{mail.subject}</h2>
         <h3 className="from">{mail.from}</h3>
         <h4 className="to">{mail.to}</h4>
-        {!(criteria.status === 'trash') && <span className="preview subject">{utilService.getDate(mail.sentAt)}</span>}
-        {criteria.status === 'trash' && <span className="preview subject">{utilService.getDate(mail.removedAt)}</span>}
+        {/* {!(criteria.status === 'trash') && <span className="date">{utilService.getDate(mail.sentAt)}</span>}
+        {criteria.status === 'trash' && <span className="date">{utilService.getDate(mail.removedAt)}</span>} */}
+        {/* <span className="date">{timeSince}</span> */}
         <p className="body">{mail.body}</p>
 
-
-        <img className="prev-icon icon" src="./assets/img/icons/icons-mail/prev-icon.png" onClick={() => setMail(prevMailId)} />
-        <img className="next-icon icon" src="./assets/img/icons/icons-mail/next-icon.png" onClick={() => setMail(nextMailId)} />
     </section>
 
 }

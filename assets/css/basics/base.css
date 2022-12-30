@@ -31,7 +31,7 @@ img {
     color: lightgray;
     background-color: lightgray;
     height: 1px;
-    border-width: 0;
+    border: 0;
 }
 
 ul{

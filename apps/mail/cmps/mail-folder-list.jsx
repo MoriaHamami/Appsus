@@ -1,7 +1,7 @@
-export function MailFolderList({ setMainShown, criteria, setCriteria }) {
+export function MailFolderList({ setMainShown, criteria, setCriteria, unreadCount }) {
 
     function onSetCriteria(newStatus) {
-        if(newStatus === 'starred') {
+        if (newStatus === 'starred') {
             criteria.status = ''
             criteria.isStarred = true
         } else {
@@ -14,24 +14,39 @@ export function MailFolderList({ setMainShown, criteria, setCriteria }) {
 
     return <section className="mail-folder-list">
         <button className={`inbox-btn ${criteria.status === 'inbox' ? 'active' : ''}`} onClick={() => onSetCriteria('inbox')}>
-            <img className="list-icon icon" src="./assets/img/icons/icons-mail/inbox-icon.png" />
-            Inbox
+            <span className="icon-txt-inbox-container">
+                <img className="list-icon icon" src="./assets/img/icons/icons-mail/inbox-icon.png" />
+                <span>Inbox</span>
+            </span>
+            <span className="unreadCount">{unreadCount.inbox ? unreadCount.inbox : ''}</span>
+            {/* <span className="unreadCount">{unreadCount.inbox}</span> */}
         </button>
         <button className={`starred-btn ${criteria.isStarred ? 'active' : ''}`} onClick={() => onSetCriteria('starred')}>
-            <img className="list-icon icon" src="./assets/img/icons/icons-mail/star-icon.png" />
-            Starred
+            <span className="icon-txt-inbox-container">
+                <img className="list-icon icon" src="./assets/img/icons/icons-mail/star-icon.png" />
+                <span>Starred</span>
+            </span>
+            <span className="unreadCount">{unreadCount.starred ? unreadCount.starred : ''}</span>
         </button>
         <button className={`sent-btn ${criteria.status === 'sent' ? 'active' : ''}`} onClick={() => onSetCriteria('sent')}>
-            <img className="list-icon icon" src="./assets/img/icons/icons-mail/sent-icon.png" />
-            Sent
+            <span className="icon-txt-inbox-container">
+                <img className="list-icon icon" src="./assets/img/icons/icons-mail/sent-icon.png" />
+                <span>Sent</span>
+            </span>
+            <span className="unreadCount">{unreadCount.sent ? unreadCount.sent : ''}</span>
         </button>
         <button className={`draft-btn ${criteria.status === 'draft' ? 'active' : ''}`} onClick={() => onSetCriteria('draft')}>
-            <img className="list-icon icon" src="./assets/img/icons/icons-mail/draft-icon.png" />
-            Draft
+            <span className="icon-txt-inbox-container">
+                <img className="list-icon icon" src="./assets/img/icons/icons-mail/draft-icon.png" />
+                <span>Draft</span>
+            </span>
+            <span className="unreadCount">{unreadCount.draft ? unreadCount.draft : ''}</span>
         </button>
         <button className={`trash-btn ${criteria.status === 'trash' ? 'active' : ''}`} onClick={() => onSetCriteria('trash')}>
-            <img className="list-icon icon" src="./assets/img/icons/icons-mail/delete-icon.png" />
-            Trash
+            <span className="icon-txt-inbox-container">
+                <img className="list-icon icon" src="./assets/img/icons/icons-mail/delete-icon.png" />
+                Trash
+            </span>
         </button>
     </section>
 }

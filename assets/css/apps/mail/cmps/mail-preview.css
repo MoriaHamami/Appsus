@@ -3,16 +3,37 @@
     align-items: center;
 }
 
-.mail-preview .subject{
-    /* text-overflow: hidden;
-    overflow: hidden; */
+.mail-expand {
+    /* display: flex;
+    justify-content: center;
+    flex-direction: column; */
+    padding: 10px;
 }
 
-.mail-expand {
-    padding: 10px;
+.mail-expand-txt{
+    padding-top: 10px;
+}
+.mail-expand-txt h3 {
+    margin-inline-start: 10px;
+    margin-block-end: 5px;
+}
+.mail-expand-txt h4 {
+    margin-inline-start: 10px;
+    margin-block-end: 15px;
+}
+.mail-expand-txt p {
+    margin-inline-start: 10px;
 }
 
 .mail-expand .expand-icon {
     position: absolute;
-    right: 0;
+    right: 20px;
+    height: 25px;
+    width: 25px;
+}
+
+.mail-preview .icons {
+    position: absolute;
+    right: 20px;
+    /* width: 15%; */
 }

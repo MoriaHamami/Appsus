@@ -13,7 +13,9 @@ export const mailService = {
     remove,
     save,
     getEmptyMail,
-    getNearbyMailIds
+    getNearbyMailIds,
+    getUnreadMails,
+    sortMail
 }
 
 function query(filterBy = criteriaService.getDefaultCriteria()) {
@@ -26,7 +28,7 @@ function query(filterBy = criteriaService.getDefaultCriteria()) {
             if (filterBy.status) {
                 mails = mails.filter(mail => mail.status.includes(filterBy.status))
             }
-            if (filterBy.isRead) {
+            if (filterBy.isRead !== '') {
                 mails = mails.filter(mail => mail.isRead === filterBy.isRead)
             }
             if (filterBy.isStarred) {
@@ -66,6 +68,71 @@ function getNearbyMailIds(mailId) {
         })
 }
 
+
+function getUnreadMails(criteria, val) {
+    const filterBy = {
+        [`${criteria}`]: val,
+        labels: '',
+        isRead: false
+    }
+    return query(filterBy)
+    // return query({ isRead: false, labels: '' }).then((mails) => {
+    //     var inbox = mails
+    //     query({ isStarred: false, labels: '' }).then((mails) => {
+    //         var starred = mails
+    //         query({ status: 'sent', labels: '' }).then((mails) => {
+    //             var sent = mails
+    //             query({ status: 'draft', labels: '' }).then((mails) => {
+    //                 var draft = mails
+    //                 return {
+    //                     inbox,
+    //                     starred,
+    //                     sent,
+    //                     draft
+    //                 }
+    //             })
+    //         })
+    //     })
+    // })
+    // return Promise.resolve()
+    // return Promise.resolve({ 
+    //     inbox: query({isRead: false, labels: ''}),
+    //     starred: query({isStarred: false, labels: ''}),
+    //     sent: query({status: 'sent', labels: ''}),
+    //     draft: query({status: 'draft', labels: ''})
+    // })
+
+}
+
+function sortMail(sortBy, change) {
+    return query().then(mails => {
+        if (sortBy === 'sentAt') {
+            mails.sort(function (mail1, mail2) {
+                return (mail1[`${sortBy}`] - mail2[`${sortBy}`]) * change
+            })
+        }
+        if (sortBy === 'subject') {
+            mails.sort(function (mail1, mail2) {
+                const a = mail1[`${sortBy}`].toLowerCase()
+                const b = mail2[`${sortBy}`].toLowerCase()
+                //     if (a < b) {
+                //         return -1
+                //     }
+                //     if (a > b) {
+                //         return 1
+                //     }
+                //     return 0
+                // })
+                return a.localeCompare(b) * change
+            })
+
+        }
+        console.log('mails from service:', mails)
+        console.log('sortBy:', sortBy)
+
+        return mails
+    })
+}
 // function saveMail(mailId, mailToSave) {
 //     const mails = loadFromStorage(MAIL_KEY)
 //     const mail = mails.find((mail) => mail.id === mailId)
@@ -131,7 +198,7 @@ function _createMails() {
     }
 }
 
-function getEmptyMail(id ='', subject = '', body = '', isRead = false, sentAt = '', removedAt = null, to = '', from = '', status = '', isStarred = false, labels = []) {
+function getEmptyMail(id = '', subject = '', body = '', isRead = false, sentAt = '', removedAt = '', to = '', from = '', status = '', isStarred = false, labels = []) {
     return {
         id,
         subject,

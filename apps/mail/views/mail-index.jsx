@@ -1,5 +1,6 @@
 const { useState, useEffect } = React
 
+// import { utilService } from "../../../services/util.service.js"
 import { mailService } from "../services/mail.service.js"
 import { criteriaService } from "../services/criteria.service.js"
 import { mailUserService } from "../services/mail-user.service.js"
@@ -19,6 +20,11 @@ export function MailIndex() {
     const [showCompose, setShowCompose] = useState(false)
     const [mainShown, setMainShown] = useState('mailList')
     const [selectedMailId, setSelectedMailId] = useState('')
+    const [unreadCount, setUnreadCount] = useState('')
+
+    const [dateIcon, setDateIcon] = useState('up')
+    const [subjectIcon, setSubjectIcon] = useState('up')
+
     const [isLoading, setIsLoading] = useState(false)
 
     useEffect(() => {
@@ -30,12 +36,12 @@ export function MailIndex() {
         mailService.query(criteria).then(mailsToUpdate => {
             setMails(mailsToUpdate)
             setIsLoading(false)
+            onUpdateUnreadCount()
         })
     }
 
     function onSetCriteria(criteriaName, criteriaVal) {
         criteria[criteriaName] = criteriaVal
-        console.log('criteria2:', criteria)
         setCriteria({ ...criteria })
     }
 
@@ -54,7 +60,6 @@ export function MailIndex() {
             onUpdateMails(mailToCompose, 'Mail sent')
         })
 
-        console.log('mailToCompose:', mailToCompose)
         // mailService.save(mailToCompose).then((composedMail) => {
         //     // navigate('/mail')
         //     mails.unshift(composedMail)
@@ -89,12 +94,13 @@ export function MailIndex() {
             mails.unshift(updatedMail)
             setIsLoading(true)
             loadMails()
-            showSuccessMsg(txtMsg)
+            if(txtMsg) showSuccessMsg(txtMsg)
         }).catch((err) => {
             console.log('Had issues adding:', err)
             showErrorMsg('Could not update mails, try again please!')
         })
     }
+    
     function onRemoveMail(ev, mailToRemove) {
         ev.stopPropagation()
         if (!mailToRemove.status.includes('trash')) return onMoveToTrash(mailToRemove)
@@ -118,6 +124,38 @@ export function MailIndex() {
         onUpdateMails(mailToRemove, 'Mail moved to trash')
     }
 
+    function onDateSort() {
+        if(dateIcon === 'up') mailService.sortMail('sentAt', -1).then((mails) => {
+            // console.log('mails:', mails)
+            setMails(mails)
+        })
+        else mailService.sortMail('sentAt',1).then((mails) => {
+            // console.log('mails:', mails)
+            setMails(mails)
+          
+            
+            // loadMails()
+        })
+        // setIsLoading(true)
+        setDateIcon((prevDirection) => prevDirection === 'up' ? 'down' : 'up')
+    }
+    
+    function onSubjectSort() {
+        if(subjectIcon === 'up') mailService.sortMail('subject', -1).then((mails) => {
+            // console.log('mails:', mails)
+            setMails(mails)
+
+        })
+        else mailService.sortMail('subject', 1).then((mails) => {
+            // console.log('mails:', mails)
+            setMails(mails)
+
+            // setMails([mails])
+        })
+
+        setSubjectIcon((prevDirection) => prevDirection === 'up' ? 'down' : 'up')
+    }
+    
     // function onRemoveReview(mail, reviewIdx) {
     //     mail.reviews.splice(reviewIdx, 1)
     //     // We must create a new pointer in order to render the mail again
@@ -132,11 +170,43 @@ export function MailIndex() {
     //             showErrorMsg('Could not remove mail, try again please!')
     //         })
     // }
+
     function onIsRead(ev, mail) {
         ev.stopPropagation()
         mail.isRead = !mail.isRead 
-        setMails([...mails])
-        console.log('mail.isRead:', mail.isRead)
+        onUpdateMails(mail)
+        // setMails([...mails])
+        // loadMails()
+    }
+    
+    function onIsStarred(ev, mail) {
+        ev.stopPropagation()
+        mail.isStarred = !mail.isStarred 
+        onUpdateMails(mail)
+        // setMails([...mails])
+        // loadMails()
+    }
+
+    function onUpdateUnreadCount() {
+        // mailService.getUnreadMails().then(mails => setUnreadCount(mails.length))
+        mailService.getUnreadMails('status', 'inbox').then((mails) => {
+                var inbox = mails.length
+                mailService.getUnreadMails('isStarred', true).then((mails) => {
+                    var starred = mails.length
+                    mailService.getUnreadMails('status', 'sent').then((mails) => {
+                        var sent = mails.length
+                        mailService.getUnreadMails('status', 'draft').then((mails) => {
+                            var draft = mails.length
+                            setUnreadCount({
+                                inbox,
+                                starred,
+                                sent,
+                                draft
+                            })
+                        })
+                    })
+                })
+            })
     }
 
     return <section className="mail-index">
@@ -148,10 +218,10 @@ export function MailIndex() {
             </button>
             <hr />
         </section>
-        <MailSort />
-        <MailFolderList setMainShown={setMainShown} criteria={criteria} setCriteria={setCriteria} />
-        {!isLoading && mainShown === 'mailList' && <MailList mails={mails} onIsRead={onIsRead} isLoading={isLoading} setMainShown={setMainShown} setSelectedMailId={setSelectedMailId} criteria={criteria} onRemoveMail={onRemoveMail} />}
-        {!isLoading && mainShown === 'mailDetails' && <MailDetails setIsLoading={setIsLoading} onIsRead={onIsRead} setMainShown={setMainShown} selectedMailId={selectedMailId} setSelectedMailId={setSelectedMailId} onRemoveMail={onRemoveMail} criteria={criteria}/>}
+        <MailSort subjectIcon={subjectIcon} dateIcon={dateIcon} onSubjectSort={onSubjectSort} onDateSort={onDateSort} onSetCriteria={onSetCriteria} />
+        <MailFolderList unreadCount={unreadCount} setMainShown={setMainShown} criteria={criteria} setCriteria={setCriteria} />
+        {!isLoading && mainShown === 'mailList' && <MailList mails={mails} onIsRead={onIsRead} isLoading={isLoading} setMainShown={setMainShown} setSelectedMailId={setSelectedMailId} criteria={criteria} onRemoveMail={onRemoveMail} onIsStarred={onIsStarred} />}
+        {!isLoading && mainShown === 'mailDetails' && <MailDetails setIsLoading={setIsLoading} onIsRead={onIsRead} setMainShown={setMainShown} selectedMailId={selectedMailId} setSelectedMailId={setSelectedMailId} onRemoveMail={onRemoveMail} criteria={criteria} onIsStarred={onIsStarred}/>}
         {showCompose && <MailCompose onComposeMail={onComposeMail} setMainShown={setMainShown} mainShown={mainShown} setShowCompose={setShowCompose} onExitMailToCompose={onExitMailToCompose} />}
         {isLoading && <div>Loading..</div>}
     </section>
