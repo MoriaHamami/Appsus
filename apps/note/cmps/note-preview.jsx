@@ -25,13 +25,7 @@ export function NotePreview({ note, onRemoveNote }) {
     const colorRef = useRef(null)
     const contentRef = useRef(null)
 
-    const navigate = useNavigate()
-    const { info } = useParams()
-
-    useEffect(() => {
-        if (!info) return
-        getMailParams()
-    }, [])
+  
 
 
     useEffect(() => {
@@ -83,9 +77,6 @@ export function NotePreview({ note, onRemoveNote }) {
 
     }
 
-    console.log('content', content);
-    console.log('contentRef', contentRef);
-
     function changeContent() {
 
         setContent((prevContent) => ({ ...prevContent }))
@@ -98,31 +89,6 @@ export function NotePreview({ note, onRemoveNote }) {
             // navigate('/note')
 
         })
-    }
-
-    function getMailParams() {
-        // Get current params and set them in our variables
-        const queryStringParams = new URLSearchParams(window.location.search)
-
-        console.log('queryStringParams:', queryStringParams)
-
-        const subject = queryStringParams.get('subject')
-        const body = queryStringParams.get('body')
-
-        if (!subject || !body) return
-
-        // A note was sent to mail, add note to inbox
-        const newNote = noteService.getEmptyNote()
-        newNote.info.title = subject
-        newNote.info.txt = body
-
-
-        noteService.save(note).then((content) => {
-            console.log('content saved', content);
-            // navigate('/note')
-
-        })
-
     }
 
 
@@ -157,7 +123,7 @@ export function NotePreview({ note, onRemoveNote }) {
             <button onClick={() => onRemoveNote(note.id)}>x</button>
         </div>
         {/* )} */}
-        {<NoteToMail note={note}/>}
+        {<NoteToMail note={note} />}
 
         {/* <NoteDetails note={note} /> */}
 

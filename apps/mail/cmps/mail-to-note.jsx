@@ -3,12 +3,12 @@ const { useNavigate, useParams, Link } = ReactRouterDOM
 export function MailToNote({ mail }) {
 
     const navigate = useNavigate()
-    
+
     function sendToNote(ev) {
         ev.stopPropagation()
         navigate('/note')
         // Define new path
-        const queryStringParams = `#/note?subject=${mail.subject}&body=${mail.body}`
+        const queryStringParams = `?subject=${mail.subject}&body=${mail.body}`
         const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + queryStringParams
         window.history.pushState({ path: newUrl }, '', newUrl)
     }

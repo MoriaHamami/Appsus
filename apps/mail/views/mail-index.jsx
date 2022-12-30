@@ -29,8 +29,8 @@ export function MailIndex() {
 
     const [isLoading, setIsLoading] = useState(false)
 
-    const navigate = useNavigate()
-    const { info } = useParams()
+    // const navigate = useNavigate()
+    // const { info } = useParams()
 
     useEffect(() => {
         // console.log('here:', info)
@@ -41,26 +41,30 @@ export function MailIndex() {
     function getNoteParams() {
         // Get current params and set them in our variables
         let queryStringParams = new URLSearchParams(window.location.search)
+        if(queryStringParams === '#/mail' || !queryStringParams) return
 
         // Extracts information from URL
         const subject = queryStringParams.get('subject')
         const body = queryStringParams.get('body')
-        
-        // if (!subject || !body) return
+        // console.log('body:', body)
+
+        if (!subject || !body) return
         
         // A note was sent to mail, add note to inbox
         const newMail = mailService.getEmptyMail()
         newMail.subject = subject
         newMail.body = body
+        newMail.status = 'inbox'
         // newMail.from = mailUserService.get().then(fullname)
         console.log('newMail:', newMail)
         onUpdateMails(newMail, 'Note sent')
 
+        // navigate('/mail')
+        
         // Reset params
-        navigate('/mail')
-        // queryStringParams = ''
-        // const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + queryStringParams
-        // window.history.pushState({ path: newUrl }, '', newUrl)
+        queryStringParams = '#/mail'
+        const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + queryStringParams
+        window.history.pushState({ path: newUrl }, '', newUrl)
     }
 
     useEffect(() => {
