@@ -57,6 +57,10 @@
     list-style-type: none;
 }
 
+.mail-index p{
+    margin: 0;
+}
+
 .mail-index .mark-as-unread {
     font-family: roboto-b;
     background-color: var(--almost-white);

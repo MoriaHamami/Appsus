@@ -15,6 +15,10 @@
     width: 100%;
     border-radius: 32px;
     padding-block: 5px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     /* background-color: black; */
     /* padding: 5px 150px 5px 0; */
     /* text-align: center; */
@@ -32,5 +36,17 @@
 .mail-folder-list button:hover:not(.active) {
     font-family: roboto-b;
     background-color: var(--hover-btn-bg-color);
+}
+
+.icon-txt-inbox-container {
+    display: flex;
+    align-items: center;
+}
+.unreadCount {
+    /* font-family: roboto-b; */
+    position: relative;
+    right: 0;
+    margin-inline: 20px;
+    /* color: gray; */
 }
 

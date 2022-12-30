@@ -24,6 +24,7 @@
     background-color: var(--mail-search);
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
+    outline: none;
     /* border: none;
     background-image: url("../../../../img/icons/icons-mail/search-icon.png") ;
     background-repeat: no-repeat;

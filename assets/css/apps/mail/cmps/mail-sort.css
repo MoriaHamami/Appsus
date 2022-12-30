@@ -15,8 +15,10 @@
     /* justify-content: center; */
     align-items: center;
     background-color: var(--almost-white);
+    margin-inline-end: 25px;
 }
 
 .mail-sort button{
     margin-inline: 20px;
 }
+

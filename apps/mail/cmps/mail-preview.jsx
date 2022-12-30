@@ -2,7 +2,7 @@ import { utilService } from "../../../services/util.service.js"
 
 const { useState } = React
 
-export function MailPreview({ mail, setMainShown, setSelectedMailId, criteria, onIsRead, onRemoveMail }) {
+export function MailPreview({ mail, setMainShown, setSelectedMailId, criteria, onIsRead, onRemoveMail, onIsStarred }) {
 
     const [isToExpand, setToExpand] = useState(false)
     const [hoverBtnsStyle, setHoverBtnsStyle] = useState({ display: 'none' })
@@ -17,7 +17,6 @@ export function MailPreview({ mail, setMainShown, setSelectedMailId, criteria, o
         setMainShown('mailDetails')
         setSelectedMailId(mail.id)
     }
-
     return <section>
 
         <div className={`mail-preview ${mail.isRead ? 'isRead' : ''}`} onClick={() => setToExpand(isToExpand => !isToExpand)}
@@ -28,7 +27,7 @@ export function MailPreview({ mail, setMainShown, setSelectedMailId, criteria, o
                 setHoverBtnsStyle({ display: 'none' })
             }}>
 
-            <img className={`icon star ${mail.isStarred ? 'starred' : ''}`} src={`./assets/img/icons/icons-mail/${mail.isStarred ? 'starred' : 'star'}-icon.png`} />
+            <img className={`icon star ${mail.isStarred ? 'starred' : ''}`} src={`./assets/img/icons/icons-mail/${mail.isStarred ? 'starred' : 'star'}-icon.png`} onClick={(ev)=>{onIsStarred(ev, mail)}} />
             {/* <div className="to"> */}
             {criteria.status !== 'sent' && <div className="preview from">{mail.from}</div>}
             {criteria.status === 'sent' && <div className="preview to">To: {mail.to}</div>}
@@ -49,7 +48,7 @@ export function MailPreview({ mail, setMainShown, setSelectedMailId, criteria, o
 
                 <img className="expand-icon icon" src="./assets/img/icons/icons-mail/expand-icon.png" onClick={onExpandMail} />
                 <h3 className="subject">{mail.subject}</h3>
-                <h3 className="from">{mail.from}</h3>
+                <h4 className="from">{mail.from}</h4>
                 <p className="body">{mail.body}</p>
             </div>
         </article>}

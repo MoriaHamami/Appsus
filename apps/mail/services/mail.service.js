@@ -13,7 +13,8 @@ export const mailService = {
     remove,
     save,
     getEmptyMail,
-    getNearbyMailIds
+    getNearbyMailIds,
+    getUnreadMails
 }
 
 function query(filterBy = criteriaService.getDefaultCriteria()) {
@@ -26,7 +27,7 @@ function query(filterBy = criteriaService.getDefaultCriteria()) {
             if (filterBy.status) {
                 mails = mails.filter(mail => mail.status.includes(filterBy.status))
             }
-            if (filterBy.isRead) {
+            if (filterBy.isRead !== '') {
                 mails = mails.filter(mail => mail.isRead === filterBy.isRead)
             }
             if (filterBy.isStarred) {
@@ -66,6 +67,42 @@ function getNearbyMailIds(mailId) {
         })
 }
 
+
+function getUnreadMails(criteria, val) {
+    const filterBy = {
+        [`${criteria}`]: val, 
+        labels: '',
+        isRead: false
+    }
+    console.log('filterBy:', filterBy)
+    return query(filterBy)
+    // return query({ isRead: false, labels: '' }).then((mails) => {
+    //     var inbox = mails
+    //     query({ isStarred: false, labels: '' }).then((mails) => {
+    //         var starred = mails
+    //         query({ status: 'sent', labels: '' }).then((mails) => {
+    //             var sent = mails
+    //             query({ status: 'draft', labels: '' }).then((mails) => {
+    //                 var draft = mails
+    //                 return {
+    //                     inbox,
+    //                     starred,
+    //                     sent,
+    //                     draft
+    //                 }
+    //             })
+    //         })
+    //     })
+    // })
+    // return Promise.resolve()
+    // return Promise.resolve({ 
+    //     inbox: query({isRead: false, labels: ''}),
+    //     starred: query({isStarred: false, labels: ''}),
+    //     sent: query({status: 'sent', labels: ''}),
+    //     draft: query({status: 'draft', labels: ''})
+    // })
+       
+}
 // function saveMail(mailId, mailToSave) {
 //     const mails = loadFromStorage(MAIL_KEY)
 //     const mail = mails.find((mail) => mail.id === mailId)
@@ -131,7 +168,7 @@ function _createMails() {
     }
 }
 
-function getEmptyMail(id ='', subject = '', body = '', isRead = false, sentAt = '', removedAt = null, to = '', from = '', status = '', isStarred = false, labels = []) {
+function getEmptyMail(id = '', subject = '', body = '', isRead = false, sentAt = '', removedAt = '', to = '', from = '', status = '', isStarred = false, labels = []) {
     return {
         id,
         subject,
