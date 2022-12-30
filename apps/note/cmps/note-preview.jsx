@@ -22,6 +22,9 @@ export function NotePreview({ note, onRemoveNote }) {
     // <img src={`assets/img/${imgName}.png`} />
 
 
+    const colorRef = useRef(null)
+    const contentRef = useRef(null)
+
     const navigate = useNavigate()
     const { info } = useParams()
 
@@ -29,7 +32,6 @@ export function NotePreview({ note, onRemoveNote }) {
         if (!info) return
         getMailParams()
     }, [])
-
 
 
     useEffect(() => {
@@ -123,6 +125,7 @@ export function NotePreview({ note, onRemoveNote }) {
 
         navigate('/note')
     }
+
 
 
     // return <article onMouseEnter={() => setIsShown(true)} onMouseLeave={() => setIsShown(false)} ref={colorRef} className="note-preview" style={{ backgroundColor: note.style.backgroundColor }}>
