@@ -33,7 +33,8 @@ export function MailIndex() {
     const { info } = useParams()
 
     useEffect(() => {
-        if (!info) return
+        // console.log('here:', info)
+        // if (!info) return
         getNoteParams()
     }, [])
 
@@ -45,13 +46,13 @@ export function MailIndex() {
         const subject = queryStringParams.get('subject')
         const body = queryStringParams.get('body')
         
-        if (!subject || !body) return
+        // if (!subject || !body) return
         
         // A note was sent to mail, add note to inbox
         const newMail = mailService.getEmptyMail()
         newMail.subject = subject
         newMail.body = body
-        newMail.from = mailUserService.get().fullname
+        // newMail.from = mailUserService.get().then(fullname)
         console.log('newMail:', newMail)
         onUpdateMails(newMail, 'Note sent')
 
