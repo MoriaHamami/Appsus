@@ -15,7 +15,8 @@ export const mailService = {
     getEmptyMail,
     getNearbyMailIds,
     getUnreadMails,
-    sortMail
+    sortMail,
+    put
 }
 
 function query(filterBy = criteriaService.getDefaultCriteria()) {
@@ -157,10 +158,16 @@ function remove(mailId) {
 
 function save(mail) {
     if (mail.id) {
+        console.log('updating:', mail)
         return storageService.put(MAIL_KEY, mail)
     } else {
+        console.log('creating:', mail)
         return storageService.post(MAIL_KEY, mail)
     }
+}
+
+function put(mail) {
+    return storageService.put(MAIL_KEY, mail)
 }
 
 function _createMails() {

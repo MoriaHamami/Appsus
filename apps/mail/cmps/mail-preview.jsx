@@ -1,8 +1,9 @@
 import { utilService } from "../../../services/util.service.js"
+import {MailToNote} from "./mail-to-note.jsx"
 
 const { useState } = React
 
-export function MailPreview({ mail, setMainShown, setSelectedMailId, criteria, onIsRead, onRemoveMail, onIsStarred }) {
+export function MailPreview({ mail, setMainShown, setSelectedMailId, criteria, onIsRead, onRemoveMail, onIsStarred, setShowEdit }) {
 
     const [isToExpand, setToExpand] = useState(false)
     const [hoverBtnsStyle, setHoverBtnsStyle] = useState({ display: 'none' })
@@ -17,6 +18,13 @@ export function MailPreview({ mail, setMainShown, setSelectedMailId, criteria, o
         setMainShown('mailDetails')
         setSelectedMailId(mail.id)
     }
+
+    function onSetEdit(ev, mailId) {
+        ev.stopPropagation()
+        setSelectedMailId(mailId)
+        setShowEdit(true)
+    }
+
     return <section>
 
         <div className={`mail-preview ${mail.isRead ? 'isRead' : ''}`} onClick={() => setToExpand(isToExpand => !isToExpand)}
@@ -37,6 +45,8 @@ export function MailPreview({ mail, setMainShown, setSelectedMailId, criteria, o
             {/* <hr /> */}
 
             <div className="icons" style={hoverBtnsStyle}>
+                <MailToNote mail={mail} />
+                {criteria.status === 'draft' && <img className="edit-icon icon" src="./assets/img/icons/icons-mail/edit-icon.png" onClick={(ev) => onSetEdit(ev, mail.id)} />}
                 <img className="icon" src={`./assets/img/icons/icons-mail/${mail.isRead ? 'mark-as-read' : 'mark-as-unread'}.png`} onClick={(ev) => onIsRead(ev, mail)} />
                 <img className="delete-icon icon" src="./assets/img/icons/icons-mail/delete-icon.png" onClick={(ev) => onRemoveMail(ev, mail)} />
             </div>
