@@ -32,8 +32,8 @@ export function MailPreview({ mail, setMainShown, setSelectedMailId, criteria, o
             {criteria.status !== 'sent' && <div className="preview from">{mail.from}</div>}
             {criteria.status === 'sent' && <div className="preview to">To: {mail.to}</div>}
             <div className="preview subject">{mail.subject}</div>
-            {!(criteria.status === 'trash') && hoverBtnsStyle.display === 'none' && <div className="preview date">{utilService.getDate(mail.sentAt)}</div>}
-            {criteria.status === 'trash' && hoverBtnsStyle.display === 'none' && <div className="preview date">{utilService.getDate(mail.removedAt)}</div>}
+            {!(criteria.status === 'trash') && hoverBtnsStyle.display === 'none' && <div className="preview date">{utilService.getDate(mail.sentAt) || ''}</div>}
+            {criteria.status === 'trash' && hoverBtnsStyle.display === 'none' && <div className="preview date">{utilService.getDate(mail.removedAt) || ''}</div>}
             {/* <hr /> */}
 
             <div className="icons" style={hoverBtnsStyle}>

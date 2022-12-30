@@ -14,7 +14,8 @@ export const mailService = {
     save,
     getEmptyMail,
     getNearbyMailIds,
-    getUnreadMails
+    getUnreadMails,
+    sortMail
 }
 
 function query(filterBy = criteriaService.getDefaultCriteria()) {
@@ -70,11 +71,10 @@ function getNearbyMailIds(mailId) {
 
 function getUnreadMails(criteria, val) {
     const filterBy = {
-        [`${criteria}`]: val, 
+        [`${criteria}`]: val,
         labels: '',
         isRead: false
     }
-    console.log('filterBy:', filterBy)
     return query(filterBy)
     // return query({ isRead: false, labels: '' }).then((mails) => {
     //     var inbox = mails
@@ -101,7 +101,37 @@ function getUnreadMails(criteria, val) {
     //     sent: query({status: 'sent', labels: ''}),
     //     draft: query({status: 'draft', labels: ''})
     // })
-       
+
+}
+
+function sortMail(sortBy, change) {
+    return query().then(mails => {
+        if (sortBy === 'sentAt') {
+            mails.sort(function (mail1, mail2) {
+                return (mail1[`${sortBy}`] - mail2[`${sortBy}`]) * change
+            })
+        }
+        if (sortBy === 'subject') {
+            mails.sort(function (mail1, mail2) {
+                const a = mail1[`${sortBy}`].toLowerCase()
+                const b = mail2[`${sortBy}`].toLowerCase()
+                //     if (a < b) {
+                //         return -1
+                //     }
+                //     if (a > b) {
+                //         return 1
+                //     }
+                //     return 0
+                // })
+                return a.localeCompare(b) * change
+            })
+
+        }
+        console.log('mails from service:', mails)
+        console.log('sortBy:', sortBy)
+
+        return mails
+    })
 }
 // function saveMail(mailId, mailToSave) {
 //     const mails = loadFromStorage(MAIL_KEY)

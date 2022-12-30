@@ -130,8 +130,8 @@ export function MailDetails({ setIsLoading, setMainShown, selectedMailId, setSel
         <img className={`icon star ${mail.isStarred ? 'starred' : ''}`} src={`./assets/img/icons/icons-mail/${mail.isStarred ? 'starred' : 'star'}-icon.png`} onClick={(ev)=>onIsStarred(ev, mail)}/>
         <img className="nav-icon prev-icon icon" src="./assets/img/icons/icons-mail/prev-icon.png" onClick={() => setMail(prevMailId)} />
         <img className=" nav-icon next-icon icon" src="./assets/img/icons/icons-mail/next-icon.png" onClick={() => setMail(nextMailId)} />
-        {!(criteria.status === 'trash') && <span className="date">{onSetTimeSince(mail.sentAt)}</span>}
-        {criteria.status === 'trash' && <span className="date">{onSetTimeSince(mail.removedAt)}</span>}
+        {!(criteria.status === 'trash') && <span className="date">{mail.sentAt ? onSetTimeSince(mail.sentAt) : ''}</span>}
+        {criteria.status === 'trash' && <span className="date">{mail.sentAt ? onSetTimeSince(mail.removedAt) : ''}</span>}
 
         <h2 className="subject">{mail.subject}</h2>
         <h3 className="from">{mail.from}</h3>
