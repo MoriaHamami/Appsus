@@ -10,7 +10,7 @@ export function NoteImg({ note }) {
         <h3 >{note.info.title}</h3>
         {/* do a loader */}
         {/* {isLoading && <Loader />} */}
-        <img src={note.info.url} alt={note.info.title} />
+        <img src={note.info.image} alt={note.info.title} />
 
     </section>
 }

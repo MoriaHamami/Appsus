@@ -2,11 +2,7 @@
     text-align: center;
     font-family: Product Sans Regular,'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-.notes-container{
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-}
-/* .note-crudl-container{
-    background-color: chocolate;
-} */
 
+.note-crudl-container{
+    margin: 0 50px;
+}

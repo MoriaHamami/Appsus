@@ -7,11 +7,12 @@ import { NoteDetails } from "./note-details.jsx";
 import { NoteImg } from "./note-img.jsx";
 import { NoteTodos } from "./note-todos.jsx";
 import { NoteTxt } from "./note-txt.jsx";
+import { NoteVideo } from "./note-video.jsx";
 
 
 export function NotePreview({ note, onRemoveNote }) {
 
-    const [isShown, setIsShown] = useState(false)
+    // const [isShown, setIsShown] = useState(false)
     const [color, setColor] = useState(noteService.get(note.id))
     const [content, setContent] = useState(noteService.get(note.id))
     // console.log('color', color);
@@ -36,14 +37,17 @@ export function NotePreview({ note, onRemoveNote }) {
 
 
     function noteType() {
-        if (note.type === 'note-txt') {
+        if (note.type === 'text') {
             return <NoteTxt note={note} />
 
-        } else if (note.type === 'note-img') {
+        } else if (note.type === 'file') {
             return <NoteImg note={note} />
 
         } else if (note.type === 'note-todos') {
             return <NoteTodos note={note} />
+
+        } else if (note.type === 'url') {
+            return <NoteVideo note={note} />
         }
     }
 
@@ -79,7 +83,8 @@ export function NotePreview({ note, onRemoveNote }) {
 
  
 
-    return <article onMouseEnter={() => setIsShown(true)} onMouseLeave={() => setIsShown(false)} ref={colorRef} className="note-preview" style={{ backgroundColor: note.style.backgroundColor }}>
+    // return <article onMouseEnter={() => setIsShown(true)} onMouseLeave={() => setIsShown(false)} ref={colorRef} className="note-preview" style={{ backgroundColor: note.style.backgroundColor }}>
+    return <article  ref={colorRef} className="note-preview" style={{ backgroundColor: note.style.backgroundColor }}>
         
         
         {<div ref={contentRef} onChange={changeContent} contentEditable suppressContentEditableWarning={true} >
@@ -91,7 +96,7 @@ export function NotePreview({ note, onRemoveNote }) {
 
         
        
-        {isShown && (
+        {/* {isShown && ( */}
             <div className="hidden-buttons">
             <form onChange={changeColor}>
             <label htmlFor={`color-${note.id}`}><img src="./assets/img/icons/icons-notes/asset 22.svg" alt="" /></label>
@@ -106,7 +111,8 @@ export function NotePreview({ note, onRemoveNote }) {
 
         </form>
            <button onClick={() => onRemoveNote(note.id)}>x</button>
-       </div>)}
+       </div>
+       {/* )} */}
 
         {/* <NoteDetails note={note} /> */}
 
