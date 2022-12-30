@@ -3,16 +3,25 @@
     align-items: center;
 }
 
-.mail-preview .subject{
-    /* text-overflow: hidden;
-    overflow: hidden; */
-}
-
 .mail-expand {
+    /* display: flex;
+    justify-content: center;
+    flex-direction: column; */
     padding: 10px;
 }
 
+.mail-expand-txt{
+    padding-top: 10px;
+}
+
 .mail-expand .expand-icon {
+    position: absolute;
+    right: 0;
+    height: 25px;
+    width: 25px;
+}
+
+.mail-preview .icons {
     position: absolute;
     right: 0;
 }

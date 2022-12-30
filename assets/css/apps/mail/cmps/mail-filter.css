@@ -8,10 +8,28 @@
     width: 90%;
 }
 
-.mail-filter input{
+.mail-filter .search-icon{
+    height: 45px;
+    padding: 12px;
+    background-color: var(--mail-search);
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    outline: none;
+    border: none;
+}
+
+.mail-filter .search-input{
+    height: 45px;
     border: none;
     background-color: var(--mail-search);
-    padding: 15px;
-    border-radius: 5px;
-    outline: none;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    /* border: none;
+    background-image: url("../../../../img/icons/icons-mail/search-icon.png") ;
+    background-repeat: no-repeat;
+    background-position: left 10px center;
+    padding-inline-start: 35px; */
+    
+    /* background-image: url("https://upload.wikimedia.org/wikipedia/commons/5/55/Magnifying_glass_icon.svg") ; */
+
 }
