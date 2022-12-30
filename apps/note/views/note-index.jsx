@@ -96,10 +96,10 @@ export function NoteIndex() {
         <NoteFilter onSetFilter={onSetFilter} />
 
         <div className="notes-container">
-            <NoteNav />
+            {/* <NoteNav /> */}
             {/* <Link to="/book/edit" className="add-book">Add Book</Link> */}
             <div className="note-crudl-container">
-                <NoteAdd onSaveNote={onSaveNote} />
+                <NoteAdd notes={notes} onSaveNote={onSaveNote} />
 
                 {/* {noteIsPinned()} */}
                 

@@ -17,6 +17,8 @@
     border-radius: 0.3rem;
     margin: 0 20px;
     font-family: Product Sans Regular, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* position: absolute;
+    top: 0; */
 }
 
 /* TRY TO DO FOCUS */
@@ -28,13 +30,25 @@
 .note-add form button {
     font-family: Product Sans Regular, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     position: absolute;
-    right: 35px;
-    top: 0;
+    top: 5px;
     border: none;
     background-color: transparent;
-    height: 40px;
-    width: 40px;
+    height: 30px;
+    width: 30px;
+    padding: 0;
 
+}
+
+.note-add .btn-txt {
+    right: 105px;
+}
+
+.note-add .btn-video {
+    right: 70px;
+}
+
+.note-add .btn-img {
+    right: 35px;
 }
 
 .note-add form button:hover {
@@ -44,3 +58,42 @@
 
 
 }
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    min-width: 50px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    top: 100%;
+    left: 50%;
+    margin-left: -25px;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+
+.tooltip .tooltiptext::after {
+    content: " ";
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent black transparent;
+  }
+

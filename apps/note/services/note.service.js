@@ -50,21 +50,37 @@ function getDefaultFilter() {
     return { txt: '' }
 }
 
-function getEmptyNote() {
+function getEmptyNote(type) {
     return {
         id: '',
-        type: "note-txt",
+        type,
         isPinned: false,
         info: {
-            title:'Title',
-            txt: '',
-            url: ''
+            title: 'Title',
+            txt: 'text',
+            url: '',
+            image: '',
         },
         style: {
             backgroundColor: "#ffffff"
         }
     }
 }
+// function getEmptyNote() {
+//     return {
+//         id: '',
+//         type: "note-txt",
+//         isPinned: false,
+//         info: {
+//             title:'Title',
+//             txt: '',
+//             url: ''
+//         },
+//         style: {
+//             backgroundColor: "#ffffff"
+//         }
+//     }
+// }
 
 
 function _createNotes() {
@@ -73,7 +89,7 @@ function _createNotes() {
         notes = [
             {
                 id: "n101",
-                type: "note-txt",
+                type: "text",
                 isPinned: true,
                 info: {
                     title: 'I am a title',
@@ -85,11 +101,11 @@ function _createNotes() {
             },
             {
                 id: "n102",
-                type: "note-img",
+                type: "file",
                 isPinned: false,
                 info: {
                     // url: "http://some-img/me",
-                    url: "./assets/img/note-imgs/landscape.jpeg",
+                    image: "./assets/img/note-imgs/landscape.jpeg",
                     title: "My Trip"
                 },
                 style: {
@@ -98,6 +114,18 @@ function _createNotes() {
             },
             {
                 id: "n103",
+                type: "url",
+                isPinned: false,
+                info: {
+                    url: "https://www.youtube.com/watch?v=ACVLcuVChAU",
+                    title: "My Trip"
+                },
+                style: {
+                    backgroundColor: "#ffffff"
+                }
+            },
+            {
+                id: "n104",
                 type: "note-todos",
                 isPinned: false,
                 info: {
