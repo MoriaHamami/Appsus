@@ -123,7 +123,6 @@ export function NotePreview({ note, onRemoveNote }) {
 
         })
 
-        navigate('/mail')
     }
 
 
