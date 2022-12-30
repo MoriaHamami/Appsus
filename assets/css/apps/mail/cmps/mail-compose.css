@@ -1,4 +1,4 @@
-.mail-compose:not(.expand) {
+/* .mail-compose:not(.expand) {
     position: fixed;
     bottom: 0;
     right: 10px;
@@ -6,15 +6,11 @@
     width: 70vw;
     box-shadow: 1px 5px 14px 0px #8b8a8a;
     max-height: 80vh;
-    /* border-top-left-radius: 32px; */
     border-radius: 8px 8px 0 0;
 }
 
 .mail-compose.expand {
     background-color: white;
-    /* width: 70vw; */
-    /* max-height: 80vh; */
-    /* border-top-left-radius: 32px; */
 }
 
 .mail-compose.expand .icon {
@@ -63,10 +59,6 @@
     outline: none;
 }
 
-/* [contentEditable] { */
-    /* outline: 0px solid transparent; */
-/* } */
-
 .mail-compose div {
     cursor:auto;
     margin: 0; 
@@ -75,4 +67,4 @@
     height: 50vh; 
     
 }
-
+ */

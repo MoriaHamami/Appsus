@@ -28,10 +28,16 @@ img {
 }
 
 .mail-index hr {
-    color: lightgray;
-    background-color: lightgray;
+    color: lightgrey;
+    background-color: lightgrey;
     height: 1px;
     border: 0;
+   
+        /* border: 0;
+        border-top: 1px solid lightgrey;
+        height: 1px; */
+        /* width: 300px; */
+    
 }
 
 ul{
