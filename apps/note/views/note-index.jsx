@@ -15,6 +15,12 @@ export function NoteIndex() {
     const [isPinned, setIsPinned] = useState(true)
 
     useEffect(() => {
+        // if (!info) return
+        getMailParams()
+    }, [])
+
+
+    useEffect(() => {
         loadNotes()
     }, [filterBy])
 
@@ -27,6 +33,31 @@ export function NoteIndex() {
     }
 
 
+    function getMailParams() {
+        // Get current params and set them in our variables
+        let queryStringParams = new URLSearchParams(window.location.search)
+        if (queryStringParams === '#/note') return
+
+        const subject = queryStringParams.get('subject')
+        const body = queryStringParams.get('body')
+
+        console.log('body:', body)
+        if (!subject || !body) return
+
+        // A note was sent to mail, add note to inbox
+        const newNote = noteService.getEmptyNote()
+        newNote.info.title = subject
+        newNote.info.txt = body
+        newNote.type = 'text'
+
+        onSaveNote('', newNote)
+
+        // Reset params
+        queryStringParams = '#/note'
+        const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + queryStringParams
+        window.history.pushState({ path: newUrl }, '', newUrl)
+
+    }
 
     function onRemoveNote(noteId) {
         noteService.remove(noteId).then(() => {
@@ -49,7 +80,7 @@ export function NoteIndex() {
 
 
     function onSaveNote(ev, noteToAdd) {
-        ev.preventDefault()
+        if (ev) ev.preventDefault()
         noteService.save(noteToAdd).then((note) => {
             console.log('note saved', note);
             // onAddNotes(note)
@@ -69,14 +100,14 @@ export function NoteIndex() {
                     console.log('pinned', note);
                     {
                         if (note.isPinned) {
-                           return <NoteList notes={notes} onRemoveNote={onRemoveNote} />
+                            return <NoteList notes={notes} onRemoveNote={onRemoveNote} />
                         }
                     }
                 })}
 
                 <h1>Others</h1>
                 {notes.map(note => {
-                   {return !note.isPinned && <NoteList notes={notes} onRemoveNote={onRemoveNote} /> }
+                    { return !note.isPinned && <NoteList notes={notes} onRemoveNote={onRemoveNote} /> }
                 })}
 
             </div>
@@ -87,7 +118,6 @@ export function NoteIndex() {
             </div>
         }
     }
-
 
 
     if (!notes) return <h1>Notes you add appear here</h1>
@@ -102,7 +132,7 @@ export function NoteIndex() {
                 <NoteAdd notes={notes} onSaveNote={onSaveNote} />
 
                 {/* {noteIsPinned()} */}
-                
+
                 {/* {isPinned && <h1>Pinned</h1>}
                 {isPinned && <NoteList notes={notes} onRemoveNote={onRemoveNote} />}
                 {notes.map(note => {
