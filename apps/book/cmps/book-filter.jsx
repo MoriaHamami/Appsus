@@ -64,7 +64,6 @@ export function BookFilter({ onSetFilter }) {
             <input type="checkbox"
                 id="isOnSale"
                 name="isOnSale"
-                // value={filterByToEdit.isOnSale}
                 onChange={handleChange}
             />
 

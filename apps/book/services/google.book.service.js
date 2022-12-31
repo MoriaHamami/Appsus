@@ -5,16 +5,15 @@ export const googleBookService = {
 }
 
 function query(filterBy) {
+
     return axios.get(GOOGLE_URL).then(googleBooks => {
-        console.log('googleBooks:', googleBooks)
         if (filterBy) {
             const regex = new RegExp(filterBy, 'i')
             googleBooks = googleBooks.data.items.filter(book => regex.test(book.volumeInfo.title))
-            console.log('filterBy title google googleBooks:', filterBy)
             return googleBooks
         }
-        console.log('google books from book service:', googleBooks.data.items)
         return []
     })
+
 }
 

@@ -13,12 +13,8 @@ export const bookService = {
     getEmptyBook,
     getDefaultFilter,
     getNearbyBookIds,
-    // saveReview,
-    // removeReview,
     getDefaultReview,
     addGoogleBook,
-    // getGoogleBooks
-    // saveGoogleBook
 }
 
 function query(filterBy = getDefaultFilter()) {
@@ -38,12 +34,9 @@ function query(filterBy = getDefaultFilter()) {
             if (filterBy.isOnSale) {
                 books = books.filter(book => book.listPrice.isOnSale === filterBy.isOnSale)
             }
-            console.log('filterBy.isOnSale:', filterBy.authors)
             return books
         })
 }
-
-
 
 function get(bookId) {
     return storageService.get(BOOK_KEY, bookId)
@@ -55,20 +48,11 @@ function remove(bookId) {
 
 function save(book) {
     if (book.id) {
-        console.log('book from save:', book)
         return storageService.put(BOOK_KEY, book)
     } else {
         return storageService.post(BOOK_KEY, book)
     }
 }
-
-// function saveGoogleBook(book) {
-//     if (book.id) {
-//         return storageService.put(GOOGLE_BOOKS_KEY, book)
-//     } else {
-//         return storageService.post(GOOGLE_BOOKS_KEY, book)
-//     }
-// }
 
 function getDefaultFilter() {
     return {
@@ -99,33 +83,23 @@ function getEmptyBook(title = '', subtitle = '', authors = [], publishedDate = '
     }
 }
 
-// function getNextBookId(bookId) {
-//     return storageService.query(BOOK_KEY)
-//         .then(books => {
-//             var idx = books.findIndex(book => book.id === bookId)
-//             if (idx === books.length - 1) idx = -1
-//             return books[idx + 1].id
-//         })
-// }
-
-
-function getNearbyBookIds(bookId){
+function getNearbyBookIds(bookId) {
     console.log('bookId:', bookId)
     return storageService.query(BOOK_KEY)
-    .then(books => {
-        var idx = books.findIndex(book => book.id === bookId)
+        .then(books => {
+            var idx = books.findIndex(book => book.id === bookId)
 
-        let nextIdx = books[idx].id 
-        let prevIdx = books[idx].id
-        if(books.length <= 1) return ({nextBookId: books[nextIdx].id, prevBookId: books[prevIdx].id})
+            let nextIdx = books[idx].id
+            let prevIdx = books[idx].id
+            if (books.length <= 1) return ({ nextBookId: books[nextIdx].id, prevBookId: books[prevIdx].id })
 
-        if (idx === books.length - 1) nextIdx = 0
-        else nextIdx = idx + 1
-        if(idx === 0) prevIdx = books.length - 1
-        else prevIdx = idx - 1
+            if (idx === books.length - 1) nextIdx = 0
+            else nextIdx = idx + 1
+            if (idx === 0) prevIdx = books.length - 1
+            else prevIdx = idx - 1
 
-        return ({nextBookId: books[nextIdx].id, prevBookId: books[prevIdx].id})
-    })
+            return ({ nextBookId: books[nextIdx].id, prevBookId: books[prevIdx].id })
+        })
 }
 
 function getDefaultReview() {
@@ -136,87 +110,28 @@ function getDefaultReview() {
 function addGoogleBook(googleBook) {
     const newBook = {
         id: '',
-        title: googleBook.volumeInfo.title ? googleBook.volumeInfo.title : '' ,
-        subtitle: googleBook.volumeInfo.subtitle ? googleBook.volumeInfo.subtitle : '' ,
-        authors: googleBook.volumeInfo.authors ? googleBook.volumeInfo.authors : '' ,
-        publishedDate: googleBook.volumeInfo.publishedDate ? googleBook.volumeInfo.publishedDate : '' ,
-        description: googleBook.volumeInfo.description ? googleBook.volumeInfo.description : '' ,
-        pageCount: googleBook.volumeInfo.pageCount ? googleBook.volumeInfo.pageCount : '' ,
-        categories: googleBook.volumeInfo.categories ? googleBook.volumeInfo.categories : '' ,
-        thumbnail: googleBook.volumeInfo.imageLinks.thumbnail ? googleBook.volumeInfo.imageLinks.thumbnail : '' ,
-        language: googleBook.volumeInfo.language ? googleBook.volumeInfo.language : '' ,
+        title: googleBook.volumeInfo.title ? googleBook.volumeInfo.title : '',
+        subtitle: googleBook.volumeInfo.subtitle ? googleBook.volumeInfo.subtitle : '',
+        authors: googleBook.volumeInfo.authors ? googleBook.volumeInfo.authors : '',
+        publishedDate: googleBook.volumeInfo.publishedDate ? googleBook.volumeInfo.publishedDate : '',
+        description: googleBook.volumeInfo.description ? googleBook.volumeInfo.description : '',
+        pageCount: googleBook.volumeInfo.pageCount ? googleBook.volumeInfo.pageCount : '',
+        categories: googleBook.volumeInfo.categories ? googleBook.volumeInfo.categories : '',
+        thumbnail: googleBook.volumeInfo.imageLinks.thumbnail ? googleBook.volumeInfo.imageLinks.thumbnail : '',
+        language: googleBook.volumeInfo.language ? googleBook.volumeInfo.language : '',
         'listPrice': {
-            amount: '' ,
-            currencyCode: '' ,
+            amount: '',
+            currencyCode: '',
             isOnSale: false
         }
     }
     return save(newBook)
 }
 
-// function saveReview(bookId, reviewToSave) {
-//     const books = _loadBooksFromStorage()
-//     const book = books.find((book) => book.id === bookId)
-//     const review = _createReview(reviewToSave)
-    
-//     book.reviews.unshift(review)
-//     _saveBooksToStorage(books)
-//     return Promise.resolve(review)
-// }
-
-// function removeReview(bookId, reviewId) {
-//     let books = _loadBooksFromStorage()
-//     let book = books.find((book) => book.id === bookId)
-//     const newReviews = book.reviews.filter((review) => review.id !== reviewId)
-//     book.reviews = newReviews
-//     _saveBooksToStorage(books)
-//     return Promise.resolve()
-// }
-
-// function _createReview(reviewToSave) {
-//     return {
-//       id: utilService.makeId(),
-//       ...reviewToSave,
-//     }
-//   }
-  
-
-// function _saveBooksToStorage(books) {
-//     storageService.saveToStorage(BOOK_KEY, books)
-// }
-
-// function _loadBooksFromStorage() {
-//     return storageService.loadFromStorage(BOOK_KEY)
-// }
-// function getEmptyBook(title = '', desc = '', thumbnail = '', amount = '', currencyCode = '') {
-//     return {
-//         id: '',
-//         title,
-//         desc,
-//         thumbnail,
-//         listPrice: {
-//             amount,
-//             currencyCode,
-//             isOnSale: false
-//         }
-//     }
-// }
-
-// function _createBook(title, subtitle, thumbnail, amount, currencyCode) {
-//     const book = getEmptyBook(title, subtitle, thumbnail, amount, currencyCode)
-//     book.id = utilService.makeId()
-//     return book
-// }
-
-
 function _createBooks() {
     let books = storageService.loadFromStorage(BOOK_KEY)
     if (!books || !books.length) {
-        // books = []
-        // books.push(_createBook('babylon', 'hwbeh gfhw ghjgfcjhwe  ckh', '', 230, 'EUR'))
-        // books.push(_createBook('wikipedia', 'hjhf jefje fie fue f', '', 100, 'EUR'))
-        // books.push(_createBook('science', 'ehieh fue ufeufgeif hie', '', 50, 'EUR'))
-        // books.push(_createBook('shrek', 'efui eufieu ivi vnvie', '', 150, 'EUR'))
+
         books = [
             {
                 'id': 'OXeMG8wNskc',

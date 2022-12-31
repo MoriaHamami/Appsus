@@ -13,10 +13,12 @@ export function LongTxt({ txt, length = 100 }) {
     }
 
     return <section className="long-txt">
+
         <p>{isLongTxtShown ? txt : getShortTxt()}
             <a className="shown-txt-link" onClick={toggleTxtShown}>
                 {isLongTxtShown ? 'Read Less' : 'Read More'}
             </a>
         </p>
+        
     </section>
 }

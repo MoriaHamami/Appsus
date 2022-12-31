@@ -1,13 +1,12 @@
 const { useEffect, useState } = React
 const { useParams, useNavigate, Link } = ReactRouterDOM
 
-// import { BookLabels } from "../cmps/book-labels.jsx"
 import { LongTxt } from "../cmps/long-txt.jsx"
 import { bookService } from "../services/book.service.js"
 import { AddReview } from "../cmps/add-review.jsx"
 
 import { utilService } from "../../../services/util.service.js"
-import { eventBusService, showSuccessMsg } from "../../../services/event-bus.service.js"
+import { showSuccessMsg } from "../../../services/event-bus.service.js"
 import { ReviewList } from "../cmps/review-list.jsx"
 
 export function BookDetails() {
@@ -27,7 +26,6 @@ export function BookDetails() {
         bookService.get(bookId)
             .then((book) => setBook(book))
             .catch((err) => {
-                console.log('Had issues in book details', err)
                 navigate('/book')
             })
 
@@ -92,7 +90,6 @@ export function BookDetails() {
         <h2>{book.title}</h2>
         {book.subtitle && <p>{book.subtitle}</p>}
         {book.authors && <p>Author: {book.authors.join(', ')}</p>}
-        {/* <img src={book.thumbnail} alt="../assets/img/default.jpg" /> */}
         <img src={book.thumbnail} />
         {book.description && <LongTxt txt={book.description} length={50} />}
         {book.publishedDate && <p>Published date: {book.publishedDate}</p>}
