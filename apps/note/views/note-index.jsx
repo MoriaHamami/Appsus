@@ -3,10 +3,9 @@ const { useState, useEffect } = React
 import { NoteAdd } from "../cmps/note-add.jsx";
 import { NoteFilter } from "../cmps/note-filter.jsx";
 import { NoteList } from "../cmps/note-list.jsx";
-import { NoteNav } from "../cmps/note-nav.jsx";
-import { NotePreview } from "../cmps/note-preview.jsx";
 
-// import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service.js';
+
+
 import { noteService } from "../services/note.service.js";
 
 export function NoteIndex() {
@@ -81,13 +80,7 @@ export function NoteIndex() {
 
 
     function onSaveNote(ev, noteToAdd, file,video, txtRef, videoRef, imgRef) {
-        // let image = file
-        // console.log('image', image);
-        // noteToAdd.info.img = image.slice(5)
-
-        // let idx = noteToAdd.info.url.indexOf('=')
-        // const urlCode = noteToAdd.info.url.substring(idx, 1)
-        // const newUrl = `http://www.youtube.com/embed/${urlCode}`
+    
 
         var url = noteToAdd.info.url
         var id = url.split("?v=")[1]
@@ -112,32 +105,6 @@ export function NoteIndex() {
     }
 
 
-    function noteIsPinned() {
-        if (isPinned) {
-            return <div>
-                <h1>Pinned</h1>
-                {notes.map(note => {
-                    console.log('pinned', note);
-                    {
-                        if (note.isPinned) {
-                            return <NoteList notes={notes} onRemoveNote={onRemoveNote} />
-                        }
-                    }
-                })}
-
-                <h1>Others</h1>
-                {notes.map(note => {
-                    { return !note.isPinned && <NoteList notes={notes} onRemoveNote={onRemoveNote} /> }
-                })}
-
-            </div>
-        } else {
-            return <div>
-                <h1></h1>
-                <NotePreview />
-            </div>
-        }
-    }
 
 
     if (!notes) return <h1>Notes you add appear here</h1>
@@ -146,32 +113,11 @@ export function NoteIndex() {
         <NoteFilter onSetFilter={onSetFilter} />
 
         <div className="notes-container">
-            {/* <NoteNav /> */}
-            {/* <Link to="/book/edit" className="add-book">Add Book</Link> */}
+
             <div className="note-crudl-container">
                 <NoteAdd notes={notes} onSaveNote={onSaveNote} />
 
-                {/* {noteIsPinned()} */}
-
-                {/* {isPinned && <h1>Pinned</h1>}
-                {isPinned && <NoteList notes={notes} onRemoveNote={onRemoveNote} />}
-                {notes.map(note => {
-                    { note.isPinned && <NoteList notes={notes} onRemoveNote={onRemoveNote} /> }
-                })}
-
-                {isPinned && <h1>Others</h1>}
-                {!isPinned && <NoteList notes={notes} onRemoveNote={onRemoveNote} />} */}
                 {<NoteList notes={notes} onRemoveNote={onRemoveNote} onSaveNote={onSaveNote} />}
-
-                {/* {notes.map(note => {
-            if (note.isPinned) {
-               return <NoteList notes={notes} onRemoveNote={onRemoveNote} />
-            }
-        }
-        )} */}
-
-
-                {/* <h1>Others</h1> */}
 
 
                 {!notes.length && <div>Notes you add appear here</div>}

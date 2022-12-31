@@ -19,9 +19,8 @@
 
 
 .note-preview input {
-    /* display: none; */
     visibility: hidden;
-    /* position: relative; */
+
 }
 
 .note-preview label img {
@@ -34,22 +33,14 @@
 
 .note-preview label img:hover {
     cursor: pointer;
-    /* opacity: 0.5; */
-    /* background-color: var(--button-hover-bg-color);
-    border-radius: 50%; */
 }
 
 .note-preview label:hover {
     cursor: pointer;
-    /* opacity: 0.5; */
-    /* background-color: var(--button-hover-bg-color);
-    border-radius: 50%; */
 }
+
 .note-preview label {
     cursor: pointer;
-    /* opacity: 0.5; */
-    /* background-color: var(--button-hover-bg-color);
-    border-radius: 50%; */
 }
 
 .hidden-buttons {
@@ -61,9 +52,6 @@
     gap: 5px;
 }
 
-.hidden-buttons img {
-
-}
 
 .hidden-buttons form {
     width: 20px;
@@ -78,5 +66,5 @@
 }
 
 .css-fix {
-    white-space: pre-wrap; /* or pre-line */
-  }
+    white-space: pre-wrap;
+}

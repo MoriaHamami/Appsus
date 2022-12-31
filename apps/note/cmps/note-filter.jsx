@@ -3,7 +3,7 @@ const { useState, useEffect, useRef } = React
 
 import { noteService } from "../services/note.service.js"
 
-export function NoteFilter({ onSetFilter }){
+export function NoteFilter({ onSetFilter }) {
 
     const [filterByToEdit, setFilterByToEdit] = useState(noteService.getDefaultFilter())
 
@@ -14,8 +14,6 @@ export function NoteFilter({ onSetFilter }){
 
     function handleChange({ target }) {
         let { value, name: field, type } = target
-        // value = (type === 'number') ? +value : value
-        // if (type === 'text') value = { ...filterByToEdit.info, txt: value }
         setFilterByToEdit((prevFilter) => {
             return { ...prevFilter, [field]: value }
         })
@@ -27,7 +25,7 @@ export function NoteFilter({ onSetFilter }){
         console.log('filterByToEdit', filterByToEdit);
     }
 
-    function onSearchClick(){
+    function onSearchClick() {
         console.log('you clicked search');
         //here i need to put by types
     }
@@ -35,7 +33,6 @@ export function NoteFilter({ onSetFilter }){
     return <section className="note-filter">
 
         <form className="nosubmit" onSubmit={onSubmitFilter}>
-            {/* <label htmlFor="title">Title: </label> */}
 
             <input type="text"
                 id="title"
