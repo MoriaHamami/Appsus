@@ -94,7 +94,7 @@ export function BookIndex() {
 
         <div className='main-layout'>
             <BookFilter onSetFilter={onSetFilter} />
-            <Link to="/book/edit">Add Book!</Link>
+            <Link to="/book/edit">Add Book</Link>
             <BookAdd onAddGoogleBook={onAddGoogleBook} />
             {!isLoading && <BookList books={books} onRemoveBook={onRemoveBook} />}
             {isLoading && <div>Loading..</div>}

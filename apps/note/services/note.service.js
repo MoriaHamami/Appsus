@@ -22,16 +22,13 @@ function query(filterBy = getDefaultFilter()) {
                 const regex = new RegExp(filterBy.txt, 'i')
                 notes = notes.filter(note => regex.test(note.info.txt))
             }
-            // if (filterBy.minPrice) {
-            //     notes = notes.filter(note => note.listPrice.amount >= filterBy.minPrice)
-            // }
+
             return notes
         })
 }
 
 function get(noteId) {
     return storageService.get(NOTE_KEY, noteId)
-    // return axios.get(NOTE_KEY, noteId)
 }
 
 function remove(noteId) {
@@ -71,21 +68,7 @@ function getEmptyNote(type) {
         }
     }
 }
-// function getEmptyNote() {
-//     return {
-//         id: '',
-//         type: "note-txt",
-//         isPinned: false,
-//         info: {
-//             title:'Title',
-//             txt: '',
-//             url: ''
-//         },
-//         style: {
-//             backgroundColor: "#ffffff"
-//         }
-//     }
-// }
+
 
 
 function _createNotes() {
@@ -104,14 +87,13 @@ function _createNotes() {
                     backgroundColor: "rgb(239, 217, 78)"
                 }
             },
+            
             {
                 id: "n102",
                 type: "file",
                 isPinned: false,
                 info: {
-                    // url: "http://some-img/me",
                     img: "./assets/img/note-imgs/landscape.jpeg",
-                    // img: "C:\\fakepath\\landscape.jpeg",
                     title: "My Trip"
                 },
                 style: {
@@ -130,21 +112,19 @@ function _createNotes() {
                     backgroundColor: "rgb(90, 198, 206)"
                 }
             },
-            // {
-            //     id: "n104",
-            //     type: "note-todos",
-            //     isPinned: false,
-            //     info: {
-            //         label: "Get my stuff together",
-            //         todos: [
-            //             { txt: "Driving liscence", doneAt: null },
-            //             { txt: "Coding power", doneAt: 187111111 }
-            //         ]
-            //     },
-            //     style: {
-            //         backgroundColor: "rgb(245, 137, 137)"
-            //     }
-            // }
+            {
+                id: "n104",
+                type: "text",
+                isPinned: true,
+                info: {
+                    title: 'Don\'t Forget!!',
+                    txt: "buy some milk"
+                },
+                style: {
+                    backgroundColor: "rgb(238, 88, 88)"
+                }
+            },
+            
         ]
 
         storageService.saveToStorage(NOTE_KEY, notes)

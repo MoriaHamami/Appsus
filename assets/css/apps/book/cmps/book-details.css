@@ -1,8 +1,9 @@
 .book-details {
-    display: flex;
+    /* display: flex; */
     flex-direction: column;
     align-items: flex-start;
     padding: 0 1.6rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 .book-details h2 {
     color: var(--clr1);
@@ -31,4 +32,11 @@
     border-radius: 1rem;
     padding: 1rem;
     margin: 10px;
+}
+
+.book-details body{
+    text-align: center;
+}
+.book-details a:hover{
+   opacity: 0.5;
 }

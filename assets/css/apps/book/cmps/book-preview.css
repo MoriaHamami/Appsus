@@ -4,6 +4,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 10px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .book-preview h2{
@@ -13,4 +15,8 @@
 
 .book-preview img {
     width: 100%;
+}
+body {
+    text-align: center;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
