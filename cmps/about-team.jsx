@@ -4,11 +4,13 @@ export function AboutTeam() {
     return <section className="aboutTeam">
 
         {/* Moria */}
-        <section className="bg-light py-3" id="me">
-            <img className="mx-auto rounded-circle" src="./assets/img/about-imgs/moria-img.png" alt="" />
+        <section className="each-member">
+            <div className="image-container">
+                <img className="" src="./assets/img/about-imgs/moria-img.png" alt="" />
+            </div>
             <h4>Moria Hamami</h4>
-            <p className="text-muted">Full Stack Web Developer</p>
-            <ul className="list-inline social-buttons">
+            <p className="">Full Stack Web Developer</p>
+            <ul className="social-buttons">
                 <li className="list-inline-item">
                     <a href="https://www.instagram.com/moriahamami/">
                         <i className="fa fa-instagram"></i>
@@ -25,10 +27,35 @@ export function AboutTeam() {
                     </a>
                 </li>
             </ul>
-            <p className="large text-muted  about-description"><span className="font-weight-bold">Moria Hamami</span>
+            <p className="about-description"><span className=""></span>
                 is a Web Developer with an IT background from her experience in the Israel Defense Force.
-                In addition, she worked with Malam Team as an IT Help Desk over a duration of eight months.
-                In this gallery, you can get a chance to explore the different projects Moria created as a Full Stack Web Developer.</p>
+                In addition, she worked with Malam Team as an IT Help Desk over a duration of eight months.</p>
+        </section>
+        <section className="each-member">
+            <div className="image-container">
+                <img className="" src="./assets/img/about-imgs/yael-img.png" alt="" />
+            </div>
+            <h4>Yael Tal</h4>
+            <p className="">Full Stack Web Developer</p>
+            <ul className="social-buttons">
+                <li className="list-inline-item">
+                    <a href="#">
+                        <i className="fa fa-instagram"></i>
+                    </a>
+                </li>
+                <li className="list-inline-item">
+                    <a href="#">
+                        <i className="fa fa-facebook"></i>
+                    </a>
+                </li>
+                <li className="list-inline-item">
+                    <a href="#">
+                        <i className="fa fa-linkedin"></i>
+                    </a>
+                </li>
+            </ul>
+            <p className="about-description"><span className=""></span>
+                Currently a student in CA as a Web Developer.</p>
         </section>
 
     </section>
