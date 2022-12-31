@@ -34,9 +34,9 @@ export function App() {
             <AppHeader />
             <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/about" element={<About />}>
-                    <Route element={<AboutTeam />} path="/about/team" />
-                </Route>
+                <Route path="/about" element={<About />} />
+                    {/* <Route element={<AboutTeam />} path="/about/team" /> */}
+                {/* </Route> */}
 
                 <Route path="/mail" element={<MailIndex />} />
                 <Route path="/mail:info" element={<MailIndex />} />
