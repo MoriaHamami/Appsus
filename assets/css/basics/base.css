@@ -32,21 +32,11 @@ img {
     background-color: lightgrey;
     height: 1px;
     border: 0;
-   
-        /* border: 0;
-        border-top: 1px solid lightgrey;
-        height: 1px; */
-        /* width: 300px; */
-    
 }
 
-ul{
+ul {
     margin: 0;
 }
-
-/* ::selection{
-    background-color: aqua;
-} */
 
 .loader {
     height: 20px;

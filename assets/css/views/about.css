@@ -2,7 +2,6 @@
     margin: 20px;
     text-align: center;
     font-family: Product Sans Regular, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-
 }
 
 .about h1 {
@@ -32,6 +31,7 @@
 }
 
 .about .image-container {
+.about .image-container {
     border-radius: 50%;
 }
 
@@ -46,13 +46,16 @@ li {
     padding: 0;
 }
 
+
 .fa-facebook:hover {
     opacity: 0.5;
 }
 
+
 .fa-instagram:hover {
     opacity: 0.5;
 }
+
 
 .fa-linkedin:hover {
     opacity: 0.5;

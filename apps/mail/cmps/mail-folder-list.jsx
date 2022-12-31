@@ -20,7 +20,6 @@ export function MailFolderList({ setMainShown, criteria, setCriteria, unreadCoun
                 <span>Inbox</span>
             </span>
             <span className="unreadCount">{unreadCount.inbox ? unreadCount.inbox : ''}</span>
-            {/* <span className="unreadCount">{unreadCount.inbox}</span> */}
         </button>
         <button className={`starred-btn ${criteria.isStarred ? 'active' : ''}`} onClick={() => onSetCriteria('starred')}>
             <span className="icon-txt-inbox-container">

@@ -3,6 +3,7 @@
 }
 
 /* flex helpers */
+
 .column {
     flex-direction: column;
 }
@@ -21,28 +22,27 @@
 
 .flex {
     display: flex;
-  }
-  
-  .flex.flex-column{
-      flex-direction: column;
-  }
+}
+
+.flex.flex-column {
+    flex-direction: column;
+}
 
 
-  .flex.justify-between{
-      justify-content: space-between;
-  }
-  
-  /* text helpers */
-  
-  .colored-text {
-      color: var(--clr1);
-  }
-  
-  /* list helpers */
-  
-  .clean-list {
-      padding: 0;
-      margin: 0;
-      list-style-type: none;
-  }
-  
+.flex.justify-between {
+    justify-content: space-between;
+}
+
+/* text helpers */
+
+.colored-text {
+    color: var(--clr1);
+}
+
+/* list helpers */
+
+.clean-list {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}

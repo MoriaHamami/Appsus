@@ -1,4 +1,3 @@
-
 body {
     background-color: rgb(249, 249, 249);
 }
@@ -15,10 +14,9 @@ body {
 
 .home h1 {
     font-size: 6rem;
+
     animation: zoomIn;
-
     animation-duration: 2s;
-
 }
 
 .home h5 {
@@ -41,16 +39,11 @@ body {
     animation-duration: 2s;
 
 }
-
-
-
 .home .container:hover {
     animation: pulse;
     animation-duration: 1s;
 
 }
-
-
 
 .home h4 {
     color: gray;
@@ -65,7 +58,7 @@ body {
 /* MOBILE ONLY */
 
 @media (max-width: 640px) {
-    .home{
+    .home {
         margin: 50px 50px;
     }
     .home h4{
