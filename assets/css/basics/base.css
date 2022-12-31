@@ -47,3 +47,7 @@ ul{
 /* ::selection{
     background-color: aqua;
 } */
+
+.loader {
+    height: 20px;
+}

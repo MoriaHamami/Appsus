@@ -20,7 +20,18 @@
     --hover-bg-color: #f1f3f4;
     --button-hover-bg-color: #c6c6c67e;
     --logo-color: #5f6368;
+    /* BOOK */
+    --clr1: rgb(181, 91, 91);
+    --clr2: rgb(120, 99, 110);
 
+    --clr1bg: rgba(230, 176, 176, 0.751);
+    --clr1bg-light: rgb(205, 221, 200);
+    --clr2bg: rgb(236, 232, 234);
+    --clr2bg-light: rgb(247, 185, 219);
+
+    --gray1: rgb(240, 240, 240);
+    --gray2: rgb(155, 155, 155);
+    --gray3: rgb(44, 44, 44);
 
     /* bp */
     --s: 600px;

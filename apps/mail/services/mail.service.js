@@ -200,6 +200,97 @@ function _createMails() {
             true,
             ['important', 'lovable']
         ))
+        mails.push(getEmptyMail(
+            utilService.makeId(),
+            'Another one!',
+            'I dont like the way you eat',
+            true,
+            Date.now(),
+            null,
+            'momo@momo.com',
+            'gal@momo.com',
+            ['inbox'],
+            true,
+            ['important', 'lovable']
+        ))
+        mails.push(getEmptyMail(
+            utilService.makeId(),
+            'Another one!',
+            'I dont like the way you eat',
+            true,
+            Date.now(),
+            null,
+            'bir@momo.com',
+            'momo@momo.com',
+            ['inbox'],
+            true,
+            ['important', 'lovable']
+        ))
+        mails.push(getEmptyMail(
+            utilService.makeId(),
+            'Another one!',
+            'I dont like the way you eat',
+            true,
+            Date.now(),
+            null,
+            'bir@momo.com',
+            'gal@momo.com',
+            ['inbox'],
+            true,
+            ['important', 'lovable']
+        ))
+        mails.push(getEmptyMail(
+            utilService.makeId(),
+            'Another one!',
+            'I dont like the way you eat',
+            true,
+            Date.now(),
+            null,
+            'bir@momo.com',
+            'gal@momo.com',
+            ['inbox'],
+            true,
+            ['important', 'lovable']
+        ))
+        mails.push(getEmptyMail(
+            utilService.makeId(),
+            'Another one!',
+            'I dont like the way you eat',
+            true,
+            Date.now(),
+            null,
+            'bir@momo.com',
+            'gal@momo.com',
+            ['inbox'],
+            true,
+            ['important', 'lovable']
+        ))
+        mails.push(getEmptyMail(
+            utilService.makeId(),
+            'Another one!',
+            'I dont like the way you eat',
+            true,
+            Date.now(),
+            null,
+            'bir@momo.com',
+            'gal@momo.com',
+            ['inbox'],
+            true,
+            ['important', 'lovable']
+        ))
+        mails.push(getEmptyMail(
+            utilService.makeId(),
+            'Another one!',
+            'I dont like the way you eat',
+            true,
+            Date.now(),
+            null,
+            'bir@momo.com',
+            'gal@momo.com',
+            ['inbox'],
+            true,
+            ['important', 'lovable']
+        ))
         console.log('mails:', mails)
         storageService.saveToStorage(MAIL_KEY, mails)
     }

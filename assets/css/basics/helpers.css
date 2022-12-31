@@ -1,7 +1,8 @@
-.flex {
-    display: flex;
+.grid {
+    display: grid;
 }
 
+/* flex helpers */
 .column {
     flex-direction: column;
 }
@@ -18,6 +19,30 @@
     justify-content: space-between;
 }
 
-.grid {
-    display: grid;
-}
+.flex {
+    display: flex;
+  }
+  
+  .flex.flex-column{
+      flex-direction: column;
+  }
+
+
+  .flex.justify-between{
+      justify-content: space-between;
+  }
+  
+  /* text helpers */
+  
+  .colored-text {
+      color: var(--clr1);
+  }
+  
+  /* list helpers */
+  
+  .clean-list {
+      padding: 0;
+      margin: 0;
+      list-style-type: none;
+  }
+  
