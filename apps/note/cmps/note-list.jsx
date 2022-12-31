@@ -4,7 +4,7 @@ const { Link } = ReactRouterDOM
 const { useState, useEffect, useRef } = React
 
 
-export function NoteList({ notes, onRemoveNote }) {
+export function NoteList({ notes, onRemoveNote , onSaveNote}) {
 
     const [isPinned, setIsPinned] = useState(false)
 
@@ -39,7 +39,7 @@ export function NoteList({ notes, onRemoveNote }) {
         {
             notes.map(note => <li key={note.id} >
 
-                <NotePreview note={note} isPinned={note.isPinned} onRemoveNote={onRemoveNote}/>
+                <NotePreview note={note} isPinned={note.isPinned} onRemoveNote={onRemoveNote} onSaveNote={onSaveNote}/>
                 
                 {/* {noteIsPinned()} */}
                 {/* {note.isPinned && <NotePreview note={note} isPinned={note.isPinned}/>} */}

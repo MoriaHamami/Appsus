@@ -6,6 +6,7 @@ import { NoteList } from "../cmps/note-list.jsx";
 import { NoteNav } from "../cmps/note-nav.jsx";
 import { NotePreview } from "../cmps/note-preview.jsx";
 
+// import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service.js';
 import { noteService } from "../services/note.service.js";
 
 export function NoteIndex() {
@@ -41,7 +42,7 @@ export function NoteIndex() {
         const subject = queryStringParams.get('subject')
         const body = queryStringParams.get('body')
 
-        console.log('body:', body)
+        // console.log('body:', body)
         if (!subject || !body) return
 
         // A note was sent to mail, add note to inbox
@@ -79,7 +80,10 @@ export function NoteIndex() {
     }
 
 
-    function onSaveNote(ev, noteToAdd) {
+    function onSaveNote(ev, noteToAdd, file) {
+        let image = file
+        console.log('image', image);
+
         if (ev) ev.preventDefault()
         noteService.save(noteToAdd).then((note) => {
             console.log('note saved', note);
@@ -91,6 +95,7 @@ export function NoteIndex() {
 
         })
     }
+
 
     function noteIsPinned() {
         if (isPinned) {
@@ -141,7 +146,7 @@ export function NoteIndex() {
 
                 {isPinned && <h1>Others</h1>}
                 {!isPinned && <NoteList notes={notes} onRemoveNote={onRemoveNote} />} */}
-                {<NoteList notes={notes} onRemoveNote={onRemoveNote} />}
+                {<NoteList notes={notes} onRemoveNote={onRemoveNote} onSaveNote={onSaveNote} />}
 
                 {/* {notes.map(note => {
             if (note.isPinned) {
