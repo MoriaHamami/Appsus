@@ -4,6 +4,13 @@ const { useState, useEffect, useRef } = React
 
 export function NoteImg({ note, onSaveNote }) {
 
+    const [file, setFile] = useState();
+
+
+    // function saveFile(file) {
+    //     setFile(file)
+    //     console.log('this file', file)
+    // }
 
     // console.log('onSaveNote', onSaveNote);
     // var url = note.info.img

@@ -62,8 +62,8 @@ function getEmptyNote(type) {
             img: '',
             label: "Get my stuff together",
             todos: [
-                { txt: "Driving liscence", doneAt: null },
-                { txt: "Coding power", doneAt: 187111111 }
+                { txt: "Driving liscence"},
+                { txt: "Coding power" }
             ]
         },
         style: {
@@ -101,7 +101,7 @@ function _createNotes() {
                     txt: "Fullstack Me Baby!"
                 },
                 style: {
-                    backgroundColor: "#ffffff"
+                    backgroundColor: "rgb(239, 217, 78)"
                 }
             },
             {
@@ -110,12 +110,12 @@ function _createNotes() {
                 isPinned: false,
                 info: {
                     // url: "http://some-img/me",
-                    // img: "./assets/img/note-imgs/landscape.jpeg",
-                    img: "C:\\fakepath\\landscape.jpeg",
+                    img: "./assets/img/note-imgs/landscape.jpeg",
+                    // img: "C:\\fakepath\\landscape.jpeg",
                     title: "My Trip"
                 },
                 style: {
-                    backgroundColor: "#ffffff"
+                    backgroundColor: "rgb(132, 213, 103)"
                 }
             },
             {
@@ -124,10 +124,10 @@ function _createNotes() {
                 isPinned: false,
                 info: {
                     url: "https://www.youtube.com/watch?v=ACVLcuVChAU",
-                    title: "My Trip"
+                    title: "Music"
                 },
                 style: {
-                    backgroundColor: "#ffffff"
+                    backgroundColor: "rgb(90, 198, 206)"
                 }
             },
             {
@@ -142,7 +142,7 @@ function _createNotes() {
                     ]
                 },
                 style: {
-                    backgroundColor: "#ffffff"
+                    backgroundColor: "rgb(245, 137, 137)"
                 }
             }
         ]
