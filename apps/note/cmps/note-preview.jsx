@@ -133,7 +133,9 @@ export function NotePreview({ note, onRemoveNote, onSaveNote, onEditNote }) {
                 />
 
             </form>
-            {/* {<NoteToMail note={note} />} */}
+           
+           {<NoteToMail note={note} />}
+            
             <button className="tooltip" onClick={() => onRemoveNote(note.id)}><img src="./assets/img/icons/icons-notes/delete_FILL0_wght400_GRAD0_opsz48.svg" alt=""/><span className="tooltiptext">Delete</span></button>
             {/* { <button className="edit_content tooltip" onClick={onEditNote(note.id)}>edit<span className="tooltiptext">Edit</span></button>} */}
             {/* { <button className="edit_content tooltip" onClick={(ev) => onEditNote(ev, note.id)}>edit<span className="tooltiptext">Edit</span></button>} */}

@@ -17,7 +17,7 @@ export function NoteToMail({ note }) {
 
     return <section className="note-to-mail" >
 
-       <button onClick={(ev) => sendToMail(ev)}>send</button>
+       <button className="tooltip" onClick={(ev) => sendToMail(ev)}><img title="export" src="./assets/img/icons/icons-mail/export-icon.png" /><span className="tooltiptext">Export</span></button>
 
     </section>
 
