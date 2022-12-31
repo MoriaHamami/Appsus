@@ -19,8 +19,6 @@ export function NoteTxt({ note}) {
 
     }
 
-
-
     return <section className="note-txt css-fix" >
         <h3 ref={titleRef} onKeyUp={(ev) => changeContentTitle(ev)} contentEditable={true} suppressContentEditableWarning={true}>{note.info.title}</h3>
         <p ref={contentRef} onKeyUp={(ev) => changeContent(ev)} contentEditable={true} suppressContentEditableWarning={true}>{note.info.txt}</p>
