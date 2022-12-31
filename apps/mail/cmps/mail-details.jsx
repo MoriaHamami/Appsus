@@ -1,4 +1,4 @@
-const { useEffect, useState } = React
+const { useEffect, useState, useRef } = React
 const { useParams, useNavigate, Link } = ReactRouterDOM
 
 import { utilService } from "../../../services/util.service.js"
@@ -17,11 +17,25 @@ export function MailDetails({ setIsLoading, setMainShown, selectedMailId, setSel
     const [timeSince, setTimeSince] = useState(null)
     // const { selectedMailId } = useParams()
 
-    // useEffect(() => { 
-    //     loadMail().then(() =>{
+    // let intervalIdRef = useRef(null)
 
-    //     })
-    // }, [])
+    useEffect(() => { 
+
+        loadMail()
+        // .then((mail) =>{
+        //     intervalIdRef = setInterval(() => {
+        //         if (criteria.status === 'trash') onSetTimeSince(mail.removedAt)
+        //         else onSetTimeSince(mail.sentAt)
+        //         loadMail()
+        //         console.log('mail.sentAt:', mail.sentAt)
+        //     }, 1000)
+        // })
+
+        // return () => {
+        //     if (intervalIdRef) clearInterval(intervalIdRef.current)
+        // }
+
+    }, [])
 
     useEffect(() => {
         // setIsLoading(true)
@@ -34,26 +48,23 @@ export function MailDetails({ setIsLoading, setMainShown, selectedMailId, setSel
             .then((mail) => {
                 setMail(mail)
                 setIsLoading(false)
+                return mail
+            // })
             })
             .catch((err) => {
                 console.log('Had issues in mail details', err)
                 navigate('/mail')
             })
-            // .then(() => {
-            //     console.log('mail:', mail)
-
-            //     setInterval(() => {
-            //         if (criteria.status === 'trash') onSetTimeSince(mail.removedAt)
-            //         else onSetTimeSince(mail.sentAt)
-            //     }, 1000)
-            // })
+        // .then(() => {
+        //     console.log('mail:', mail)
 
 
-        mailService.getNearbyMailIds(selectedMailId)
-            .then((nearbyMails) => {
-                setNextMailId(nearbyMails.nextMailId)
-                setPrevMailId(nearbyMails.prevMailId)
-            })
+
+        // mailService.getNearbyMailIds(selectedMailId)
+        //     .then((nearbyMails) => {
+        //         setNextMailId(nearbyMails.nextMailId)
+        //         setPrevMailId(nearbyMails.prevMailId)
+        //     })
     }
 
     // MOVE TO UTILS? SET TIME INTERVAL TO UPDATE?
@@ -125,11 +136,15 @@ export function MailDetails({ setIsLoading, setMainShown, selectedMailId, setSel
 
         {/* <img className="close-icon icon" src="../../assets/img/icons/icons-mail/close-icon.png" onClick={() => setMainShown('mailList')} /> */}
         <img className="back-icon icon" src="./assets/img/icons/icons-mail/back-icon.png" onClick={() => setMainShown('mailList')} />
-        <img className="icon" src={`./assets/img/icons/icons-mail/${mail.isRead ? 'mark-as-read' : 'mark-as-unread'}.png`} onClick={(ev) => onIsRead(ev, mail)} />
-        <img className="delete-icon icon" src="./assets/img/icons/icons-mail/delete-icon.png" onClick={(ev) => onRemoveMail(ev, mail)} />
-        <img className={`icon star ${mail.isStarred ? 'starred' : ''}`} src={`./assets/img/icons/icons-mail/${mail.isStarred ? 'starred' : 'star'}-icon.png`} onClick={(ev)=>onIsStarred(ev, mail)}/>
-        <img className="nav-icon prev-icon icon" src="./assets/img/icons/icons-mail/prev-icon.png" onClick={() => setMail(prevMailId)} />
-        <img className=" nav-icon next-icon icon" src="./assets/img/icons/icons-mail/next-icon.png" onClick={() => setMail(nextMailId)} />
+        {/* <img className="icon" src={`./assets/img/icons/icons-mail/${mail.isRead ? 'mark-as-read' : 'mark-as-unread'}.png`} onClick={(ev) => onIsRead(ev, mail)} />
+        <img className="delete-icon icon" src="./assets/img/icons/icons-mail/delete-icon.png" onClick={(ev) => onRemoveMail(ev, mail)} /> */}
+        {!mail.isRead && <img className="icon" title="Mark as read" src="./assets/img/icons/icons-mail/mark-as-read.png" onClick={(ev) => onIsRead(ev, mail)} />}
+        {mail.isRead && <img className="icon" title="Mark as unread" src="./assets/img/icons/icons-mail/mark-as-unread.png" onClick={(ev) => onIsRead(ev, mail)} />}
+        <img className="delete-icon icon" title="Delete" src="./assets/img/icons/icons-mail/delete-icon.png" onClick={(ev) => onRemoveMail(ev, mail)} />
+        {mail.isStarred && <img className="icon star starred" title="Starred" src="./assets/img/icons/icons-mail/starred-icon.png" onClick={(ev) => { onIsStarred(ev, mail) }} />}
+        {!mail.isStarred && <img className="icon star" title="Not starred" src="./assets/img/icons/icons-mail/star-icon.png" onClick={(ev) => { onIsStarred(ev, mail) }} />}
+        {/* <img className="nav-icon prev-icon icon" src="./assets/img/icons/icons-mail/prev-icon.png" onClick={() => setMail(prevMailId)} />
+        <img className=" nav-icon next-icon icon" src="./assets/img/icons/icons-mail/next-icon.png" onClick={() => setMail(nextMailId)} /> */}
         {!(criteria.status === 'trash') && <span className="date">{mail.sentAt ? onSetTimeSince(mail.sentAt) : ''}</span>}
         {criteria.status === 'trash' && <span className="date">{mail.sentAt ? onSetTimeSince(mail.removedAt) : ''}</span>}
 

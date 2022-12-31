@@ -13,7 +13,6 @@ export function MailToNote({ mail }) {
         window.history.pushState({ path: newUrl }, '', newUrl)
     }
 
-    return <section className="mailToNote" onClick={(ev) => sendToNote(ev)}>
-        <img className="export-icon icon" src="./assets/img/icons/icons-mail/export-icon.png" />
-    </section>
+    return <img title="Save as note" className="mailToNote export-icon icon" src="./assets/img/icons/icons-mail/export-icon.png" />
+    // <section className="mailToNote" onClick={(ev) => sendToNote(ev)}></section>
 }
