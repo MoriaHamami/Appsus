@@ -85,16 +85,16 @@ export function NoteIndex() {
         // console.log('image', image);
         // noteToAdd.info.img = image.slice(5)
 
-        let idx = noteToAdd.info.url.indexOf('=')
-        const urlCode = noteToAdd.info.url.substring(idx, 1)
-        const newUrl = `http://www.youtube.com/embed/${urlCode}`
+        // let idx = noteToAdd.info.url.indexOf('=')
+        // const urlCode = noteToAdd.info.url.substring(idx, 1)
+        // const newUrl = `http://www.youtube.com/embed/${urlCode}`
 
         var url = noteToAdd.info.url
         var id = url.split("?v=")[1]
 
         var embedlink = "http://www.youtube.com/embed/" + id
 
-        noteToAdd.info.url = newUrl
+        noteToAdd.info.url = embedlink
         noteToAdd.info.img = file
 
         if (ev) ev.preventDefault()
