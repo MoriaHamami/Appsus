@@ -1,4 +1,4 @@
-const { useNavigate, useParams, Link } = ReactRouterDOM
+const { useNavigate } = ReactRouterDOM
 
 export function MailToNote({ mail }) {
 
@@ -14,7 +14,5 @@ export function MailToNote({ mail }) {
     }
 
     return <img title="Save as note" className="mailToNote export-icon icon" src="./assets/img/icons/icons-mail/export-icon.png" onClick={(ev) => sendToNote(ev)} />
-    // <section className="mailToNote" onClick={(ev) => sendToNote(ev)}>
-        
-    // </section>
+
 }

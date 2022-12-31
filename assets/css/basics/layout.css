@@ -1,10 +1,3 @@
-
-/* MOBILE ONLY */
-
-@media (max-width: 640px) {
-
-}
-
 /* SMALL */
 
 @media (min-width: 640px) {
@@ -20,7 +13,6 @@
 @media (min-width: 940px) {
     .main-layout {
         max-width: var(--m);
-
     }
 }
 

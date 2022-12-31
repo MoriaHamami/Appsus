@@ -1,4 +1,3 @@
-// import { utilService } from '../../../services/util.service'
 import { storageService } from '../../../services/async-storage.service.js'
 import { utilService } from '../../../services/util.service.js'
 import { criteriaService } from './criteria.service.js'
@@ -69,7 +68,6 @@ function getNearbyMailIds(mailId) {
         })
 }
 
-
 function getUnreadMails(criteria, val) {
     const filterBy = {
         [`${criteria}`]: val,
@@ -77,32 +75,6 @@ function getUnreadMails(criteria, val) {
         isRead: false
     }
     return query(filterBy)
-    // return query({ isRead: false, labels: '' }).then((mails) => {
-    //     var inbox = mails
-    //     query({ isStarred: false, labels: '' }).then((mails) => {
-    //         var starred = mails
-    //         query({ status: 'sent', labels: '' }).then((mails) => {
-    //             var sent = mails
-    //             query({ status: 'draft', labels: '' }).then((mails) => {
-    //                 var draft = mails
-    //                 return {
-    //                     inbox,
-    //                     starred,
-    //                     sent,
-    //                     draft
-    //                 }
-    //             })
-    //         })
-    //     })
-    // })
-    // return Promise.resolve()
-    // return Promise.resolve({ 
-    //     inbox: query({isRead: false, labels: ''}),
-    //     starred: query({isStarred: false, labels: ''}),
-    //     sent: query({status: 'sent', labels: ''}),
-    //     draft: query({status: 'draft', labels: ''})
-    // })
-
 }
 
 function sortMail(sortBy, change) {
@@ -116,41 +88,12 @@ function sortMail(sortBy, change) {
             mails.sort(function (mail1, mail2) {
                 const a = mail1[`${sortBy}`].toLowerCase()
                 const b = mail2[`${sortBy}`].toLowerCase()
-                //     if (a < b) {
-                //         return -1
-                //     }
-                //     if (a > b) {
-                //         return 1
-                //     }
-                //     return 0
-                // })
                 return a.localeCompare(b) * change
             })
-
         }
-        console.log('mails from service:', mails)
-        console.log('sortBy:', sortBy)
-
         return mails
     })
 }
-// function saveMail(mailId, mailToSave) {
-//     const mails = loadFromStorage(MAIL_KEY)
-//     const mail = mails.find((mail) => mail.id === mailId)
-//     const review = _createMail(mailToSave)
-//     mail.reviews.unshift(review)
-//     _saveBooksToStorage(mails)
-//     return Promise.resolve(review)
-// }
-
-// function removeMail(mailId, reviewId) {
-//     let mails = _loadBooksFromStorage()
-//     let mail = mails.find((mail) => mail.id === mailId)
-//     const newMails = mail.reviews.filter((review) => review.id !== reviewId)
-//     mail.reviews = newMails
-//     _saveBooksToStorage(mails)
-//     return Promise.resolve()
-// }
 
 function remove(mailId) {
     return storageService.remove(MAIL_KEY, mailId)
@@ -356,22 +299,6 @@ function _createMails() {
             false,
             ['important', 'lovable']
         ))
-        
-     
-        
-        // mails.push(getEmptyMail(
-        //     utilService.makeId(),
-        //     'My nanas teeth',
-        //     'Happy Birthday to my best friend ever! May your troubles be few and far between as my grandmother\'s teeth!',
-        //     false,
-        //     1251033930594,
-        //     null,
-        //     'user@appsus.com',
-        //     'funny@guy.com',
-        //     ['inbox'],
-        //     true,
-        //     ['important', 'lovable']
-        // ))
         storageService.saveToStorage(MAIL_KEY, mails)
     }
 }

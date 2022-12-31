@@ -7,11 +7,13 @@ export function AppHeader() {
     }
 
     return <header className="app-header">
+
         <Link to="/">
             <div className="logo">
                 <img src="./assets/img/logo/logo.png" alt="" />
             </div>
         </Link>
+
         <nav>
             <ul>
                 <li><NavLink to="/">Home</NavLink></li>
@@ -21,6 +23,8 @@ export function AppHeader() {
                 <li><NavLink to="/book">Book</NavLink></li>
             </ul>
         </nav>
+
         {<button className="menu-toggle-btn" onClick={toggleMenu}>☰</button>}
+
     </header>
 }

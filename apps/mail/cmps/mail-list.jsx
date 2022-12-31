@@ -1,5 +1,7 @@
 import { MailPreview } from "./mail-preview.jsx"
+
 export function MailList({ mails, isLoading, onSetEdit, setMainShown, setSelectedMailId, criteria, onRemoveMail, onIsRead, onIsStarred }) {
+
     return <ul className="mail-list">
         {
             mails.map(mail => <li key={mail.id} className={`mail-whole-preview ${mail.isRead ? 'mark-as-read' : 'mark-as-unread'}`} >

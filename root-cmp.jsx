@@ -30,7 +30,7 @@ export function App() {
 
             <div className="main-screen" onClick={toggleMenu}></div>
             <div className="mail-screen" onClick={toggleMailMenu}></div>
-            
+
             <AppHeader />
 
             <Routes>
@@ -44,7 +44,7 @@ export function App() {
                 <Route path="/note" element={<NoteIndex />} />
                 <Route path="/note:info" element={<NoteIndex />} />
 
-                <Route path="/book" element={<BookIndex />}  />
+                <Route path="/book" element={<BookIndex />} />
                 <Route path="/book/edit" element={<BookEdit />} />
                 <Route path="/book/edit/:bookId" element={<BookEdit />} />
                 <Route path="/book/:bookId" element={<BookDetails />} />
@@ -52,7 +52,7 @@ export function App() {
 
             </Routes>
         </section>t
-        
+
         <UserMsg />
 
     </Router>

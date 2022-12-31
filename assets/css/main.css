@@ -8,7 +8,6 @@
 @import './basics/base.css';
 @import './basics/helpers.css';
 @import './basics/buttons.css';
-@import './basics/icons.css';
 @import './basics/layout.css';
 
 /* Views */
@@ -26,12 +25,9 @@
 
 @import './cmps/user-msg.css';
 @import './cmps/app-header.css';
-@import './cmps/label-picker.css';
-@import './cmps/long-text.css';
 
 /* Mail Cmps */
 
-@import './apps/mail/cmps/mail-compose.css';
 @import './apps/mail/cmps/mail-details.css';
 @import './apps/mail/cmps/mail-edit.css';
 @import './apps/mail/cmps/mail-filter.css';

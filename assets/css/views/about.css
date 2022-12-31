@@ -2,7 +2,6 @@
     margin: 20px;
     text-align: center;
     font-family: Product Sans Regular, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-
 }
 
 .about h1 {
@@ -20,8 +19,6 @@
 .each-member {
     background-color: rgb(250, 253, 253);
     border-radius: 0.5rem;
-    /* padding: 30px; */
-    /* width: 50%; */
     flex-basis: 50%;
     box-shadow: 0px 1px 20px 0px lightgray;
 }
@@ -32,7 +29,7 @@
     border-radius: 50%;
 }
 
-.about .image-container{
+.about .image-container {
     border-radius: 50%;
 }
 
@@ -46,12 +43,15 @@ li {
     gap: 10px;
     padding: 0;
 }
+
 .fa-facebook:hover {
     opacity: 0.5;
 }
+
 .fa-instagram:hover {
     opacity: 0.5;
 }
+
 .fa-linkedin:hover {
     opacity: 0.5;
 }
@@ -66,9 +66,6 @@ li {
 /* DESKTOP */
 @media (min-width: 650px) {
     .team {
-        
         flex-direction: row;
-      
     }
-    
 }

@@ -1,7 +1,6 @@
 .mail-filter {
     display: flex;
     align-items: center;
-    /* background-color: var(--mail-bg-color); */
 }
 
 .mail-filter hr {
@@ -25,20 +24,12 @@
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
     outline: none;
-    /* border: none;
-    background-image: url("../../../../img/icons/icons-mail/search-icon.png") ;
-    background-repeat: no-repeat;
-    background-position: left 10px center;
-    padding-inline-start: 35px; */
-    
-    /* background-image: url("https://upload.wikimedia.org/wikipedia/commons/5/55/Magnifying_glass_icon.svg") ; */
-
 }
 
-@media (max-width: 640px) {
+/* MOBILE */
 
+@media (max-width: 640px) {
     .mail-filter {
-        /* width: calc(100vw - 20px); */
         max-width: 100%;
         padding-block: 38px;
     }
@@ -46,5 +37,4 @@
     .mail-filter .search-input {
         width: 100%;
     }
-
 }

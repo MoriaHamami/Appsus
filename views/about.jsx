@@ -1,6 +1,5 @@
-const { Outlet, Link } = ReactRouterDOM
-
 export function About() {
+
     return <div className="about">
         <h1>
             About Us

@@ -1,6 +1,5 @@
 .mail-index ul {
     margin-inline-end: 25px;
-
 }
 
 .preview.to {
@@ -25,14 +24,9 @@
 }
 
 .preview.date {
-    /* width: 15%; */
-    /* overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap; */
     position: absolute;
     right: 45px;
 }
-
 
 .mail-list .icon:hover {
     cursor: pointer;
@@ -46,35 +40,29 @@
     width: 32px;
     height: 32px;
     margin-inline-end: 10px;
-    /* cursor: pointer; */
 }
 
 .mail-semi-whole-preview {
-
-    /* justify-content: center; */
     cursor: pointer;
     padding: 5px;
-    /* height: 50px; */
 }
 
 .mail-semi-whole-preview:hover {
     cursor: pointer;
     box-shadow: -1px 1px 3px 1px #00000038;
-    /* border: 1px solid lightgray; */
 }
 
 .mail-list hr {
     margin: 0;
 }
 
- 
 .no-items {
     padding: 10px;
 }
 
 /* DESKTOP */
-@media (min-width: 650px) {
 
+@media (min-width: 650px) {
     .mail-list {
         max-height: 73vh;
         overflow: auto;
@@ -85,13 +73,11 @@
     /* width */
     .mail-list::-webkit-scrollbar {
         width: 10px;
-        /* border: 1px solid lightgray; */
     }
 
     /* Track */
     .mail-list::-webkit-scrollbar-track {
         border-radius: 10px;
-        /* border: 1px solid lightgray; */
         box-shadow: inset 0 0 1px grey;
     }
 
@@ -104,23 +90,19 @@
 }
 
 /* MOBILE */
+
 @media (max-width: 640px) {
     .mail-list {
-        /* max-height: none; */
-        /* overflow: auto; */
-        /* max-width: 100vw; */
         position: relative;
-
     }
 
     .mail-index ul {
         margin-inline-end: 0;
-        /* max-width: calc(100vw - 35px); */
         max-width: 100%;
     }
 
     .preview.date {
-   
+
         right: 20px;
     }
 }

@@ -4,23 +4,23 @@
 }
 
 .mail-expand {
-    /* display: flex;
-    justify-content: center;
-    flex-direction: column; */
     padding: 10px;
 }
 
-.mail-expand-txt{
+.mail-expand-txt {
     padding-top: 10px;
 }
+
 .mail-expand-txt h3 {
     margin-inline-start: 10px;
     margin-block-end: 5px;
 }
+
 .mail-expand-txt h4 {
     margin-inline-start: 10px;
     margin-block-end: 15px;
 }
+
 .mail-expand-txt p {
     margin-inline-start: 10px;
 }
@@ -36,10 +36,3 @@
     position: absolute;
     right: 20px;
 }
-
-/* .export-icon {
-    position: absolute;
-    bottom: 0;
-    right: 5px;
-} */
-
