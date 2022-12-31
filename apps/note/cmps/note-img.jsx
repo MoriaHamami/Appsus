@@ -1,28 +1,23 @@
+import { noteService } from "../services/note.service.js"
 
 const { useState, useEffect, useRef } = React
-
 
 export function NoteImg({ note, onSaveNote }) {
 
     const [file, setFile] = useState();
 
+    const titleRef = useRef(null)
 
-    // function saveFile(file) {
-    //     setFile(file)
-    //     console.log('this file', file)
-    // }
+    function changeContentTitle(ev) {
+        note.info.title = titleRef.current.innerText
+        noteService.save(note)
+        console.log('contentRef.current.innerText', titleRef.current.innerText);
 
-    // console.log('onSaveNote', onSaveNote);
-    // var url = note.info.img
-    // console.log('url', url);
-    // var id = url.split('C:\\fakepath\\')[1]
-    // console.log('id', id);
-    // // var embedlink = "http://" + id
-    // var embedlink =  id
+    }
 
-    return <section className="note-img">
+    return <section className="note-img css-fix">
 
-        <h3 >{note.info.title}</h3>
+        <h3 ref={titleRef} onKeyDown={(ev) => changeContentTitle(ev)} contentEditable={true} suppressContentEditableWarning={true}>{note.info.title}</h3>
         {/* do a loader */}
         {/* {isLoading && <Loader />} */}
         <img src={note.info.img} alt={note.info.title} />

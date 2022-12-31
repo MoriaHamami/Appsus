@@ -12,11 +12,12 @@ import { NoteTxt } from "./note-txt.jsx";
 import { NoteVideo } from "./note-video.jsx";
 
 
-export function NotePreview({ note, onRemoveNote, onSaveNote }) {
+export function NotePreview({ note, onRemoveNote, onSaveNote, onEditNote }) {
 
     const [isShown, setIsShown] = useState(false)
     const [color, setColor] = useState(noteService.get(note.id))
-    const [content, setContent] = useState(noteService.get(note.id))
+    const [content, setContent] = useState(null)
+    // const [content, setContent] = useState(noteService.get(note.id))
     // console.log('color', color);
     // console.log('isPinned', isPinned);
     // const imgName = book.name ? book.name : 'default'
@@ -42,7 +43,7 @@ export function NotePreview({ note, onRemoveNote, onSaveNote }) {
 
     function noteType() {
         if (note.type === 'text') {
-            return <NoteTxt note={note} />
+            return <NoteTxt note={note} onEditNote={onEditNote} />
 
         } else if (note.type === 'file') {
             return <NoteImg note={note} onSaveNote={onSaveNote} />
@@ -77,53 +78,39 @@ export function NotePreview({ note, onRemoveNote, onSaveNote }) {
 
     }
 
-    function changeContent(ev) {
-
-        // console.log('ev', ev);
-        // if (ev.key === 'Enter') {
-        //     // contentRef.current.contentEditable = false
-        //     // contentRef.current.blur()
-        //     noteService.save(note).then((content) => {
-        //         console.log('content saved', content);
-        //         // contentRef.current.contentEditable = false
-        //         // contentRef.current.blur()
-
-        //     })
-        // }
-
-        setContent((prevContent) => ({ ...prevContent = content }))
-        console.log('content', content);
-        contentRef.current = content
-        note.info.txt = content
-        console.log('note', note);
-
+    function changeContent() {
+        note.info.txt = contentRef.current.innerText
+        noteService.save(note)
+        console.log('contentRef.current.innerText', contentRef.current.innerText);
 
     }
 
-    function onEditNote(ev) {
-        if (contentRef.current.contentEditable) {
-            console.log('true')
-            contentRef.current.contentEditable = true
-            contentRef.current.focus()
-            changeContent(ev)
-        } else {
-            console.log('false')
-            contentRef.current.contentEditable = false
-            // contentRef.current.blur()
-            noteService.save(note).then((content) => {
-                console.log('content saved', content);
+    // function onEditNote() {
+    //     if (contentRef.current.contentEditable) {
+    //         console.log('true')
+    //         contentRef.current.contentEditable = true
+    //         contentRef.current.focus()
+    //         contentRef.current = innerText
+    //         changeContent()
+    //     } else {
+    //         console.log('false')
+    //         contentRef.current.contentEditable = false
+    //         // contentRef.current.blur()
+    //         noteService.save(note).then((content) => {
+    //             console.log('content saved', content);
 
 
-            })
-        }
-    }
+    //         })
+    //     }
+    // }
 
 
     // return <article onMouseEnter={() => setIsShown(true)} onMouseLeave={() => setIsShown(false)} ref={colorRef} className="note-preview" style={{ backgroundColor: note.style.backgroundColor }}>
     return <article ref={colorRef} className="note-preview" style={{ backgroundColor: note.style.backgroundColor }}>
 
 
-        {<div ref={contentRef} onKeyDown={(ev) => changeContent(ev)} contentEditable={false} suppressContentEditableWarning={true} >
+        {/* {<div ref={contentRef} onKeyDown={(ev) => changeContent(ev)} contentEditable={false} suppressContentEditableWarning={true} > */}
+        {<div  >
             {noteType()}
 
         </div>}
@@ -148,7 +135,8 @@ export function NotePreview({ note, onRemoveNote, onSaveNote }) {
             </form>
             {/* {<NoteToMail note={note} />} */}
             <button className="tooltip" onClick={() => onRemoveNote(note.id)}><img src="/assets/img/icons/icons-notes/delete_FILL0_wght400_GRAD0_opsz48.svg" alt="" /><span className="tooltiptext">Delete</span></button>
-            {<button className="edit_content tooltip" onClick={(ev) => onEditNote(ev, note.id)}>edit<span className="tooltiptext">Edit</span></button>}
+            {/* { <button className="edit_content tooltip" onClick={onEditNote(note.id)}>edit<span className="tooltiptext">Edit</span></button>} */}
+            {/* { <button className="edit_content tooltip" onClick={(ev) => onEditNote(ev, note.id)}>edit<span className="tooltiptext">Edit</span></button>} */}
         </div>
         {/* )}  */}
 
