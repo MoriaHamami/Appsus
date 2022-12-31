@@ -44,7 +44,7 @@ export function BookEdit() {
         if (!bookToEdit.thumbnail) bookToEdit.thumbnail = './assets/img/book-imgs/default.jpg'
         bookService.save(bookToEdit).then((book) => {
             console.log('book saved', book);
-            bookToEdit.id ? showSuccessMsg('Book saved!') : showSuccessMsg('Book added!')
+            bookToEdit.id ? showSuccessMsg('Book saved') : showSuccessMsg('Book added')
             navigate('/book')
         }).catch((err) => {
             console.log('Had issues adding:', err)

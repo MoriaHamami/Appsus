@@ -4,6 +4,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 15px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .book-list li {
@@ -11,4 +12,15 @@
     flex-direction: column;
     align-items: center;
     background-color: var(--clr1bg);
+    border-radius: 0.5rem;
+}
+
+.book-list a:hover{
+    opacity: 0.5;
+}
+.buttons-list{
+    margin: 10px;
+}
+.book-list body {
+    text-align: center;
 }

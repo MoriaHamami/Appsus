@@ -93,7 +93,7 @@ export function AddReview({ book, onSaveReview }) {
                 <StarRating getStarRating={getStarRating}></StarRating>
 
                 <div>
-                    <label htmlFor="readAt">readAt : </label>
+                    <label htmlFor="readAt">readAt: </label>
                     <input type="date"
                         name="readAt"
                         id="readAt"
