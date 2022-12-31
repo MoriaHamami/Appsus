@@ -35,10 +35,11 @@ export function MailPreview({ mail, setMainShown, setSelectedMailId, criteria, o
                 setHoverBtnsStyle({ display: 'none' })
             }}>
 
-            <img className={`icon star ${mail.isStarred ? 'starred' : ''}`} src={`./assets/img/icons/icons-mail/${mail.isStarred ? 'starred' : 'star'}-icon.png`} onClick={(ev)=>{onIsStarred(ev, mail)}} />
+            {mail.isStarred && <img className="icon star starred" title="Starred" src="./assets/img/icons/icons-mail/starred-icon.png" onClick={(ev)=>{onIsStarred(ev, mail)}} />}
+            {!mail.isStarred &&  <img className="icon star" title="Not starred" src="./assets/img/icons/icons-mail/star-icon.png" onClick={(ev)=>{onIsStarred(ev, mail)}} />}
             {/* <div className="to"> */}
-            {criteria.status !== 'sent' && <div className="preview from">{mail.from}</div>}
-            {criteria.status === 'sent' && <div className="preview to">To: {mail.to}</div>}
+            {criteria.status !== 'sent' && criteria.status !== 'draft' && <div className="preview from">{mail.from}</div>}
+            {criteria.status === 'sent' || criteria.status === 'draft' && <div className="preview to">To: {mail.to}</div>}
             <div className="preview subject">{mail.subject}</div>
             {!(criteria.status === 'trash') && hoverBtnsStyle.display === 'none' && <div className="preview date">{utilService.getDate(mail.sentAt) || ''}</div>}
             {criteria.status === 'trash' && hoverBtnsStyle.display === 'none' && <div className="preview date">{utilService.getDate(mail.removedAt) || ''}</div>}
@@ -46,9 +47,10 @@ export function MailPreview({ mail, setMainShown, setSelectedMailId, criteria, o
 
             <div className="icons" style={hoverBtnsStyle}>
                 <MailToNote mail={mail} />
-                {criteria.status === 'draft' && <img className="edit-icon icon" src="./assets/img/icons/icons-mail/edit-icon.png" onClick={(ev) => onSetEdit(ev, mail.id)} />}
-                <img className="icon" src={`./assets/img/icons/icons-mail/${mail.isRead ? 'mark-as-read' : 'mark-as-unread'}.png`} onClick={(ev) => onIsRead(ev, mail)} />
-                <img className="delete-icon icon" src="./assets/img/icons/icons-mail/delete-icon.png" onClick={(ev) => onRemoveMail(ev, mail)} />
+                {criteria.status === 'draft' && <img className="edit-icon icon" title="Edit" src="./assets/img/icons/icons-mail/edit-icon.png" onClick={(ev) => onSetEdit(ev, mail.id)} />}
+                {!mail.isRead && <img className="icon" title="Mark as read" src="./assets/img/icons/icons-mail/mark-as-read.png" onClick={(ev) => onIsRead(ev, mail)} />}
+                {mail.isRead && <img className="icon" title="Mark as unread" src="./assets/img/icons/icons-mail/mark-as-unread.png" onClick={(ev) => onIsRead(ev, mail)} />}
+                <img className="delete-icon icon" title="Delete" src="./assets/img/icons/icons-mail/delete-icon.png" onClick={(ev) => onRemoveMail(ev, mail)} />
             </div>
         </div>
 
@@ -56,7 +58,7 @@ export function MailPreview({ mail, setMainShown, setSelectedMailId, criteria, o
             <hr />
             <div className="mail-expand-txt">
 
-                <img className="expand-icon icon" src="./assets/img/icons/icons-mail/expand-icon.png" onClick={onExpandMail} />
+                <img className="expand-icon icon" title="Expand" src="./assets/img/icons/icons-mail/expand-icon.png" onClick={onExpandMail} />
                 <h3 className="subject">{mail.subject}</h3>
                 <h4 className="from">{mail.from}</h4>
                 <p className="body">{mail.body}</p>

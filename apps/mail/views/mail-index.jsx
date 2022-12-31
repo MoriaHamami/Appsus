@@ -112,13 +112,14 @@ export function MailIndex() {
         // })
     }
 
-    function onExitMailToCompose(mailToDraft, intervalId) {
+    function onExitMailToCompose(mailToDraft, intervalId, toAddMail) {
         if (intervalId) clearInterval(intervalId)
         setMainShown('mailList')
         setShowCompose(false)
         // ADDED ///////////////////////////////////////////////////
         setSelectedMailId('')
         // Remove interval
+        if(!toAddMail) return onSaveMail(mailToDraft)
 
         onUpdateMails(mailToDraft, 'Mail saved as draft', () => setShowCompose(false))
         // mailService.save(mailToDraft).then((draftedMail) => {
@@ -147,8 +148,8 @@ export function MailIndex() {
     }
 
     function onSaveMail(mailToDraft) {
-        mailService.save(mailToDraft).then((updatedMail) => {
-            console.log('updating...:', mailToDraft.id)
+        mailService.save(mailToDraft).then(() => {
+            // console.log('updating...:', mailToDraft.id)
             loadMails()
         }).catch((err) => {
             console.log('Had issues saving:', err)
@@ -273,7 +274,7 @@ export function MailIndex() {
             </button>
             <hr />
         </section>
-        <MailSort subjectIcon={subjectIcon} dateIcon={dateIcon} onSubjectSort={onSubjectSort} onDateSort={onDateSort} onSetCriteria={onSetCriteria} />
+        { mainShown !== 'mailEdit' && <MailSort subjectIcon={subjectIcon} dateIcon={dateIcon} onSubjectSort={onSubjectSort} onDateSort={onDateSort} onSetCriteria={onSetCriteria} />}
         <MailFolderList unreadCount={unreadCount} setMainShown={setMainShown} criteria={criteria} setCriteria={setCriteria} />
         {!isLoading && mainShown === 'mailList' && <MailList mails={mails} onIsRead={onIsRead} isLoading={isLoading} setMainShown={setMainShown} setSelectedMailId={setSelectedMailId} criteria={criteria} onRemoveMail={onRemoveMail} onIsStarred={onIsStarred} setShowEdit={setShowCompose} />}
         {!isLoading && mainShown === 'mailDetails' && <MailDetails setIsLoading={setIsLoading} onIsRead={onIsRead} setMainShown={setMainShown} selectedMailId={selectedMailId} setSelectedMailId={setSelectedMailId} onRemoveMail={onRemoveMail} criteria={criteria} onIsStarred={onIsStarred} />}

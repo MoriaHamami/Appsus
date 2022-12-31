@@ -9,6 +9,38 @@
     /* border-top-left-radius: 32px; */
     border-radius: 8px 8px 0 0;
 }
+.mail-edit .icon {
+    position: absolute;
+    padding: 2px;
+    /* width: 32px;
+    height: 32px; */
+    top: 10px;
+
+    margin-inline-end: 10px;
+}
+
+.mail-edit .expand-icon {
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+    /* position: absolute;
+    top: 10px; */
+    /* width: 15px;
+    height: 15px; */
+    right: 40px;
+    /* top: 12px; */
+}
+
+.mail-edit .icon:hover {
+    cursor: pointer;
+    background-color: var(--mail-button-hover-bg-color);
+    /* border-radius: 50%; */
+}
+
+.mail-edit .close-icon {
+    /* right: 10px; */
+    right: 10px;
+}
 
 .mail-edit.expand {
     background-color: white;
@@ -18,8 +50,24 @@
 }
 
 .mail-edit.expand .icon {
-    height: 10px;
+    position: absolute;
+    padding: 2px;
+    /* width: 32px;
+    height: 32px; */
+    /* top: 10px; */
+
+    /* margin-inline-end: 10px; */
 }
+
+
+/* .mail-edit.expand .close-icon {
+    right: -100px;
+}
+
+.mail-edit.expand .expand-icon {
+    right: 10px;
+} */
+
 .mail-edit.expand textarea {
     min-height: 50vh;
 }
@@ -74,5 +122,20 @@
     padding: 10px;
     height: 50vh; 
     
+}
+
+.mail-edit button {
+    background-color: var(--compose-btn);
+    border-radius: 32px;
+    color: var(--almost-white);
+    padding: 8px 20px;
+    margin-inline: 10px;
+    margin-block-end: 8px;
+    border: none;
+    /* font-family: roboto-b; */
+}
+
+.mail-edit button:hover {
+    background-color: var(--compose-btn-hover);
 }
 

@@ -11,6 +11,8 @@
     --read-mail: rgba(232, 236, 248, 0.668);
     --almost-white: rgb(253, 253, 253);
     --mail-search: rgba(225, 233, 243, 0.852);
+    --compose-btn: rgb(41, 84, 237);
+    --compose-btn-hover: rgb(68, 109, 233);
     /* NOTE */
     /* side bar */
     --active-bg-color: #feefc3;

@@ -1,5 +1,6 @@
 const { useState, useEffect, useRef } = React
 
+import { utilService } from "../../../services/util.service.js"
 // import { showSuccessMsg } from "services/event-bus.service.js"
 import { mailService } from "../services/mail.service.js"
 
@@ -8,19 +9,41 @@ import { mailService } from "../services/mail.service.js"
 export function MailEdit({ onUpdateMails, onSaveMail, onEditMail, setMainShown, mainShown, onExitMailToEdit, selectedMailId }) {
 
     const [mailToEdit, setMailToEdit] = useState(mailService.getEmptyMail())
+    const [isMailToAdd, setIsMailToAdd] = useState(true)
+
     let intervalIdRef = useRef(null)
 
     useEffect(() => {
-        mailToEdit.status = ['draft']
-        mailService.save(mailToEdit).then((mailFromStorage) => {
-            setMailToEdit({ ...mailFromStorage, id: mailFromStorage.id })
-            console.log('mailFromStorage:', mailFromStorage)
-        })
 
-        intervalIdRef.current = setInterval(() => {
-            onSaveMail(mailToEdit)
-            console.log('mailToEdit:', mailToEdit)
-        }, 5000)
+        mailToEdit.status = ['draft']
+
+        if(selectedMailId) { // If we need to edit
+            loadMail().then((mail)=>{
+                intervalIdRef.current = setInterval(() => {
+                    onSaveMail(mail)
+                    // console.log('mailToEdit:', mail)
+                }, 5000)
+                setIsMailToAdd(false)
+            })
+        } else { // If we need to compose //TODO RENDER EACH TIME
+            // mailToEdit.id = utilService.makeId()
+            mailService.save(mailToEdit).then((mailFromStorage) => {
+                const newMail = {...mailFromStorage}
+                setMailToEdit(newMail)
+                // console.log('mailFromStorage:', mailFromStorage)
+                
+                // useState is an async func, so we must define the needed data without delay
+                mailToEdit.id = mailFromStorage.id
+                
+                intervalIdRef.current = setInterval(() => {
+                    onSaveMail(mailToEdit)
+                    console.log('mailToEdit:', mailToEdit)
+                }, 5000)
+            })
+        }
+
+        // if (!selectedMailId) return
+        
 
         return () => {
             if (intervalIdRef) clearInterval(intervalIdRef.current)
@@ -30,14 +53,16 @@ export function MailEdit({ onUpdateMails, onSaveMail, onEditMail, setMainShown, 
     // const navigate = useNavigate()
     // const { selectedMailId } = useParams()
 
-    useEffect(() => {
-        if (!selectedMailId) return
-        loadMail()
-    }, [])
+    // useEffect(() => {
+      
+    // }, [])
 
     function loadMail() {
-        mailService.get(selectedMailId)
-            .then((mail) => setMailToEdit(mail))
+        return mailService.get(selectedMailId)
+            .then((mail) => {
+                setMailToEdit(mail)
+                return mail
+            })
             .catch((err) => {
                 console.log('Had issues in mail details', err)
                 navigate('/mail')
@@ -62,14 +87,14 @@ export function MailEdit({ onUpdateMails, onSaveMail, onEditMail, setMainShown, 
     return <section className={`mail-edit ${mainShown === 'mailEdit' ? 'expand' : ''}`}>
         <header>New Message</header>
         <img className="expand-icon icon" src="./assets/img/icons/icons-mail/expand-icon.png" onClick={() => setMainShown('mailEdit')} />
-        <img className="close-icon icon" src="./assets/img/icons/icons-mail/close-icon.png" onClick={() => onExitMailToEdit(mailToEdit, intervalIdRef.current)} />
+        <img className="close-icon icon" src="./assets/img/icons/icons-mail/close-icon.png" onClick={() => onExitMailToEdit(mailToEdit, intervalIdRef.current, isMailToAdd)} />
         <form className="edit-form" onSubmit={(ev) => onEditMail(ev, mailToEdit)}>
             <label className="to-label">
                 To
                 <input className="to"
                     type="email"
                     name="to"
-                    // value={mailToEdit.to}
+                    value={mailToEdit.to}
                     onChange={handleChange}
                     required
                 />
