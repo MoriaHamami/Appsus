@@ -1,34 +1,71 @@
-import { eventBusService } from "../services/event-bus.service.js"
+// import { eventBusService } from "../services/event-bus.service.js"
+// const { useState, useEffect, useRef } = React
+
+// export function UserMsg() {
+
+//   const [msg, setMsg] = useState(null)
+//   const timeoutIdRef = useRef()
+
+//   useEffect(() => {
+//     const unsubscribe = eventBusService.on('show-user-msg', (msg) => {
+//       console.log('Got msg', msg)
+//       setMsg(msg)
+//       if (timeoutIdRef.current) {
+//         timeoutIdRef.current = null
+//         clearTimeout(timeoutIdRef.current)
+//       }
+//       timeoutIdRef.current = setTimeout(closeMsg, 3000)
+//     })
+//     return unsubscribe
+//   }, [])
+
+//   function closeMsg() {
+//     setMsg(null)
+//   }
+
+//   if (!msg) return <span></span>
+//   return (
+//     <section className={`user-msg ${msg.type}`}>
+//       <button onClick={closeMsg}>x</button>
+//       {msg.txt}
+//     </section>
+//   )
+// }
+
 const { useState, useEffect, useRef } = React
+
+import { eventBusService } from "../services/event-bus.service.js"
 
 export function UserMsg() {
 
-  const [msg, setMsg] = useState(null)
-  const timeoutIdRef = useRef()
+    const [msg, setMsg] = useState(null)
+    const timeoutIdRef = useRef(null)
+    useEffect(() => {
+        const unsubscribe = eventBusService.on('show-user-msg', (msg) => {
+            console.log('msg from usermsg', msg);
+            setMsg(msg)
+            console.log('timeoutIdRef.current', timeoutIdRef.current)
+            if (timeoutIdRef.current) {
+                clearTimeout(timeoutIdRef.current)
+                timeoutIdRef.current = null
+            }
 
-  useEffect(() => {
-    const unsubscribe = eventBusService.on('show-user-msg', (msg) => {
-      console.log('Got msg', msg)
-      setMsg(msg)
-      if (timeoutIdRef.current) {
-        timeoutIdRef.current = null
-        clearTimeout(timeoutIdRef.current)
-      }
-      timeoutIdRef.current = setTimeout(closeMsg, 3000)
-    })
-    return unsubscribe
-  }, [])
+            timeoutIdRef.current = setTimeout(onCloseMsg, 3000)
+        })
 
-  function closeMsg() {
-    setMsg(null)
-  }
+        return unsubscribe
 
-  if (!msg) return <span></span>
-  return (
-    <section className={`user-msg ${msg.type}`}>
-      <button onClick={closeMsg}>x</button>
-      {msg.txt}
-    </section>
-  )
+    }, [])
+
+    function onCloseMsg() {
+        setMsg(null)
+    }
+
+    if (!msg) return <span></span>
+    return <div className={"user-msg " + msg.type}>
+        <button onClick={onCloseMsg}>X</button>
+        {msg.txt}
+    </div>
 }
+
 

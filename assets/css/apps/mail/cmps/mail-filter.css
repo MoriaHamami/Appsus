@@ -34,3 +34,16 @@
     /* background-image: url("https://upload.wikimedia.org/wikipedia/commons/5/55/Magnifying_glass_icon.svg") ; */
 
 }
+
+@media (max-width: 650px) {
+
+    .mail-filter {
+        width: calc(100vw - 20px);
+        padding-block: 38px;
+    }
+
+    .mail-filter .search-input {
+        width: 100%;
+    }
+
+}

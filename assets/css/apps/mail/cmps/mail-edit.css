@@ -19,7 +19,7 @@
     margin-inline-end: 10px;
 }
 
-.mail-edit .expand-icon {
+.mail-edit .expand-icon:not(.expand)  {
     /* display: flex;
     justify-content: center;
     align-items: center; */
@@ -37,39 +37,9 @@
     /* border-radius: 50%; */
 }
 
-.mail-edit .close-icon {
+.mail-edit .close-icon:not(.expand) {
     /* right: 10px; */
     right: 10px;
-}
-
-.mail-edit.expand {
-    background-color: white;
-    /* width: 70vw; */
-    /* max-height: 80vh; */
-    /* border-top-left-radius: 32px; */
-}
-
-.mail-edit.expand .icon {
-    position: absolute;
-    padding: 2px;
-    /* width: 32px;
-    height: 32px; */
-    /* top: 10px; */
-
-    /* margin-inline-end: 10px; */
-}
-
-
-/* .mail-edit.expand .close-icon {
-    right: -100px;
-}
-
-.mail-edit.expand .expand-icon {
-    right: 10px;
-} */
-
-.mail-edit.expand textarea {
-    min-height: 50vh;
 }
 
 .mail-edit header {
@@ -79,7 +49,7 @@
 }
 
 .mail-edit form{
-    padding-top: 7px;
+    /* padding-top: 7px; */
 
 }
 
@@ -89,9 +59,9 @@
 }
 
 .mail-edit .to {
-    width: calc(70vw - 32px);
+    width: calc(70vw - 55px);
     border: none;
-    padding: 0 10px;
+    /* padding: 0 10px; */
     outline: none;
 }
 
@@ -109,6 +79,7 @@
     border: none;
     padding: 0 10px;
     outline: none;
+    font-family: roboto-r;
 }
 
 /* [contentEditable] { */
@@ -120,7 +91,7 @@
     margin: 0; 
     border: none; 
     padding: 10px;
-    height: 50vh; 
+    /* height: 50vh;  */
     
 }
 
@@ -130,7 +101,7 @@
     color: var(--almost-white);
     padding: 8px 20px;
     margin-inline: 10px;
-    margin-block-end: 8px;
+    margin-block: 8px;
     border: none;
     /* font-family: roboto-b; */
 }
@@ -138,4 +109,54 @@
 .mail-edit button:hover {
     background-color: var(--compose-btn-hover);
 }
+
+
+.mail-edit.expand {
+    position: relative;
+    background-color: white;
+    height: 100%;
+    border-radius: 8px 8px 0 0;
+    margin-inline-end: 25px;
+
+}
+
+.mail-edit.expand > *:not(header,.icon) {
+    background-color: white;
+    /* width: 70vw; */
+    /* max-height: 80vh; */
+    /* border-top-left-radius: 32px; */
+}
+
+.mail-edit.expand header {
+    background-color: var(--msg-header);
+}
+
+.mail-edit.expand .icon {
+    position: absolute;
+    /* padding: 2px; */
+    /* width: 32px;
+    height: 32px; */
+    /* top: 10px; */
+
+    /* margin-inline-end: 10px; */
+}
+
+
+.mail-edit.expand .close-icon {
+    /* right: -100px; */
+}
+
+.mail-edit.expand .expand-icon {
+    display: none;
+}
+
+.mail-edit.expand textarea {
+    min-height: 50vh;
+}
+
+.mail-edit.expand .to {
+    width: calc(100vw - 256px - 52px - 25px);
+}
+
+
 

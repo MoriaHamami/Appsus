@@ -58,3 +58,10 @@
 .dropdown:hover .dropdown-content {
     display: block;
 }
+
+@media (max-width: 650px) {
+    .mail-sort {
+        margin-inline-end: 0;
+        width: calc(100vw - 20px);
+    }
+}

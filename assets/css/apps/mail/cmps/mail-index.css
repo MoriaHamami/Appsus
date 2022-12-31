@@ -1,3 +1,7 @@
+.mail-index {
+    max-height: calc(100vh - 70px);
+}
+
 .compose-btn-sect{
     color: var(--folder-list-color);
     background-color: var(--mail-bg-color);
