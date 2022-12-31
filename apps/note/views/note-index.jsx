@@ -52,7 +52,7 @@ export function NoteIndex() {
         newNote.type = 'text'
 
         onSaveNote('', newNote)
-        
+
         // Reset params
         queryStringParams = '#/note'
         const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + queryStringParams
@@ -80,7 +80,7 @@ export function NoteIndex() {
     }
 
 
-    function onSaveNote(ev, noteToAdd, file) {
+    function onSaveNote(ev, noteToAdd, file, txtRef, videoRef, imgRef) {
         // let image = file
         // console.log('image', image);
         // noteToAdd.info.img = image.slice(5)
@@ -94,7 +94,9 @@ export function NoteIndex() {
             notes.unshift(note)
             setNotes(notes.slice())
             // navigate('/note')
-
+            txtRef.current.value = ''
+            videoRef.current.value = ''
+            imgRef.current.value = ''
         })
     }
 

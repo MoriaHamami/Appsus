@@ -1,4 +1,4 @@
-const { useState, useEffect } = React
+const { useState, useEffect, useRef } = React
 const { useNavigate, useParams, Link } = ReactRouterDOM
 
 import { noteService } from "../services/note.service.js"
@@ -9,6 +9,9 @@ export function NoteAdd({ notes, onAddNotes, onSaveNote }) {
     const [noteToAdd, setNoteToAdd] = useState(noteService.getEmptyNote())
     const [selected, isSelected] = useState('text')
     const [file, setFile] = useState();
+    const txtRef = useRef(null);
+    const videoRef = useRef(null);
+    const imgRef = useRef(null);
 
     function handleChange({ target }) {
         let { value, type, name: field } = target
@@ -41,7 +44,7 @@ export function NoteAdd({ notes, onAddNotes, onSaveNote }) {
 
     return <section className="note-add">
 
-        {selected === 'text' && <form method="post" encType="multipart/form-data" onSubmit={(ev) => onSaveNote(ev, noteToAdd, file)}>
+        {selected === 'text' && <form method="post" encType="multipart/form-data" onSubmit={(ev) => onSaveNote(ev, noteToAdd, file, txtRef)}>
             <label htmlFor="title"></label>
             <input type="text"
                 name="info"
@@ -49,7 +52,7 @@ export function NoteAdd({ notes, onAddNotes, onSaveNote }) {
                 placeholder="Take a note..."
                 value={noteToAdd.txt}
                 onChange={handleChange}
-
+                ref={txtRef}
             />
 
             {<button className="btn-txt tooltip" type="button" onClick={(ev) => { setType(ev, 'text') }}> <img src="./assets/img/icons/icons-notes/title_FILL0_wght400_GRAD0_opsz48.svg" alt="Text" /> <span className="tooltiptext">Text</span> </button>}
@@ -59,7 +62,7 @@ export function NoteAdd({ notes, onAddNotes, onSaveNote }) {
 
         </form>}
 
-        {selected === 'video' && <form method="post" encType="multipart/form-data" onSubmit={(ev) => onSaveNote(ev, noteToAdd, file)}>
+        {selected === 'video' && <form method="post" encType="multipart/form-data" onSubmit={(ev) => onSaveNote(ev, noteToAdd, file, videoRef)}>
             <label htmlFor="url"></label>
             <input type="url"
                 name="info"
@@ -67,6 +70,7 @@ export function NoteAdd({ notes, onAddNotes, onSaveNote }) {
                 value={noteToAdd.url}
                 onChange={handleChange}
                 placeholder="add a youtube video..."
+                ref={videoRef}
             />
 
             {<button className="btn-txt tooltip" type="button" onClick={(ev) => { setType(ev, 'text') }}> <img src="./assets/img/icons/icons-notes/title_FILL0_wght400_GRAD0_opsz48.svg" alt="Text" /> <span className="tooltiptext">Text</span> </button>}
@@ -76,13 +80,14 @@ export function NoteAdd({ notes, onAddNotes, onSaveNote }) {
 
         </form>}
 
-        {selected === 'img' && <form method="post" encType="multipart/form-data" onSubmit={(ev) => onSaveNote(ev, noteToAdd, file)}>
+        {selected === 'img' && <form method="post" encType="multipart/form-data" onSubmit={(ev) => onSaveNote(ev, noteToAdd, file, imgRef)}>
             <label htmlFor="file">choose image</label>
             <input type="file"
                 name="info"
                 id="file"
                 value={noteToAdd.img}
                 onChange={handleChange}
+                ref={imgRef}
             // accept="image/png, image/jpeg"
             />
             {<button className="btn-txt tooltip" type="button" onClick={(ev) => { setType(ev, 'text') }}> <img src="./assets/img/icons/icons-notes/title_FILL0_wght400_GRAD0_opsz48.svg" alt="Text" /> <span className="tooltiptext">Text</span> </button>}

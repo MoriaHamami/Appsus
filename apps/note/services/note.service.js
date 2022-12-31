@@ -130,21 +130,21 @@ function _createNotes() {
                     backgroundColor: "rgb(90, 198, 206)"
                 }
             },
-            {
-                id: "n104",
-                type: "note-todos",
-                isPinned: false,
-                info: {
-                    label: "Get my stuff together",
-                    todos: [
-                        { txt: "Driving liscence", doneAt: null },
-                        { txt: "Coding power", doneAt: 187111111 }
-                    ]
-                },
-                style: {
-                    backgroundColor: "rgb(245, 137, 137)"
-                }
-            }
+            // {
+            //     id: "n104",
+            //     type: "note-todos",
+            //     isPinned: false,
+            //     info: {
+            //         label: "Get my stuff together",
+            //         todos: [
+            //             { txt: "Driving liscence", doneAt: null },
+            //             { txt: "Coding power", doneAt: 187111111 }
+            //         ]
+            //     },
+            //     style: {
+            //         backgroundColor: "rgb(245, 137, 137)"
+            //     }
+            // }
         ]
 
         storageService.saveToStorage(NOTE_KEY, notes)

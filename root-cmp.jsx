@@ -13,6 +13,7 @@ import { BookIndex } from './apps/book/views/book-index.jsx'
 import { BookDetails } from './apps/book/views/book-details.jsx'
 import { BookEdit } from './apps/book/views/book-edit.jsx'
 import { UserMsg } from './cmps/user-msg.jsx'
+import { AboutTeam } from "./cmps/about-team.jsx"
 
 export function App() {
 
@@ -33,7 +34,10 @@ export function App() {
             <AppHeader />
             <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/about" element={<About />} />
+                <Route path="/about" element={<About />}>
+                    <Route element={<AboutTeam />} path="/about/team" />
+                </Route>
+
                 <Route path="/mail" element={<MailIndex />} />
                 <Route path="/mail:info" element={<MailIndex />} />
                 <Route path="/note" element={<NoteIndex />} />

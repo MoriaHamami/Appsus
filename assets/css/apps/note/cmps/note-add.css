@@ -2,7 +2,7 @@
 .note-add form {
     position: relative;
 
-    margin: 20px 15px;
+    margin: 20px 0 20px 15px;
     /* box-shadow: 1px 2px 8px 0px gray; */
     border-radius: 0.5rem;
     display: flex;
@@ -19,7 +19,7 @@
     border-radius: 0.3rem;
     margin: 0 20px;
     font-family: Product Sans Regular, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    z-index: -1;
+    /* z-index: -1; */
     /* position: absolute;
     top: 0; */
 }
@@ -126,5 +126,4 @@
 .note-add form label:hover {
     background-color: transparent;
     color: black;
-    /* border: black 0.5px solid; */
 }

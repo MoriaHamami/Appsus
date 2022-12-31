@@ -1,0 +1,8 @@
+.about{
+    margin: 20px;
+    text-align: center;
+    font-family: Product Sans Regular, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.about h1{
+    font-size: 5rem;
+}
