@@ -59,7 +59,12 @@ function getEmptyNote(type) {
             title: 'Title',
             txt: 'text',
             url: '',
-            image: '',
+            img: '',
+            label: "Get my stuff together",
+            todos: [
+                { txt: "Driving liscence", doneAt: null },
+                { txt: "Coding power", doneAt: 187111111 }
+            ]
         },
         style: {
             backgroundColor: "#ffffff"
@@ -105,7 +110,8 @@ function _createNotes() {
                 isPinned: false,
                 info: {
                     // url: "http://some-img/me",
-                    image: "./assets/img/note-imgs/landscape.jpeg",
+                    // img: "./assets/img/note-imgs/landscape.jpeg",
+                    img: "C:\\fakepath\\landscape.jpeg",
                     title: "My Trip"
                 },
                 style: {

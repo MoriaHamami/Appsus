@@ -17,7 +17,7 @@ export function NoteToMail({ note }) {
 
     return <section className="note-to-mail" >
 
-       <button onClick={(ev) => sendToMail(ev)}>QueryParam</button>
+       <button onClick={(ev) => sendToMail(ev)}>send</button>
 
     </section>
 

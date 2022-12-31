@@ -2,19 +2,25 @@ const { useState, useEffect } = React
 const { useNavigate, useParams, Link } = ReactRouterDOM
 
 import { noteService } from "../services/note.service.js"
+import { NoteImg } from "./note-img.jsx"
 
 export function NoteAdd({ notes, onAddNotes, onSaveNote }) {
 
     const [noteToAdd, setNoteToAdd] = useState(noteService.getEmptyNote())
     const [selected, isSelected] = useState('text')
-
+    const [file, setFile] = useState();
 
     function handleChange({ target }) {
         let { value, type, name: field } = target
 
         if (type === 'text') value = { ...noteToAdd.info, txt: value }
         else if (type === 'url') value = { ...noteToAdd.info, url: value }
-        else if (type === 'file') value = { ...noteToAdd.info, img: value }
+        else if (type === 'file') {
+            value = { ...noteToAdd.info, img: value }
+            console.log('value', value);
+            setFile(URL.createObjectURL(target.files[0]));
+
+        }
         setNoteToAdd((prevNote) => ({ ...prevNote, [field]: value, type }))
     }
 
@@ -30,7 +36,7 @@ export function NoteAdd({ notes, onAddNotes, onSaveNote }) {
 
     return <section className="note-add">
 
-        {selected === 'text' && <form method="post" encType="multipart/form-data" onSubmit={(ev) => onSaveNote(ev, noteToAdd)}>
+        {selected === 'text' && <form method="post" encType="multipart/form-data" onSubmit={(ev) => onSaveNote(ev, noteToAdd, file)}>
             <label htmlFor="title"></label>
             <input type="text"
                 name="info"
@@ -48,7 +54,7 @@ export function NoteAdd({ notes, onAddNotes, onSaveNote }) {
 
         </form>}
 
-        {selected === 'video' && <form method="post" encType="multipart/form-data" onSubmit={(ev) => onSaveNote(ev, noteToAdd)}>
+        {selected === 'video' && <form method="post" encType="multipart/form-data" onSubmit={(ev) => onSaveNote(ev, noteToAdd, file)}>
             <label htmlFor="url"></label>
             <input type="url"
                 name="info"
@@ -65,7 +71,7 @@ export function NoteAdd({ notes, onAddNotes, onSaveNote }) {
 
         </form>}
 
-        {selected === 'img' && <form method="post" encType="multipart/form-data" onSubmit={(ev) => onSaveNote(ev, noteToAdd)}>
+        {selected === 'img' && <form method="post" encType="multipart/form-data" onSubmit={(ev) => onSaveNote(ev, noteToAdd, file)}>
             <label htmlFor="file">choose image</label>
             <input type="file"
                 name="info"
@@ -77,9 +83,11 @@ export function NoteAdd({ notes, onAddNotes, onSaveNote }) {
             {<button className="btn-txt tooltip" type="button" onClick={(ev) => { setType(ev, 'text') }}> <img src="./assets/img/icons/icons-notes/title_FILL0_wght400_GRAD0_opsz48.svg" alt="Text" /> <span className="tooltiptext">Text</span> </button>}
             {<button className="btn-video tooltip" type="button" onClick={(ev) => { setType(ev, 'video') }}> <img src="./assets/img/icons/icons-notes/play_circle_FILL0_wght500_GRAD0_opsz48.svg" alt="Video" /> <span className="tooltiptext">Video</span></button>}
             {<button className="btn-img tooltip" type="button" onClick={(ev) => { setType(ev, 'img') }}> <img src="./assets/img/icons/icons-notes/asset 11.svg" alt="Image" /><span className="tooltiptext">Image</span> </button>}
-            {/* <button title="Add">Add</button> */}
+            <button className="btn-add tooltip"title="Add">Add</button>
 
         </form>}
+
+        {/* <img src={file} /> */}
 
     </section >
 }

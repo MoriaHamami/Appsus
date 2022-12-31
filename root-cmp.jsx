@@ -9,8 +9,14 @@ import { NoteIndex } from "./apps/note/views/note-index.jsx"
 import { NoteDetails } from "./apps/note/cmps/note-details.jsx"
 
 export function App() {
+
+    function toggleMenu() {
+        document.body.classList.toggle('menu-open')
+    }
+
     return <Router>
         <section className="app">
+        <div class="main-screen" onClick={toggleMenu}></div>
             <AppHeader />
             <Routes>
                 <Route path="/" element={<Home />} />

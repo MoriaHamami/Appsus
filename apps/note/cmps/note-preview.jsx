@@ -3,6 +3,7 @@ const { useState, useEffect, useRef } = React
 const { Link, useNavigate, useParams } = ReactRouterDOM
 
 import { noteService } from "../services/note.service.js";
+import { NoteAdd } from "./note-add.jsx";
 import { NoteDetails } from "./note-details.jsx";
 import { NoteImg } from "./note-img.jsx";
 import { NoteToMail } from "./note-to-mail.jsx";
@@ -11,7 +12,7 @@ import { NoteTxt } from "./note-txt.jsx";
 import { NoteVideo } from "./note-video.jsx";
 
 
-export function NotePreview({ note, onRemoveNote }) {
+export function NotePreview({ note, onRemoveNote, onSaveNote }) {
 
     // const [isShown, setIsShown] = useState(false)
     const [color, setColor] = useState(noteService.get(note.id))
@@ -21,11 +22,10 @@ export function NotePreview({ note, onRemoveNote }) {
     // const imgName = book.name ? book.name : 'default'
     // <img src={`assets/img/${imgName}.png`} />
 
-
+    console.log('content', content);
     const colorRef = useRef(null)
     const contentRef = useRef(null)
 
-  
 
 
     useEffect(() => {
@@ -45,7 +45,7 @@ export function NotePreview({ note, onRemoveNote }) {
             return <NoteTxt note={note} />
 
         } else if (note.type === 'file') {
-            return <NoteImg note={note} />
+            return <NoteImg note={note} onSaveNote={onSaveNote} />
 
         } else if (note.type === 'note-todos') {
             return <NoteTodos note={note} />
@@ -79,16 +79,16 @@ export function NotePreview({ note, onRemoveNote }) {
 
     function changeContent() {
 
-        setContent((prevContent) => ({ ...prevContent }))
+        // setContent((prevContent) => ({ ...prevContent , txt: content}))
+        // console.log('content', content);
+        // contentRef.current = content.txt
+        // note.info.txt = content.txt
 
-        contentRef.current = content
-        note = content
+        // noteService.save(note).then((content) => {
+        //     console.log('content saved', content);
+        //     // navigate('/note')
 
-        noteService.save(note).then((content) => {
-            console.log('content saved', content);
-            // navigate('/note')
-
-        })
+        // })
     }
 
 
@@ -108,8 +108,8 @@ export function NotePreview({ note, onRemoveNote }) {
 
         {/* {isShown && ( */}
         <div className="hidden-buttons">
-            <form onChange={changeColor}>
-                <label htmlFor={`color-${note.id}`}><img src="./assets/img/icons/icons-notes/asset 22.svg" alt="" /></label>
+            <form className="tooltip" onChange={changeColor}>
+                <label htmlFor={`color-${note.id}`}><img src="./assets/img/icons/icons-notes/asset 22.svg" alt="" /><span className="tooltiptext">Text</span></label>
                 <input type="color"
                     name="style"
                     id={`color-${note.id}`}
@@ -120,10 +120,10 @@ export function NotePreview({ note, onRemoveNote }) {
                 />
 
             </form>
-            <button onClick={() => onRemoveNote(note.id)}>x</button>
+        {<NoteToMail note={note} />}
+            <button className="tooltip" onClick={() => onRemoveNote(note.id)}>x<span className="tooltiptext">Text</span></button>
         </div>
         {/* )} */}
-        {<NoteToMail note={note} />}
 
         {/* <NoteDetails note={note} /> */}
 
