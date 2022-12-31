@@ -1,0 +1,77 @@
+.book-index h1,
+.book-index h2,
+.book-index h3,
+.book-index h4,
+.book-index h5,
+.book-index h6 {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.book-index p {
+  margin: 0;
+}
+
+.book-index a {
+  color: unset;
+}
+
+/* Dont stretch my Media */
+.book-index img,
+.book-index embed,
+.book-index video,
+.book-index object {
+  max-width: 100%
+}
+
+/* Simple and useful CSS Debugging Technique */
+.book-index .debug * {
+  outline: 1px solid gold
+}
+
+.book-index button {
+  cursor: pointer;
+  background-color: var(--clr2bg);
+  margin: 0.4em 0;
+  border: 0;
+  padding: 0.5em 0.8em;
+  border-radius: 4px;
+}
+
+.book-index button:hover {
+  background-color: var(--clr2);
+  color: white;
+  transition: .3s;
+}
+
+.book-index input {
+  border-radius: 10rem;
+  border: 1px solid lightgray;
+  margin: 0.2rem 0;
+  padding: 0.2rem 0.5rem;
+}
+
+.book-index input:focus {
+  background-color: var(--clr1bg);
+  transition: background-color 1s;
+}
+
+.book-index .main-layout {
+  display: grid;
+  grid-template-columns: 1.6rem 1fr 1.6rem;
+
+}
+
+.book-index .main-layout>* {
+  grid-column: 2;
+}
+
+.book-index .main-layout .full {
+  grid-column: 1/-1;
+  display: grid;
+}
+
+.book-index .container {
+  max-width: 800px;
+  padding: 1em;
+  margin: auto;
+}

@@ -18,7 +18,7 @@ export function AppHeader() {
                 <li><NavLink to="/about">About</NavLink></li>
                 <li> <NavLink to="/mail">Mail</NavLink></li>
                 <li><NavLink to="/note">Note</NavLink></li>
-
+                <li><NavLink to="/book">Book</NavLink></li>
             </ul>
         </nav>
         {<button className="menu-toggle-btn" onClick={toggleMenu}>☰</button>}

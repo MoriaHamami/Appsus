@@ -302,8 +302,8 @@ export function MailIndex() {
         {!isLoading && mainShown === 'mailDetails' && <MailDetails setIsLoading={setIsLoading} onIsRead={onIsRead} setMainShown={setMainShown} selectedMailId={selectedMailId} setSelectedMailId={setSelectedMailId} onRemoveMail={onRemoveMail} criteria={criteria} onIsStarred={onIsStarred} />}
         {showEdit && <MailEdit onUpdateMails={onUpdateMails} onSaveMail={onSaveMail} setMainShown={setMainShown} mainShown={mainShown} setShowEdit={setShowEdit} onExitMailToEdit={onExitMailToCompose} selectedMailId={selectedMailId} onEditMail={onComposeMail} />}
         {/* {showCompose && <MailCompose onComposeMail={onComposeMail} setMainShown={setMainShown} mainShown={mainShown} setShowCompose={setShowCompose} onExitMailToCompose={onExitMailToCompose} />} */}
-        {/* {isLoading && <div>Loading..</div>} */}
-        {isLoading && <Loader />}
+        {isLoading && <div>Loading..</div>}
+        {/* {isLoading && <Loader />} */}
 
         <span className="mail-menu" onClick={toggleMailMenu}></span>
     </section>

@@ -12,12 +12,15 @@
 @import './basics/layout.css';
 
 /* Views */
+
 @import './views/home.css';
 @import './views/about.css';
 
 @import './apps/note/views/note-app.css';
-
 @import './apps/mail/views/mail-app.css';
+@import './apps/book/views/book-edit.css';
+@import './apps/book/views/book-index.css';
+@import './apps/book/views/book-details.css';
 
 /* Cmps */
 
@@ -48,3 +51,11 @@
 @import './apps/note/cmps/note-details.css';
 @import './apps/note/cmps/note-nav.css';
 
+/* Book Cmps */
+
+@import './apps/book/cmps/book-filter.css';
+@import './apps/book/cmps/book-list.css';
+@import './apps/book/cmps/book-preview.css';
+@import './apps/book/cmps/book-details.css';
+@import './apps/book/cmps/long-txt.css';
+@import './apps/book/cmps/star-rating.css';
