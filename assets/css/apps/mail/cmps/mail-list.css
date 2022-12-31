@@ -30,7 +30,7 @@
     text-overflow: ellipsis;
     white-space: nowrap; */
     position: absolute;
-    right: 35px;
+    right: 45px;
 }
 
 
@@ -112,10 +112,15 @@
         position: relative;
 
     }
-    
+
     .mail-index ul {
         margin-inline-end: 0;
         /* max-width: calc(100vw - 35px); */
         max-width: 100%;
+    }
+
+    .preview.date {
+   
+        right: 20px;
     }
 }
