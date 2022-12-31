@@ -17,8 +17,8 @@ export function MailEdit({ onUpdateMails, onSaveMail, onEditMail, setMainShown, 
 
         mailToEdit.status = ['draft']
 
-        if(selectedMailId) { // If we need to edit
-            loadMail().then((mail)=>{
+        if (selectedMailId) { // If we need to edit
+            loadMail().then((mail) => {
                 intervalIdRef.current = setInterval(() => {
                     onSaveMail(mail)
                     // console.log('mailToEdit:', mail)
@@ -28,13 +28,13 @@ export function MailEdit({ onUpdateMails, onSaveMail, onEditMail, setMainShown, 
         } else { // If we need to compose //TODO RENDER EACH TIME
             // mailToEdit.id = utilService.makeId()
             mailService.save(mailToEdit).then((mailFromStorage) => {
-                const newMail = {...mailFromStorage}
+                const newMail = { ...mailFromStorage }
                 setMailToEdit(newMail)
                 // console.log('mailFromStorage:', mailFromStorage)
-                
+
                 // useState is an async func, so we must define the needed data without delay
                 mailToEdit.id = mailFromStorage.id
-                
+
                 intervalIdRef.current = setInterval(() => {
                     onSaveMail(mailToEdit)
                     console.log('mailToEdit:', mailToEdit)
@@ -43,7 +43,7 @@ export function MailEdit({ onUpdateMails, onSaveMail, onEditMail, setMainShown, 
         }
 
         // if (!selectedMailId) return
-        
+
 
         return () => {
             if (intervalIdRef) clearInterval(intervalIdRef.current)
@@ -54,7 +54,7 @@ export function MailEdit({ onUpdateMails, onSaveMail, onEditMail, setMainShown, 
     // const { selectedMailId } = useParams()
 
     // useEffect(() => {
-      
+
     // }, [])
 
     function loadMail() {
@@ -82,43 +82,51 @@ export function MailEdit({ onUpdateMails, onSaveMail, onEditMail, setMainShown, 
             return { ...prevMail, [field]: value }
         })
     }
-    
+
 
     return <section className={`mail-edit ${mainShown === 'mailEdit' ? 'expand' : ''}`}>
         <header>New Message</header>
         <img className="expand-icon icon" src="./assets/img/icons/icons-mail/expand-icon.png" onClick={() => setMainShown('mailEdit')} />
         <img className="close-icon icon" src="./assets/img/icons/icons-mail/close-icon.png" onClick={() => onExitMailToEdit(mailToEdit, intervalIdRef.current, isMailToAdd)} />
         <form className="edit-form" onSubmit={(ev) => onEditMail(ev, mailToEdit)}>
-            <label className="to-label">
-                To
-                <input className="to"
-                    type="email"
-                    name="to"
-                    value={mailToEdit.to}
-                    onChange={handleChange}
-                    required
-                />
-            </label>
-            <hr />
-            <label>
-                <input className="subject"
-                    type="text"
-                    name="subject"
-                    value={mailToEdit.subject}
-                    placeholder="Subject"
-                    onChange={handleChange}
-                />
-            </label>
-            <hr />
-            <label>
-                <textarea className="txt"
-                    type="text"
-                    name="txt"
-                    value={mailToEdit.txt}
-                    onChange={handleChange}
-                />
-            </label>
-            <hr />
+            <div className="underline">
+                <label className="to-label">
+                    To
+                    <input className="to"
+                        type="email"
+                        name="to"
+                        value={mailToEdit.to}
+                        onChange={handleChange}
+                        required
+                    />
+                </label >
+            </div>
+            {/* <hr /> */}
+            <div className="underline">
+
+                <label >
+                    <input className="subject"
+                        type="text"
+                        name="subject"
+                        value={mailToEdit.subject}
+                        placeholder="Subject"
+                        onChange={handleChange}
+                    />
+                </label>
+            </div>
+            {/* <hr /> */}
+            <div className="underline">
+
+                <label >
+                    <textarea className="txt"
+                        type="text"
+                        name="txt"
+                        value={mailToEdit.txt}
+                        onChange={handleChange}
+                    />
+                </label>
+            </div>
+            {/* <hr /> */}
 
             <button>Send</button>
         </form>
