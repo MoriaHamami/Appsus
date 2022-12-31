@@ -91,7 +91,7 @@ export function NotePreview({ note, onRemoveNote, onSaveNote }) {
         //     })
         // }
 
-        setContent((prevContent) => ({ ...prevContent, txt: content }))
+        setContent((prevContent) => ({ ...prevContent = content }))
         console.log('content', content);
         contentRef.current = content
         note.info.txt = content
@@ -148,7 +148,7 @@ export function NotePreview({ note, onRemoveNote, onSaveNote }) {
             </form>
             {/* {<NoteToMail note={note} />} */}
             <button className="tooltip" onClick={() => onRemoveNote(note.id)}><img src="/assets/img/icons/icons-notes/delete_FILL0_wght400_GRAD0_opsz48.svg" alt="" /><span className="tooltiptext">Delete</span></button>
-            {<button className="edit_content" onClick={(ev) => onEditNote(ev, note.id)}>edit</button>}
+            {<button className="edit_content tooltip" onClick={(ev) => onEditNote(ev, note.id)}>edit<span className="tooltiptext">Edit</span></button>}
         </div>
         {/* )}  */}
 
