@@ -1,11 +1,12 @@
 
-const { useState, useEffect } = React
+const { useState, useEffect, useRef } = React
 
 import { noteService } from "../services/note.service.js"
 
 export function NoteFilter({ onSetFilter }){
 
     const [filterByToEdit, setFilterByToEdit] = useState(noteService.getDefaultFilter())
+
 
     useEffect(() => {
         onSetFilter(filterByToEdit)
@@ -43,6 +44,7 @@ export function NoteFilter({ onSetFilter }){
                 value={filterByToEdit.txt}
                 onChange={handleChange}
                 onClick={onSearchClick}
+
             />
         </form>
     </section>
