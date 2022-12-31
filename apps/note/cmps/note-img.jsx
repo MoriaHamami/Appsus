@@ -17,7 +17,7 @@ export function NoteImg({ note, onSaveNote }) {
 
     return <section className="note-img css-fix">
 
-        <h3 ref={titleRef} onKeyDown={(ev) => changeContentTitle(ev)} contentEditable={true} suppressContentEditableWarning={true}>{note.info.title}</h3>
+        <h3 ref={titleRef} onKeyUp={(ev) => changeContentTitle(ev)} contentEditable={true} suppressContentEditableWarning={true}>{note.info.title}</h3>
         {/* do a loader */}
         {/* {isLoading && <Loader />} */}
         <img src={note.info.img} alt={note.info.title} />

@@ -20,7 +20,7 @@ export function NoteVideo({note}) {
 
     return <section className="note-video css-fix">
 
-        <h3 ref={titleRef} onKeyDown={(ev) => changeContentTitle(ev)} contentEditable={true} suppressContentEditableWarning={true}>{note.info.title}</h3>
+        <h3 ref={titleRef} onKeyUp={(ev) => changeContentTitle(ev)} contentEditable={true} suppressContentEditableWarning={true}>{note.info.title}</h3>
         {/* do a loader */}
         {/* {isLoading && <Loader />} */}
         {/* <img src={note.info.url} alt={note.info.title} /> */}

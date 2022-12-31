@@ -43,8 +43,8 @@ export function NoteTxt({ note}) {
 
 
     return <section className="note-txt css-fix" >
-        <h3 ref={titleRef} onKeyDown={(ev) => changeContentTitle(ev)} contentEditable={true} suppressContentEditableWarning={true}>{note.info.title}</h3>
-        <p ref={contentRef} onKeyDown={(ev) => changeContent(ev)} contentEditable={true} suppressContentEditableWarning={true}>{note.info.txt}</p>
+        <h3 ref={titleRef} onKeyUp={(ev) => changeContentTitle(ev)} contentEditable={true} suppressContentEditableWarning={true}>{note.info.title}</h3>
+        <p ref={contentRef} onKeyUp={(ev) => changeContent(ev)} contentEditable={true} suppressContentEditableWarning={true}>{note.info.txt}</p>
       
         {/* { <button className="edit_content tooltip" onClick={onEditNote(note.id)}>edit<span className="tooltiptext">Edit</span></button>} */}
         {/* return <div contentEditable onBlur={onSaveChange(note)}></div> */}
