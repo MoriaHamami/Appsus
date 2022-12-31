@@ -94,7 +94,7 @@ export function NoteIndex() {
 
         var embedlink = "http://www.youtube.com/embed/" + id
 
-        noteToAdd.info.url = embedlink
+        // noteToAdd.info.url = embedlink
         noteToAdd.info.img = file
 
         if (ev) ev.preventDefault()
