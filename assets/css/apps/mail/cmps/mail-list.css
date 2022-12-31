@@ -67,6 +67,12 @@
     margin: 0;
 }
 
+ 
+.no-items {
+    padding: 10px;
+}
+
+/* DESKTOP */
 @media (min-width: 650px) {
 
     .mail-list {
@@ -97,7 +103,8 @@
     }
 }
 
-@media (max-width: 650px) {
+/* MOBILE */
+@media (max-width: 640px) {
     .mail-list {
         /* max-height: none; */
         /* overflow: auto; */
@@ -107,7 +114,8 @@
     }
     .mail-index ul {
         margin-inline-end: 0;
-        max-width: calc(100vw - 20px);
+        /* max-width: calc(100vw - 35px); */
+        max-width: 100%;
     
     }
 }

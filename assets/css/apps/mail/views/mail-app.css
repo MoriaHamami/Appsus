@@ -78,10 +78,13 @@
     border-bottom: 1px solid lightgray;
 }
 
+/* .mail-screen {
+    display: none;
+} */
 
 /* MOBILE */
 
-@media (max-width: 650px) {
+@media (max-width: 640px) {
 
     .mail-index {
         display: grid;
@@ -113,28 +116,130 @@
     }
     
     .mail-folder-list {
-        display: none;
+        display:none;
     }
     
-    /* .mail-edit.expand {
-        grid-area: mail-sort;
-    }
-    
-    .mail-filter {
-        grid-area: mail-filter;
-    }
-    
-    .mail-sort {
-        grid-area: mail-sort;
-    } */
-
     .mail-index .compose-btn-sect {
-        display: none;
+        display:none
     }
+
+     .mail-edit.expand {
+        grid-area: mail-sort;
+        
+    } 
+   
+
+    /* TO FIX??//////////////////// */
 
     .mail-index {
         padding:  0 10px;
     }
+
+    .mail-menu{
+        cursor: pointer;
+        position: fixed;
+        bottom: 30px;
+        left: 30px;
+        height: 40px;
+        padding: 6px;
+        content: url(../../../../img/icons/icons-mail/menu-icon.png);
+        background-color: rgb(192, 222, 227);
+        border-radius: 50%;
+        /* background-color: var(--inbox-btn); */
+    }
+
+    .mail-menu:hover{
+        background-color: rgb(208, 233, 237);
+    }
+
+    body.mail-menu-open .compose-btn-sect {
+        display: block;
+        position: fixed;
+    }
+
+    body.mail-menu-open .mail-folder-list {
+        display: block;
+        position: fixed;
+    }
+
+    
+.mail-screen {
+    position: fixed;
+    inset: 0;
+    background-color: #000;
+    background-color: rgb(0 0 0 / 70%);
+    cursor: pointer;
+    pointer-events: none;
+
+    opacity: 0;
+
+    transition: opacity .6s;
+    z-index: 1;
+}
+
+body.mail-menu-open .mail-screen {
+    pointer-events: auto;
+    opacity: 1;
+}
+
+
+.compose-btn-sect {
+    position: fixed;
+    /* top: 70px;
+    left: -256px; */
+    top: 70px;
+    left: 0;
+    flex-direction: column;
+    height: 100vh;
+    /* background: rgb(244, 244, 244); */
+    background:  rgb(212, 222, 227);
+    border-inline-start: 1px solid rgb(0, 0, 0);
+    min-width: 200px;
+    transform: translateX(100%);
+    z-index: 2;
+    /* height: 100px; */
+    transition: transform .6s, box-shadow .6s;
+}
+
+body.mail-menu-open .compose-btn-sect {
+    transform: translateX(0);
+    /* box-shadow: -6px 0px 14px rgb(0 0 0 / 20%); */
+    z-index: 2;
+}
+.mail-folder-list {
+    position: fixed;
+    top: 150px;
+    left: 0;
+    flex-direction: column;
+    height: 100vh;
+    /* background: rgb(244, 244, 244); */
+    background:  rgb(212, 222, 227);
+    border-inline-start: 1px solid rgb(0, 0, 0);
+    min-width: 200px;
+    transform: translateX(100%);
+    z-index: 2;
+
+    transition: transform .6s, box-shadow .6s;
+}
+
+body.mail-menu-open .mail-folder-list {
+    transform: translateX(0);
+    /* box-shadow: -6px 0px 14px rgb(0 0 0 / 20%); */
+    z-index: 2;
+}
+
+/* .app-header nav a {
+    display: block;
+    text-align: center;
+    padding: 30px 10px;
+    transition: background-color .6s;
+}
+
+.app-header nav a:hover {
+    background-color: var(--clr8);
+} */
+
+
 }
 
 

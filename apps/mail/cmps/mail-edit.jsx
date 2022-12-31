@@ -118,10 +118,10 @@ export function MailEdit({ onUpdateMails, onSaveMail, onEditMail, setMainShown, 
             <div className="underline">
 
                 <label >
-                    <textarea className="txt"
+                    <textarea className="body"
                         type="text"
-                        name="txt"
-                        value={mailToEdit.txt}
+                        name="body"
+                        value={mailToEdit.body}
                         onChange={handleChange}
                     />
                 </label>

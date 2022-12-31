@@ -66,7 +66,7 @@
 }
 
 .mail-edit .subject{
-    width: 70vw;
+    /* width: 70vw; */
     border: none;
     padding: 0 10px;
     outline: none;
@@ -75,7 +75,7 @@
 .mail-edit textarea {
     overflow-y: auto;
     min-height: 40vh;
-    width: 70vw;
+    /* width: 70vw; */
     border: none;
     padding: 0 10px;
     outline: none;
@@ -156,6 +156,14 @@
 
 .mail-edit.expand .to {
     width: calc(100vw - 256px - 52px - 25px);
+}
+
+@media (max-width: 640px) {
+
+    .mail-edit.expand {
+        margin-inline-end: 0;
+    
+    }
 }
 
 

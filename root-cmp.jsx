@@ -14,9 +14,15 @@ export function App() {
         document.body.classList.toggle('menu-open')
     }
 
+    function toggleMailMenu() {
+        document.body.classList.toggle('mail-menu-open')
+    }
+
+    
     return <Router>
         <section className="app">
-        <div class="main-screen" onClick={toggleMenu}></div>
+        <div className="main-screen" onClick={toggleMenu}></div>
+        <div className="mail-screen" onClick={toggleMailMenu}></div>
             <AppHeader />
             <Routes>
                 <Route path="/" element={<Home />} />

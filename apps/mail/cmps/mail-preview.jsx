@@ -3,7 +3,7 @@ import {MailToNote} from "./mail-to-note.jsx"
 
 const { useState } = React
 
-export function MailPreview({ mail, setMainShown, setSelectedMailId, criteria, onIsRead, onRemoveMail, onIsStarred, setShowEdit }) {
+export function MailPreview({ mail, setMainShown, setSelectedMailId, criteria, onIsRead, onRemoveMail, onIsStarred, onSetEdit }) {
 
     const [isToExpand, setToExpand] = useState(false)
     const [hoverBtnsStyle, setHoverBtnsStyle] = useState({ display: 'none' })
@@ -19,11 +19,11 @@ export function MailPreview({ mail, setMainShown, setSelectedMailId, criteria, o
         setSelectedMailId(mail.id)
     }
 
-    function onSetEdit(ev, mailId) {
-        ev.stopPropagation()
-        setSelectedMailId(mailId)
-        setShowEdit(true)
-    }
+    // function onSetEdit(ev, mailId) {
+    //     if(ev) stopPropagation()
+    //     setSelectedMailId(mailId)
+    //     // setShowEdit(true)
+    // }
 
     return <section>
 

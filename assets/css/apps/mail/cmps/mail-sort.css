@@ -59,9 +59,10 @@
     display: block;
 }
 
-@media (max-width: 650px) {
+@media (max-width: 640px) {
     .mail-sort {
         margin-inline-end: 0;
-        width: calc(100vw - 20px);
+        /* width: calc(100vw - 20px); */
+        max-width: 100%;
     }
 }

@@ -52,7 +52,7 @@ export function NoteIndex() {
         newNote.type = 'text'
 
         onSaveNote('', newNote)
-
+        
         // Reset params
         queryStringParams = '#/note'
         const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + queryStringParams
@@ -83,7 +83,7 @@ export function NoteIndex() {
     function onSaveNote(ev, noteToAdd, file) {
         let image = file
         console.log('image', image);
-
+        console.log('noteToAdd:', noteToAdd)
         if (ev) ev.preventDefault()
         noteService.save(noteToAdd).then((note) => {
             console.log('note saved', note);

@@ -14,12 +14,13 @@ import { MailCompose } from "../cmps/mail-compose.jsx"
 import { MailEdit } from "../cmps/mail-edit.jsx"
 import { MailDetails } from "../cmps/mail-details.jsx"
 import { MailSort } from "../cmps/mail-sort.jsx"
+import { Loader } from "../../../cmps/loader.jsx"
 
 export function MailIndex() {
 
     const [mails, setMails] = useState([])
     const [criteria, setCriteria] = useState(criteriaService.getDefaultCriteria())
-    const [showCompose, setShowCompose] = useState(false)
+    const [showEdit, setShowEdit] = useState(false)
     const [mainShown, setMainShown] = useState('mailList')
     const [selectedMailId, setSelectedMailId] = useState('')
     const [unreadCount, setUnreadCount] = useState('')
@@ -50,21 +51,30 @@ export function MailIndex() {
 
         if (!subject || !body) return
         
-        // A note was sent to mail, add note to inbox
+        // A note was sent to mail, open compose
         const newMail = mailService.getEmptyMail()
         newMail.subject = subject
         newMail.body = body
-        newMail.status = 'inbox'
+        // newMail.status = 'inbox'
         // newMail.from = mailUserService.get().then(fullname)
         console.log('newMail:', newMail)
-        onUpdateMails(newMail, 'Note sent')
-
+        // onUpdateMails(newMail, 'Note sent')
+        mailService.save(newMail).then((mailFromService) => {
+            onSetEdit('', mailFromService.id)
+            console.log('mailFromService.id:', mailFromService.id)
+        }) 
         // navigate('/mail')
         
         // Reset params
         queryStringParams = '#/mail'
         const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + queryStringParams
         window.history.pushState({ path: newUrl }, '', newUrl)
+    }
+
+    function onSetEdit(ev, mailId) {
+        if(ev) ev.stopPropagation()
+        setSelectedMailId(mailId)
+        setShowEdit(true)
     }
 
     useEffect(() => {
@@ -88,7 +98,7 @@ export function MailIndex() {
     function onComposeMail(ev, mailToCompose) {
         ev.preventDefault()
         // Check if the sender is the reciever
-        setShowCompose(false)
+        setShowEdit(false)
         setMainShown('mailList')
         mailToCompose.sentAt = Date.now()
         mailUserService.get().then(currUser => {
@@ -115,13 +125,13 @@ export function MailIndex() {
     function onExitMailToCompose(mailToDraft, intervalId, toAddMail) {
         if (intervalId) clearInterval(intervalId)
         setMainShown('mailList')
-        setShowCompose(false)
+        setShowEdit(false)
         // ADDED ///////////////////////////////////////////////////
         setSelectedMailId('')
         // Remove interval
         if(!toAddMail) return onSaveMail(mailToDraft)
 
-        onUpdateMails(mailToDraft, 'Mail saved as draft', () => setShowCompose(false))
+        onUpdateMails(mailToDraft, 'Mail saved as draft', () => setShowEdit(false))
         // mailService.save(mailToDraft).then((draftedMail) => {
         //     setShowCompose(false)
         //     mails.unshift(draftedMail)
@@ -265,22 +275,37 @@ export function MailIndex() {
         })
     }
 
+    function toggleMailMenu() {
+        document.body.classList.toggle('mail-menu-open')
+    }
+
+
+    function onComposeClicked() {
+        setShowEdit(true)
+        toggleMailMenu()
+    }
+
     return <section className="mail-index">
         <MailFilter onSetCriteria={onSetCriteria} setMainShown={setMainShown} />
+        {/* <span className="mail-nav"> */}
         <section className="compose-btn-sect">
-            <button className="compose-btn" onClick={() => setShowCompose(true)}>
+            <button className="compose-btn" onClick={onComposeClicked}>
                 <img className="list-icon icon" src="./assets/img/icons/icons-mail/compose-icon.png" />
                 Compose
             </button>
             <hr />
         </section>
+        <MailFolderList toggleMailMenu={toggleMailMenu} unreadCount={unreadCount} setMainShown={setMainShown} criteria={criteria} setCriteria={setCriteria} />
+        {/* </span> */}
         { mainShown !== 'mailEdit' && <MailSort subjectIcon={subjectIcon} dateIcon={dateIcon} onSubjectSort={onSubjectSort} onDateSort={onDateSort} onSetCriteria={onSetCriteria} />}
-        <MailFolderList unreadCount={unreadCount} setMainShown={setMainShown} criteria={criteria} setCriteria={setCriteria} />
-        {!isLoading && mainShown === 'mailList' && <MailList mails={mails} onIsRead={onIsRead} isLoading={isLoading} setMainShown={setMainShown} setSelectedMailId={setSelectedMailId} criteria={criteria} onRemoveMail={onRemoveMail} onIsStarred={onIsStarred} setShowEdit={setShowCompose} />}
+        {!isLoading && mainShown === 'mailList' && <MailList mails={mails} onIsRead={onIsRead} isLoading={isLoading} onSetEdit={onSetEdit} setMainShown={setMainShown} setSelectedMailId={setSelectedMailId} criteria={criteria} onRemoveMail={onRemoveMail} onIsStarred={onIsStarred}  />}
         {!isLoading && mainShown === 'mailDetails' && <MailDetails setIsLoading={setIsLoading} onIsRead={onIsRead} setMainShown={setMainShown} selectedMailId={selectedMailId} setSelectedMailId={setSelectedMailId} onRemoveMail={onRemoveMail} criteria={criteria} onIsStarred={onIsStarred} />}
-        {showCompose && <MailEdit onUpdateMails={onUpdateMails} onSaveMail={onSaveMail} setMainShown={setMainShown} mainShown={mainShown} setShowEdit={setShowCompose} onExitMailToEdit={onExitMailToCompose} selectedMailId={selectedMailId} onEditMail={onComposeMail} />}
+        {showEdit && <MailEdit onUpdateMails={onUpdateMails} onSaveMail={onSaveMail} setMainShown={setMainShown} mainShown={mainShown} setShowEdit={setShowEdit} onExitMailToEdit={onExitMailToCompose} selectedMailId={selectedMailId} onEditMail={onComposeMail} />}
         {/* {showCompose && <MailCompose onComposeMail={onComposeMail} setMainShown={setMainShown} mainShown={mainShown} setShowCompose={setShowCompose} onExitMailToCompose={onExitMailToCompose} />} */}
-        {isLoading && <div>Loading..</div>}
+        {/* {isLoading && <div>Loading..</div>} */}
+        {isLoading && <Loader />}
+
+        <span className="mail-menu" onClick={toggleMailMenu}></span>
     </section>
 }
 

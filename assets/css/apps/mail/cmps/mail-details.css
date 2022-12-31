@@ -57,3 +57,10 @@
 /* .mail-details p {
     margin-block-end: 10px;
 } */
+
+@media (max-width: 640px) {
+
+    .mail-details {
+        margin-inline-end: 0;
+    }
+}
