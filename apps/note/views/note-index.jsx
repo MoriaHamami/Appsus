@@ -80,10 +80,21 @@ export function NoteIndex() {
     }
 
 
-    function onSaveNote(ev, noteToAdd, file, txtRef, videoRef, imgRef) {
+    function onSaveNote(ev, noteToAdd, file,video, txtRef, videoRef, imgRef) {
         // let image = file
         // console.log('image', image);
         // noteToAdd.info.img = image.slice(5)
+
+        // let idx = noteToAdd.info.url.indexOf('=')
+        // const urlCode = noteToAdd.info.url.substring(idx, 1)
+        // const newUrl = `http://www.youtube.com/embed/${urlCode}`
+
+        var url = noteToAdd.info.url
+        var id = url.split("?v=")[1]
+
+        var embedlink = "http://www.youtube.com/embed/" + id
+
+        // noteToAdd.info.url = embedlink
         noteToAdd.info.img = file
 
         if (ev) ev.preventDefault()
