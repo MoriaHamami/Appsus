@@ -14,9 +14,9 @@ export function NoteVideo({note}) {
     }
 
     var url = note.info.url
-    var id = url.split("?v=")[1]; //sGbxmsDFVnE
+    var id = url.split("?v=")[1]
 
-    var embedlink = "http://www.youtube.com/embed/" + id; //www.youtube.com/embed/sGbxmsDFVnE
+    var embedlink = "http://www.youtube.com/embed/" + id
 
     return <section className="note-video css-fix">
 

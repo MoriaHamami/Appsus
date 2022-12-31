@@ -44,7 +44,7 @@ export function NoteAdd({ notes, onAddNotes, onSaveNote }) {
 
     return <section className="note-add">
 
-        {selected === 'text' && <form method="post" encType="multipart/form-data" onSubmit={(ev) => onSaveNote(ev, noteToAdd, file, txtRef)}>
+        {selected === 'text' && <form method="post" encType="multipart/form-data" onSubmit={(ev) => onSaveNote(ev, noteToAdd, file,noteToAdd.url, txtRef)}>
             <label htmlFor="title"></label>
             <input type="text"
                 name="info"
@@ -62,7 +62,7 @@ export function NoteAdd({ notes, onAddNotes, onSaveNote }) {
 
         </form>}
 
-        {selected === 'video' && <form method="post" encType="multipart/form-data" onSubmit={(ev) => onSaveNote(ev, noteToAdd, file, videoRef)}>
+        {selected === 'video' && <form method="post" encType="multipart/form-data" onSubmit={(ev) => onSaveNote(ev, noteToAdd, file,noteToAdd.url, videoRef)}>
             <label htmlFor="url"></label>
             <input type="url"
                 name="info"
@@ -80,7 +80,7 @@ export function NoteAdd({ notes, onAddNotes, onSaveNote }) {
 
         </form>}
 
-        {selected === 'img' && <form method="post" encType="multipart/form-data" onSubmit={(ev) => onSaveNote(ev, noteToAdd, file, imgRef)}>
+        {selected === 'img' && <form method="post" encType="multipart/form-data" onSubmit={(ev) => onSaveNote(ev, noteToAdd, file,noteToAdd.url, imgRef)}>
             <label htmlFor="file">choose image</label>
             <input type="file"
                 name="info"
