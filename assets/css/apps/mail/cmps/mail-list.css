@@ -112,10 +112,10 @@
         position: relative;
 
     }
+    
     .mail-index ul {
         margin-inline-end: 0;
         /* max-width: calc(100vw - 35px); */
         max-width: 100%;
-    
     }
 }

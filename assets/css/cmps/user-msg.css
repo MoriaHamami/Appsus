@@ -21,14 +21,15 @@
 } */
 
 .user-msg {
-    background-color: lightgray;
-    padding: .5em 1em;
+    background-color: rgb(67, 70, 78);
+    padding: 1em 1em;
     position: fixed;
-    bottom: 0;
+    bottom: 1em;
     right: 1em;
-    color: white;
+    color: rgb(240, 247, 248);
     font-weight: bold;
-    border-radius: 2px;
+    border-radius: 5px;
+    font-family: roboto-r;
 }
 
 .user-msg.success {
@@ -42,5 +43,10 @@
 
 .user-msg button{
     float: right;
-    margin: 1em;
+    margin: auto;
+    margin-inline-start: 7px;
+    border: none;
+    /* border-radius: 32px; */
+    background: none;
+    color: rgb(229, 215, 215);
 }

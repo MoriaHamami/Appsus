@@ -14,11 +14,11 @@ export function AppHeader() {
         </Link>
         <nav>
             <ul>
-                <li><NavLink to="/">Home</NavLink></li>
-                <li><NavLink to="/about">About</NavLink></li>
-                <li> <NavLink to="/mail">Mail</NavLink></li>
-                <li><NavLink to="/note">Note</NavLink></li>
-                <li><NavLink to="/book">Book</NavLink></li>
+                <li onClick={toggleMenu}><NavLink to="/">Home</NavLink></li>
+                <li onClick={toggleMenu}><NavLink to="/about">About</NavLink></li>
+                <li onClick={toggleMenu}> <NavLink to="/mail">Mail</NavLink></li>
+                <li onClick={toggleMenu}><NavLink to="/note">Note</NavLink></li>
+                <li onClick={toggleMenu}><NavLink to="/book">Book</NavLink></li>
             </ul>
         </nav>
         {<button className="menu-toggle-btn" onClick={toggleMenu}>☰</button>}

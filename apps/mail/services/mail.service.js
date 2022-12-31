@@ -181,20 +181,33 @@ function _createMails() {
             false,
             1551133930594,
             null,
-            'momo@momo.com',
-            'momo@momo.com',
+            'user@appsus.com',
+            'user@appsus.com',
             ['inbox', 'sent'],
             false,
             ['important']
         ))
         mails.push(getEmptyMail(
             utilService.makeId(),
-            'Another one!',
+            'You are annoying',
             'I dont like the way you eat',
             true,
             Date.now(),
             null,
             'bir@momo.com',
+            'user@appsus.com',
+            ['sent'],
+            true,
+            ['important', 'lovable']
+        ))
+        mails.push(getEmptyMail(
+            utilService.makeId(),
+            'My dog died',
+            'Hey pal, what name would you call a dog that has no both legs?...well it does not matter what name you might call him, trust me he is not coming!',
+            true,
+            Date.now(),
+            null,
+            'user@appsus.com',
             'gal@momo.com',
             ['inbox'],
             true,
@@ -202,91 +215,156 @@ function _createMails() {
         ))
         mails.push(getEmptyMail(
             utilService.makeId(),
-            'Another one!',
-            'I dont like the way you eat',
+            'To my bestie!',
+            'Dear besty, if you get the answer to this, then lunch is on me. What is the tallest building in the entire world?... It must be the library because it has so many stories!',
             true,
             Date.now(),
             null,
+            'user@appsus.com',
             'momo@momo.com',
-            'gal@momo.com',
             ['inbox'],
             true,
             ['important', 'lovable']
         ))
         mails.push(getEmptyMail(
             utilService.makeId(),
-            'Another one!',
-            'I dont like the way you eat',
+            'I know you broke up!',
+            'Hey, beautiful. Stop crying because it is over. Start smiling because that ungrateful loser is someone else problem.',
             true,
             Date.now(),
             null,
-            'bir@momo.com',
-            'momo@momo.com',
+            'barny@boy.com',
+            'user@appsus.com',
+            ['sent'],
+            true,
+            ['important', 'lovable']
+        ))
+        mails.push(getEmptyMail(
+            utilService.makeId(),
+            'Got your back bro',
+            'Hey pal, if they hurt you again, just tell me, I can make their death look like an accident! Don\'t worry I have got your back.',
+            true,
+            Date.now(),
+            null,
+            'user@appsus.com',
+            'marco@polo.com',
             ['inbox'],
             true,
             ['important', 'lovable']
         ))
         mails.push(getEmptyMail(
             utilService.makeId(),
-            'Another one!',
-            'I dont like the way you eat',
+            'We might die',
+            'Please remember, do not take life too seriously. You will never get out of it alive.',
             true,
             Date.now(),
             null,
-            'bir@momo.com',
-            'gal@momo.com',
+            'user@appsus.com',
+            'help@me.com',
             ['inbox'],
             true,
             ['important', 'lovable']
         ))
         mails.push(getEmptyMail(
             utilService.makeId(),
-            'Another one!',
-            'I dont like the way you eat',
+            'We are better than them',
+            'If you feel down, like the world is not listening, and you feel like crying, just remember, there is someone out there struggling to pull a push to open door.',
             true,
             Date.now(),
             null,
-            'bir@momo.com',
-            'gal@momo.com',
+            'user@appsus.com',
+            'my@man.com',
             ['inbox'],
             true,
             ['important', 'lovable']
         ))
         mails.push(getEmptyMail(
             utilService.makeId(),
-            'Another one!',
-            'I dont like the way you eat',
+            'New dicovery',
+            'Dear besty, I hope you studied well for tomorrow\'s exam. Today as I was reading, I noticed that the word "Studying" was made up of two words originally…" students dying!"',
             true,
             Date.now(),
             null,
-            'bir@momo.com',
-            'gal@momo.com',
+            'user@appsus.com',
+            'disco@ball.com',
             ['inbox'],
             true,
             ['important', 'lovable']
         ))
         mails.push(getEmptyMail(
             utilService.makeId(),
-            'Another one!',
-            'I dont like the way you eat',
+            'Don\'t mess with me',
+            'Next time you make fun of me, I will give your phone number to all the kids and tell them it is Santa\'s hotline.',
             true,
             Date.now(),
             null,
-            'bir@momo.com',
-            'gal@momo.com',
+            'user@appsus.com',
+            'angry@mail.com',
             ['inbox'],
             true,
             ['important', 'lovable']
         ))
         mails.push(getEmptyMail(
             utilService.makeId(),
-            'Another one!',
-            'I dont like the way you eat',
+            'Let\'s go shopping',
+            'Sometimes I wonder how you put up with me, then I remember, oh! I put up with you! So we are even.',
             true,
             Date.now(),
             null,
-            'bir@momo.com',
-            'gal@momo.com',
+            'user@appsus.com',
+            'gal@pal.com',
+            ['inbox'],
+            true,
+            ['important', 'lovable']
+        ))
+        mails.push(getEmptyMail(
+            utilService.makeId(),
+            'Happy birthday',
+            'Happy Birthday to one of the very few people of whom I can remember their birthdays without depending on a Facebook reminder.',
+            true,
+            Date.now(),
+            null,
+            'user@appsus.com',
+            'hero@momo.com',
+            ['inbox'],
+            true,
+            ['important', 'lovable']
+        ))
+        mails.push(getEmptyMail(
+            utilService.makeId(),
+            'No need for therapy',
+            'Happy Birthday to my one and only true best pal. What would I do without you? Without our conversations, I bet my therapy bills would be outrageous.',
+            true,
+            Date.now(),
+            null,
+            'user@appsus.com',
+            'bestie@momo.com',
+            ['inbox'],
+            true,
+            ['important', 'lovable']
+        ))
+        mails.push(getEmptyMail(
+            utilService.makeId(),
+            'Hey there honey',
+            'I think you are an interior decorator. Do you know why? Because when you walked in class that day, the room was suddenly beautiful and perfect!',
+            true,
+            Date.now(),
+            null,
+            'user@appsus.com',
+            'old@man.com',
+            ['inbox'],
+            true,
+            ['important', 'lovable']
+        ))
+        mails.push(getEmptyMail(
+            utilService.makeId(),
+            'My nanas teeth',
+            'Happy Birthday to my best friend ever! May your troubles be few and far between as my grandmother\'s teeth!',
+            true,
+            Date.now(),
+            null,
+            'user@appsus.com',
+            'funny@guy.com',
             ['inbox'],
             true,
             ['important', 'lovable']

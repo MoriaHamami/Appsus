@@ -38,8 +38,12 @@ export function MailPreview({ mail, setMainShown, setSelectedMailId, criteria, o
             {mail.isStarred && <img className="icon star starred" title="Starred" src="./assets/img/icons/icons-mail/starred-icon.png" onClick={(ev)=>{onIsStarred(ev, mail)}} />}
             {!mail.isStarred &&  <img className="icon star" title="Not starred" src="./assets/img/icons/icons-mail/star-icon.png" onClick={(ev)=>{onIsStarred(ev, mail)}} />}
             {/* <div className="to"> */}
-            {criteria.status !== 'sent' && criteria.status !== 'draft' && <div className="preview from">{mail.from}</div>}
-            {criteria.status === 'sent' || criteria.status === 'draft' && <div className="preview to">To: {mail.to}</div>}
+            {criteria.status !== 'sent' && <div className="preview from">{mail.from}</div>}
+            {/* {criteria.status === 'sent' || criteria.status === 'draft' && <div className="preview to">To: {mail.to}</div>} */}
+            {criteria.status === 'sent' && <div className="preview to">To: {mail.to}</div>}
+            {/* {criteria.status === 'draft' && <div className="preview from">{mail.from}</div>} */}
+            {/* {criteria.status !== 'sent' && <div className="preview from">{mail.from}</div>} */}
+
             <div className="preview subject">{mail.subject}</div>
             {!(criteria.status === 'trash') && hoverBtnsStyle.display === 'none' && <div className="preview date">{utilService.getDate(mail.sentAt) || ''}</div>}
             {criteria.status === 'trash' && hoverBtnsStyle.display === 'none' && <div className="preview date">{utilService.getDate(mail.removedAt) || ''}</div>}

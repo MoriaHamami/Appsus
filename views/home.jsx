@@ -2,6 +2,7 @@ const { Link } = ReactRouterDOM
 
 export function Home() {
 
+   
     return <section className="home">
         <h5 className="animate__animated">Welcome to</h5>
         <h1 className="animate__animated">Appsus</h1>
