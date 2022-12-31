@@ -4,6 +4,9 @@
     font-size: 20px;
     font-family: Product Sans b, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+.app-header a {
+    font-family: Product Sans b, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 
 .app-header {
     display: flex;
