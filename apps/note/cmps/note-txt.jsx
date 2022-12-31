@@ -11,13 +11,11 @@ export function NoteTxt({ note}) {
     function changeContent(ev) {
         note.info.txt = contentRef.current.innerText
         noteService.save(note)
-        console.log('contentRef.current.innerText', contentRef.current.innerText);
 
     }
     function changeContentTitle(ev) {
         note.info.title = titleRef.current.innerText
         noteService.save(note)
-        console.log('contentRef.current.innerText', titleRef.current.innerText);
 
     }
 
