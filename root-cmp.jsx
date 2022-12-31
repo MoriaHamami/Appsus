@@ -16,7 +16,7 @@ export function App() {
 
     return <Router>
         <section className="app">
-        <div class="main-screen" onClick={toggleMenu}></div>
+        <div className="main-screen" onClick={toggleMenu}></div>
             <AppHeader />
             <Routes>
                 <Route path="/" element={<Home />} />

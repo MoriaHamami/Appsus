@@ -81,8 +81,10 @@ export function NoteIndex() {
 
 
     function onSaveNote(ev, noteToAdd, file) {
-        let image = file
-        console.log('image', image);
+        // let image = file
+        // console.log('image', image);
+        // noteToAdd.info.img = image.slice(5)
+        noteToAdd.info.img = file
 
         if (ev) ev.preventDefault()
         noteService.save(noteToAdd).then((note) => {

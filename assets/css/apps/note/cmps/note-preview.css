@@ -21,34 +21,56 @@
 .note-preview input {
     /* display: none; */
     visibility: hidden;
-        /* position: relative; */
+    /* position: relative; */
 }
 
 .note-preview label img {
     width: 20px;
+    height: 20px;
+    text-decoration: none;
 
 }
 
+
 .note-preview label img:hover {
     cursor: pointer;
-    opacity: 0.5;
+    /* opacity: 0.5; */
     /* background-color: var(--button-hover-bg-color);
     border-radius: 50%; */
 }
 
-.hidden-buttons{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items:flex-end;
-    padding: 0 10px;
+.note-preview label:hover {
+    cursor: pointer;
+    /* opacity: 0.5; */
+    /* background-color: var(--button-hover-bg-color);
+    border-radius: 50%; */
 }
-.hidden-buttons form{
-   width: 20px;
-   height: 20px;
+.note-preview label {
+    cursor: pointer;
+    /* opacity: 0.5; */
+    /* background-color: var(--button-hover-bg-color);
+    border-radius: 50%; */
 }
 
-.note-video{
+.hidden-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: flex-end;
+    padding: 0 10px;
+    gap: 5px;
+}
+
+.hidden-buttons img {
+
+}
+
+.hidden-buttons form {
+    width: 20px;
+    height: 22px;
+}
+
+.note-video {
     display: flex;
     flex-direction: column;
     justify-content: center;

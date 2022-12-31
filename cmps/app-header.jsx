@@ -21,6 +21,6 @@ export function AppHeader() {
 
             </ul>
         </nav>
-        {<button class="menu-toggle-btn" onClick={toggleMenu}>☰</button>}
+        {<button className="menu-toggle-btn" onClick={toggleMenu}>☰</button>}
     </header>
 }
