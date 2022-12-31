@@ -26,7 +26,7 @@ export function NoteVideo({note}) {
         {/* <img src={note.info.url} alt={note.info.title} /> */}
         {/* <img src={note.info.url} alt={note.info.title} /> */}
         <iframe width="210" height="157.5"
-            src={id}>
+            src={embedlink}>
         </iframe>
     </section>
 }
