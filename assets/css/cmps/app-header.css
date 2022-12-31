@@ -4,6 +4,7 @@
     font-family: Product Sans b, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+
 .app-header a {
     font-family: Product Sans b, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
@@ -26,9 +27,11 @@ nav a {
     margin: .5em;
 }
 
+
 nav a.active {
     color: green;
 }
+
 
 nav a:hover {
     color: green;
@@ -101,6 +104,7 @@ body.menu-open .main-screen {
         display: block;
         text-align: center;
         padding: 30px 10px;
+ 
         transition: background-color .6s;
     }
 
@@ -126,9 +130,7 @@ body.menu-open .main-screen {
 /* SMALL */
 
 @media (min-width: 640px) {
-    .app-header .logo {
-        /* width: 100px; */
-    }
+
 
     .menu-toggle-btn {
         display: none;
@@ -137,11 +139,13 @@ body.menu-open .main-screen {
     .app-header nav li {
         margin: 0 20px;
 
+
     }
 
     .app-header ul {
         margin: 0 20px;
         display: flex;
+
 
     }
 }
@@ -149,10 +153,7 @@ body.menu-open .main-screen {
 /* MEDIUM */
 
 @media (min-width: 940px) {
-    .app-header .logo {
-        /* width: 100px */
-    }
-
+ 
     .menu-toggle-btn {
         display: none;
     }
@@ -172,11 +173,8 @@ body.menu-open .main-screen {
 /* LARGE */
 
 @media (min-width: 1100px) {
-    .app-header .logo {
-        /* width: 100px */
-    }
+    .app-header .logo{
 
-    .menu-toggle-btn {
         display: none;
     }
 

@@ -51,8 +51,8 @@ export function App() {
 
 
             </Routes>
-        </section>t
-
+        </section>
+        
         <UserMsg />
 
     </Router>

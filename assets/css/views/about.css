@@ -14,6 +14,7 @@
     justify-content: center;
     gap: 70px;
     padding: 50px;
+    margin: 0;
 }
 
 .each-member {
@@ -44,13 +45,16 @@ li {
     padding: 0;
 }
 
+
 .fa-facebook:hover {
     opacity: 0.5;
 }
 
+
 .fa-instagram:hover {
     opacity: 0.5;
 }
+
 
 .fa-linkedin:hover {
     opacity: 0.5;
@@ -60,12 +64,37 @@ li {
     background-color: rgb(250, 253, 253);
     border-radius: 0.5rem;
     padding: 50px;
-    /* width: 30%; */
 }
 
-/* DESKTOP */
-@media (min-width: 650px) {
+
+/* SMALL */
+
+@media (min-width: 640px) {
     .team {
         flex-direction: row;
+        margin: 0;
+        gap: 20px;
+    }
+
+}
+
+/* MEDIUM */
+
+@media (min-width: 940px) {
+    .team {
+        flex-direction: row;
+        margin: 0;
+        gap: 70px;
+    }
+
+}
+
+
+/* DESKTOP */
+@media (min-width: 1200px) {
+    .team {
+        flex-direction: row;
+        margin: 0 200px;
+        gap: 70px;
     }
 }
