@@ -46,7 +46,7 @@ An email client app built by [Moria Hamami](https://github.com/MoriaHamami), wit
 
 An app built by [Yael Tal](https://github.com/Yael273), that keeps notes (inspired by "Google Keep"). 
 
-![Note App](assets/img/readme/note-app.png "note-app")
+![apsus-keep](https://user-images.githubusercontent.com/118633927/224987959-4e5d195d-f15a-42a8-8233-ee7302bb9053.png)
 
 ### Features List
 - The ability to create, update and delete notes (CRUD).
@@ -73,5 +73,5 @@ storage.
 - Routing 
 
 ### Authors
- - [Moria Hamami](https://github.com/MoriaHamami)
- - [Yael Tal](https://github.com/Yael273)
+- Moria Hamami: [LinkedIn](https://www.linkedin.com/in/moriahamami/) | [GitHub](https://github.com/MoriaHamami)
+- Yael Tal: [LinkedIn](https://www.linkedin.com/in/yael-tal-77283a249/) | [GitHub](https://github.com/yael273)
