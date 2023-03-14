@@ -131,7 +131,6 @@ body.menu-open .main-screen {
 
 @media (min-width: 640px) {
 
-
     .menu-toggle-btn {
         display: none;
     }
@@ -173,10 +172,6 @@ body.menu-open .main-screen {
 /* LARGE */
 
 @media (min-width: 1100px) {
-    .app-header .logo{
-
-        display: none;
-    }
 
     .app-header nav li {
         margin: 0 20px;
