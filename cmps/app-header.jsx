@@ -17,10 +17,10 @@ export function AppHeader() {
         <nav>
             <ul>
                 <li><NavLink to="/">Home</NavLink></li>
-                <li><NavLink to="/about">About</NavLink></li>
                 <li> <NavLink to="/mail">Mail</NavLink></li>
                 <li><NavLink to="/note">Note</NavLink></li>
                 <li><NavLink to="/book">Book</NavLink></li>
+                <li><NavLink to="/about">About</NavLink></li>
             </ul>
         </nav>
 
